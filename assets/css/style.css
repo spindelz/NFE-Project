@@ -1,0 +1,206 @@
+body{
+    font-family: 'Kanit', sans-serif;
+}
+
+.login-page{
+    background: url(../img/photo1.png);
+    background-size: cover;
+    background-position: center center;
+}
+.login-page .login-box{
+    position: absolute;
+    z-index: 92;
+}
+.login-page .login-logo a{
+    color: #fff;
+}
+.login-page .login-box .card .login-card-body{
+    background: rgba(255, 255, 255, 0.8) !important;
+}
+.login-page .login-box .card{
+    background: transparent;
+}
+.login-card-body .input-group .input-group-text{
+    background: #e9ecef;
+}
+label:not(.form-check-label):not(.custom-file-label){
+    font-weight: 500;
+}
+
+.dropdown-nonclick{
+    position: relative;
+}
+
+.dropdown-item-profile{
+    padding: .5rem 1rem;
+    display: block;
+    width: 100%;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.navbar-header{
+    height: 225px;
+    background-position: center center;
+    background-image: url(../img/photo1.png);
+    background-size: cover;
+    position: relative;
+    z-index: 90;
+}
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 91;
+}
+
+.shop-header{
+    position: absolute;
+    z-index: 92;
+}
+.shop-header .shop-logo{
+    background: url(../img/AdminLTELogo.png);
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+}
+.shop-header h1{
+    color: #fff;
+    vertical-align: middle;
+}
+.content-wrapper{
+    margin-top: 55px;
+}
+.toggle.btn-sm{
+    width: 60.1px !important;
+}
+.hide{
+    display: none;
+}
+.modal-content{
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.5) !important;
+}
+.quantity{
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+.btn-quantity{
+    outline: none;
+    cursor: pointer;
+    font-size: .875rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 2px;
+    background: transparent;
+    color: rgba(0,0,0,.8);
+    width: 32px;
+    height: 32px;
+}
+.input-quantity{
+    display: flex;
+    -webkit-box-align: center;
+    width: 50px;
+    height: 32px;
+    border-left: none;
+    border-right: none;
+    border: 1px solid rgba(0,0,0,.09);
+    font-size: 16px;
+    font-weight: 400;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: text;
+    border-radius: 0;
+    -webkit-appearance: none;
+    background: transparent;
+    color: rgba(0,0,0,.8);
+    transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    justify-content: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    line-height: 1;
+    letter-spacing: 0;
+    outline: none;
+}
+.image-order{
+    height: 160px;
+    overflow: hidden;
+}
+.image-product{
+    height: 180px;
+    overflow: hidden;
+}
+.cart-list{
+    list-style: none;
+    padding-left: 0px;
+}
+.cart-list li{
+    padding-top:.5rem;
+    padding-bottom:.5rem;
+    border-bottom: 1px solid #dee2e6!important;
+}
+.btn-viewlayout:hover, .card-product:hover{
+    cursor: pointer;
+}
+.card-product:hover .card{
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.5) !important;
+}
+.link-customer, .link-customer-addr{
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.link-customer:hover, .link-customer-addr:hover{
+    background: #c8ecff;
+    cursor: pointer;
+}
+.content-wrapper{
+    min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px)) !important;
+}
+
+@media screen and (max-width: 768px) {
+    .shop-header{
+        left: 50%;
+        margin-left: -154.8px;
+        top: 50%;
+        margin-top: -88px;
+    }
+    .nav-search{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .navbar-expand-md .navbar-collapse{
+        display: none !important;
+    }
+}

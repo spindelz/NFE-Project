@@ -23,9 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/NFEProject';
+$config['base_url'] = 'http://localhost/NFE-Project';
 
-$config['api_url'] = 'http://localhost/NFEProject/api';
+$config['api_url'] = 'http://localhost/NFE-Project/api';
 
 /*
 |--------------------------------------------------------------------------

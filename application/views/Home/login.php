@@ -1,46 +1,78 @@
-<div class="overlay"></div>
-
-<div class="login-box animate__animated animate__zoomIn animate__fast">
-    <div class="login-logo">
-        <a href="#"><b>B</b>Commerce</a>
-    </div>
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Member</p>
-
-            <form id="form_login" method="post">
-                <div class="input-group mb-3">
-                    <input type="text" name="username" class="form-control" placeholder="Username">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-user"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-8">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="remember" class="custom-control-input" id="remember_me">
-                            <label class="custom-control-label" for="remember_me">Remember Me</label>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </div>
-                </div>
-            </form>
-
-            <p class="mb-1 mt-3 text-right">
-                <a href="#">I forgot my password</a>
-            </p>
+<!-- <div class="overlay"></div> -->
+<div class="container" style="background: #00CCCC">
+    <div class="row py-1">
+        <div class="col-md-2 d-flex justify-content-center align-items-center">
+            <img src="<?php echo ASSETS_IMG; ?>/NFE.Chon_100.png" style="width:109px; height: 109px;">
         </div>
+        <div class="col-md-8 text-center" >
+            <h2 style="color:#666666;"><b>สำนักงานส่งเสริมการศึกษานอกระบบและการศึกษาตามอัธยาศัย</b></h2> 
+            <h3 style="color:#666666;"><b>สำนักงานปลัดกระทรวงศึกษาธิการ</b></h3> 
+            <h5 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</h5>
+        </div>
+        <div class="col-md-2"></div>
+    </div>  
+</div>
+<div class="text-center pt-4">
+    <p style="color:#0099CC;">
+        หลักสูตรการศึกษานอกระบบ <br>และการศึกษาตามอัธยาศัยขั้นพื้นฐาน พ.ศ.2551 <br>
+        กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี 
+    </pre>
+    
+</div>
+
+<div class="d-flex justify-content-center my-4">
+    <div class="login-box animate__animated animate__zoomIn animate__fast">
+        <!-- <div class="login-logo">
+            <a href="#">ยินดีต้อนรับ</a>
+        </div> -->
+        <div class="card">
+            <div class="card-body login-card-body" style="background:#a5d3ff;">
+                <h1 class="login-box-msg">เข้าสู่ระบบ</h1>
+
+                <form id="form_login" method="post">
+                    <div class="input-group mb-4">
+                        <input type="text" name="username" class="form-control" placeholder="ชื่อผู้เข้าใช้">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-4">
+                        <input type="password" name="password" class="form-control" placeholder="รหัสผ่าน">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-1">
+                            <div class="custom-control custom-checkbox">
+                                
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <p class="mb-1 mt-3 text-right">
+                    <a href="#">ลืมรหัสผ่าน</a>
+                </p>
+
+            </div>
+
+        </div>
+
     </div>
+</div>
+
+<div class="text-center pt-3 login-footer" style="margin: 0;">
+    <p class="text-danger">
+        *นักศึกษาใช้รหัสประจำตัวประชาชนในการเข้าสู่ระบบ <br>
+        **อาจารย์ใช้ Username และ Password ในการเข้าสู่ระบบ
+    </p>
 </div>

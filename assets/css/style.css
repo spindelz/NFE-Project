@@ -1,9 +1,21 @@
+@font-face {
+    font-family: THSarabun;
+    src: url(../fonts/THSarabun.ttf);
+}
+
 body{
-    font-family: 'Kanit', sans-serif;
+    /* font-family: 'Kanit', sans-serif; */
+    font-family: 'THSarabun', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h1{
+    font-size: 2.5rem !important;
 }
 
 .login-page{
-    background: url(../img/photo1.png);
+    background: #fff;
     background-size: cover;
     background-position: center center;
 }
@@ -45,10 +57,8 @@ label:not(.form-check-label):not(.custom-file-label){
 }
 
 .navbar-header{
-    height: 225px;
-    background-position: center center;
-    background-image: url(../img/photo1.png);
-    background-size: cover;
+    height: 250px;
+    background: #00CCCC;
     position: relative;
     z-index: 90;
 }
@@ -60,134 +70,39 @@ label:not(.form-check-label):not(.custom-file-label){
     position: absolute;
     z-index: 91;
 }
-
-.shop-header{
-    position: absolute;
-    z-index: 92;
-}
-.shop-header .shop-logo{
-    background: url(../img/AdminLTELogo.png);
-    background-size: cover;
-    height: 80px;
-    width: 80px;
-}
-.shop-header h1{
-    color: #fff;
-    vertical-align: middle;
-}
-.content-wrapper{
-    margin-top: 55px;
-}
-.toggle.btn-sm{
-    width: 60.1px !important;
-}
 .hide{
     display: none;
+}
+.bd{
+    border: 1px solid red;
 }
 .modal-content{
     box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.5) !important;
 }
-.quantity{
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-.btn-quantity{
-    outline: none;
-    cursor: pointer;
-    font-size: .875rem;
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: 0;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -moz-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -moz-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    -webkit-transition: background-color .1s cubic-bezier(.4,0,.6,1);
-    transition: background-color .1s cubic-bezier(.4,0,.6,1);
-    border: 1px solid rgba(0,0,0,.09);
-    border-radius: 2px;
-    background: transparent;
-    color: rgba(0,0,0,.8);
-    width: 32px;
-    height: 32px;
-}
-.input-quantity{
-    display: flex;
-    -webkit-box-align: center;
-    width: 50px;
-    height: 32px;
-    border-left: none;
-    border-right: none;
-    border: 1px solid rgba(0,0,0,.09);
-    font-size: 16px;
-    font-weight: 400;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    text-align: center;
-    cursor: text;
-    border-radius: 0;
-    -webkit-appearance: none;
-    background: transparent;
-    color: rgba(0,0,0,.8);
-    transition: background-color .1s cubic-bezier(.4,0,.6,1);
-    justify-content: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    line-height: 1;
-    letter-spacing: 0;
-    outline: none;
-}
-.image-order{
-    height: 160px;
-    overflow: hidden;
-}
-.image-product{
-    height: 180px;
-    overflow: hidden;
-}
-.cart-list{
-    list-style: none;
-    padding-left: 0px;
-}
-.cart-list li{
-    padding-top:.5rem;
-    padding-bottom:.5rem;
-    border-bottom: 1px solid #dee2e6!important;
-}
-.btn-viewlayout:hover, .card-product:hover{
-    cursor: pointer;
-}
-.card-product:hover .card{
-    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,.5) !important;
-}
-.link-customer, .link-customer-addr{
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-.link-customer:hover, .link-customer-addr:hover{
-    background: #c8ecff;
-    cursor: pointer;
-}
 .content-wrapper{
     min-height: calc(100vh - calc(3.5rem + 1px) - calc(3.5rem + 1px)) !important;
 }
+.btn, .form-control{
+    font-size: 1.5rem;
+}
+.login-page{
+    height: 65vh;
+}
+
+.navbar-toggle-menu{
+    color: rgba(255,255,255,1);
+    border-color: rgba(255,255,255,1);
+}
+
+.navbar-toggle-menu{
+    display: none !important;
+}
 
 @media screen and (max-width: 768px) {
+    .navbar-toggle-menu{
+        display: flex !important;
+    }
+
     .shop-header{
         left: 50%;
         margin-left: -154.8px;
@@ -195,6 +110,12 @@ label:not(.form-check-label):not(.custom-file-label){
         margin-top: -88px;
     }
     .nav-search{
+        display: none;
+    }
+    .login-box{
+        margin-top: 50px;
+    }
+    .login-footer{
         display: none;
     }
 }

@@ -5,13 +5,14 @@
     });
 
     function setCommon(){
-        if($('body').hasClass('layout-top-nav')){
-            $('body').removeClass('layout-top-nav');
-            $('body').addClass('login-page');
-        }else{
-            $('body').addClass('layout-top-nav');
-            $('body').removeClass('login-page');
-        }
+        $('body').removeClass('login-page');
+        // if($('body').hasClass('layout-top-nav')){
+        //     $('body').removeClass('layout-top-nav');
+        //     $('body').addClass('login-page');
+        // }else{
+        //     $('body').addClass('layout-top-nav');
+        //     $('body').removeClass('login-page');
+        // }
     }
 
     function initControl(){

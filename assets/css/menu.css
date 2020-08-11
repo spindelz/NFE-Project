@@ -20,7 +20,7 @@
 .menu-link {
     color: inherit;
     display: block;
-    font-size: 16px;
+    font-size: 1.5rem;
     font-weight: 300;
     padding: 15px 20px;
     position: relative;
@@ -35,7 +35,7 @@
     z-index: 92;
     bottom: 0px;
     float:left;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(15, 54, 63, .65);
 }
 .nav-menu.depth-1 > .menu > .menu-item .menu-link{
     color: #fff;

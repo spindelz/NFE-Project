@@ -5,7 +5,7 @@ class ProductTag extends MY_Controller {
 
 	var $allow_permission = TRUE; 
 
-	var $is_authen = TRUE; 
+	var $is_authen = FALSE; 
 
 	var $is_translation = TRUE; 
 

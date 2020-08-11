@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> แท็กสินค้า</h1>
+                    <h1 class="m-0 text-dark"> นักเรียน</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -37,37 +37,6 @@
                     
                 </div>
                 
-            </div>
-
-            <div class="card mb-3">
-                <div class="card-body">
-                    <table class="table table-bordered table-striped text-center" id="datatable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อแท็กสินค้า</th>
-                                <th>วันที่บันทึก</th>
-                                <th>ผู้บันทึก</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                    <table class="table table-bordered table-striped text-center" id="datatable">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>ชื่อแท็กสินค้า</th>
-                                <th>วันที่บันทึก</th>
-                                <th>ผู้บันทึก</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
             </div>
             
 

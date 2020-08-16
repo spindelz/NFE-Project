@@ -41,7 +41,9 @@
                     <h1 style="color:#666666;"><b>ระบบสารสนเทศงานทะเบียนออนไลน์</b></h1> 
                     <h3 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</h3>
                 </div>
-                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    
+                </div>
             </div>  
         </div>
         

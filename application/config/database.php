@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'nfe',
+	'hostname' => '194.59.164.1',
+	'username' => 'u823634085_nfe_main',
+	'password' => 'cxlC|ki!H4',
+	'database' => 'u823634085_nfe_main',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -95,12 +95,56 @@ $db['default'] = array(
 	'save_queries' => TRUE
 );
 
-$db['default'] = array(
+$db['nfe1'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'nfe',
+	'hostname' => '194.59.164.1',
+	'username' => 'u823634085_nfe1',
+	'password' => 'Op7r?E&2wD',
+	'database' => 'u823634085_nfe1',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['nfe2'] = array(
+	'dsn'	=> '',
+	'hostname' => '194.59.164.1',
+	'username' => 'u823634085_nfe2',
+	'password' => 'Op7r?E&2wD',
+	'database' => 'u823634085_nfe2',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['nfe3'] = array(
+	'dsn'	=> '',
+	'hostname' => '194.59.164.1',
+	'username' => 'u823634085_nfe3',
+	'password' => 'Op7r?E&2wD',
+	'database' => 'u823634085_nfe3',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

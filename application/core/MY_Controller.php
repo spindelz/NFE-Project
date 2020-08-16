@@ -89,9 +89,9 @@ class MY_Controller extends CI_Controller{
         $user = $this->session->userdata('user_logined');
         if(!isset($user)){
             if($is_admin){
-                redirect(base_url('auth/login'));
+                redirect(base_url('Auth/login'));
             }else{
-                redirect(base_url('home/login'));
+                redirect(base_url('Home/login'));
             }
         }
     }

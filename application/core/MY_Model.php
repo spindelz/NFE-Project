@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model{
 
-	public $database_name = 'bcom';
+	public $database_name = 'u823634085_nfe_main';
 
     /*
 		    *    Table name for query builder.

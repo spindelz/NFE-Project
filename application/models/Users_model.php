@@ -43,11 +43,44 @@ class Users_model extends MY_Model {
 	}
 
 	public function checkUsername($username){
-		$this->db->select('UserID, Username, Password, UserTypeID');
+		$this->db->select('users.UserID, users.Username, users.Password, users.UserTypeID, user_type.UserTypeName, prefix.PrefixName, users.FirstName, users.LastName');
 		$this->_setFrom();
+		$this->db->join('user_type', 'user_type.UserTypeID = users.UserTypeID', 'left');
+		$this->db->join('prefix', 'prefix.PrefixID = users.PrefixID', 'left');
 		$this->db->where('Username', $username);
+		$result = $this->db->get()->row_array();
+		if(!empty($result)){
+			return $result;
+		}
 
-		return $this->db->get()->row_array();
+		$db1 = $this->load->database('nfe1', TRUE);
+		$db1->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'5\' as UserTypeID, \'ประถมศึกษา\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db1->from('student');
+		$db1->where('CARDID', $username);
+		$result = $db1->get()->row_array();
+		if(!empty($result)){
+			return $result;
+		}
+
+		$db2 = $this->load->database('nfe2', TRUE);
+		$db2->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'6\' as UserTypeID, \'มัธยมศึกษาตอนต้น\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db2->from('student');
+		$db2->where('CARDID', $username);
+		$result = $db2->get()->row_array();
+		if(!empty($result)){
+			return $result;
+		}
+
+		$db3 = $this->load->database('nfe3', TRUE);
+		$db3->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'7\' as UserTypeID, \'มัธยมศึกษาตอนปลาย\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db3->from('student');
+		$db3->where('CARDID', $username);
+		$result = $db3->get()->row_array();
+		if(!empty($result)){
+			return $result;
+		}
+
+		return array();
 	}
 
 	public function getByID($UserID){

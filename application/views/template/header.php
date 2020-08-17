@@ -42,7 +42,9 @@
                     <h3 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</h3>
                 </div>
                 <div class="col-md-4">
-                    
+                    <?php echo($FullName); ?>
+                    <?php echo($ID); ?>
+                    <?php echo($CARDID); ?>
                 </div>
             </div>  
         </div>

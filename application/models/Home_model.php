@@ -11,75 +11,36 @@ class Home_model extends MY_Model {
 
 	public $table_translation_name = null;
 
-    public function getDataHeader()
-    {
-        /* set session model (test session) */
-        //************************************************************************
-        $userdata_header = array(
-            'data_header' => array(
-                'ID'      => '6221000628',      //$result->ID,
-                'PRENAME' => 'พลทหาร',         //$result->PRENAME,
-                'NAME'    => 'ปิยะ',             //$result->NAME,
-                'SURNAME' => 'ทัพเรือง'          //$result->SURNAME,
-            )
-        );
-        $this->session->set_userdata($userdata_header);
-
-        $data_header = $this->session->userdata('data_header');
-        return $data_header;
-
-        //*************************************************************************** */
-    }
-
     public function test($STD_CODE){
         return $STD_CODE;
     }
 
-    public function getAge($getDate){
-
-		//date in dd/mm/yyyy format; or it can be in other formats as well
-
-		$getDate = $birthDate;
-		
-		//explode the date to get month, day and year
-		
-		$birthDate = explode("/", $birthDate);
-		
-		//get age from date or birthdate
-		// ปรับเปลี่ยนการคำนวณ ว/ด/ป โดนยการเปลี่ยนตำแหน่ง Array birthDate[0=day,1=month,2=year]
-
-        $age = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[0], $birthDate[2]))) > date("md")
-            ? ((date("Y") - $birthDate[2]) - 1)
-            : (date("Y") - $birthDate[2]));
-		// echo "Age is:" . $age;
-		return $age;
-	}
+    public function getBirthDate($STD_CODE)
+    {
+        $this->db->select('student.BIRDAY');
+        $this->db->from('student');
+		$this->db->where('student.ID',$STD_CODE);
+		//$this->db->order_by('SEMESTRY','asc');
+		$result = $this->db->get()->result();
+        return $result; 
+    }
 
     public function getDataByID($STD_CODE)
     {
-		// $this->db->select('prefix.PrefixName');
-		// $this->_setFrom();
-		// $this->db->join('user_type', 'user_type.UserTypeID = users.UserTypeID', 'left');
-		// $this->db->join('prefix', 'prefix.PrefixID = users.PrefixID', 'left');
-		
-		// if(!empty($input['username']) && !empty($input['password'])){
-		// 	$this->db->where('Username', $input['username']);
-		// 	$this->db->where('Password', $input['password']);
-		// }
-		
-		// $query = $this->db->get()->row_array();
-		// unset($query['Password']);
-        // return $query;
-
         // $this->_setColumnSelect();
-        $this->db->select('student.PRENAME,s.NAME,s.SURNAME,s.ID,s.CARDID,s.BIRDAY,s.CURPHONE,s.S_SCHOOL,s.CURADDR,s.CTAMBONID,s.CZIPCODE');
-        $this->db->from('student as s');
-        //$this->dv->join('tambon as t','s.CTAMBONID = t.ID','full');
-        // $this->db->join('province as p');
-		$this->db->where('ID',$STD_CODE);
+        $this->db->select('student.PRENAME,student.NAME,student.SURNAME,student.ID,
+                            student.CARDID,student.BIRDAY,student.CURPHONE,student.S_SCHOOL,
+                            student.CURADDR,student.CTAMBONID,student.CZIPCODE as Zipcode ,
+                            tambon.NAME as Tambon,amphur.NAME as Amphur,province.NAME as Province'
+                        );
+        $this->db->from('student');
+        $this->db->join('tambon','student.CTAMBONID = tambon.ID','left');
+        $this->db->join('amphur','tambon.AMPHURID = amphur.ID','left');
+        $this->db->join('province','amphur.PROVID = province.ID','left');
+		$this->db->where('student.ID',$STD_CODE);
 		//$this->db->order_by('SEMESTRY','asc');
-		$results = $this->db->get()->result_array();
-        return $results; 
+		$result = $this->db->get()->result_array();
+        return $result; 
         
     }
     

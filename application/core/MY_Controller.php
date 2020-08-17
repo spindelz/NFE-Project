@@ -32,10 +32,11 @@ class MY_Controller extends CI_Controller{
                 $this->load->view('template/head');
                 // $this->load->view('template/sidebar');
                 $data_header['page'] = $page_name;
-                $user_logined = $this->session->userdata('user_logined');
-                if(isset($user_logined)){
-                    $data_header['FullName'] = $user_logined['PrefixName'] . ' ' . @$user_logined['FirstName'] . ' ' . @$user_logined['LastName'];
-                    $data_header['Position'] = $user_logined['UserTypeName'];
+                $user_DataHeader = $this->session->userdata('data_header');
+                if(isset($user_DataHeader)){
+                    $data_header['FullName'] = $user_DataHeader['PRENAME'] . ' ' . @$user_DataHeader['NAME'] . ' ' . @$user_DataHeader['SURNAME'];
+                    $data_header['ID'] = $user_DataHeader['ID'];
+                    $data_header['CARDID'] = $user_DataHeader['CARDID'];
                 }
                 $data_header['pageID'] = $this->page_id;
                 

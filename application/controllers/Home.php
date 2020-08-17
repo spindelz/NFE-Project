@@ -11,28 +11,21 @@ class Home extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->load->model('Home_model');
 	}
 	
 	public function index() {
-		//$user_logined = $this->session->userdata('user_logined');
+		$user_logined = $this->session->userdata('user_logined');
 
-		// if(!isset($user_logined)){
-		// 	redirect(SITE.'home/login');
-		// }
+		if(!isset($user_logined)){
+			redirect(SITE.'home/login');
+		}
 
-		$data_header = $this->Home_model->getDataHeader(); //function ดึงข้อมูลส่วนหัว
+		$data_header = $this->test_session();
 
-		$this->render('normal_page', 'Home', 'home/index', FALSE, $data_header);  //render ไปที่ index แล้ว
+		$this->render('normal_page', 'Home', 'Home/index', FALSE);  
 
-		/* Code ทดสอบข้อมูล */
-		//********************************************************* */
-		// $STD_CODE = '6221000628';
-        // $result = $this->Home_model->getDataByID($STD_CODE);
-        // echo'<pre>';
-        // print_r ($result);
-        // echo '</pre>';
-		// exit;
-		// ********************************************************* */
+		
 	}
 
 	public function login() {
@@ -47,5 +40,26 @@ class Home extends MY_Controller {
 	public function logout() {
 		session_unset('user_logined');
 		redirect(SITE.'home/login');
+	}
+
+	public function test_session(){
+		{
+			/* set session model (test session) */
+			//************************************************************************
+			$userdata_header = array(
+				'data_header' => array(
+					'ID'      => '6221000628',      //$result->ID,
+					'PRENAME' => 'พลทหาร',         //$result->PRENAME,
+					'NAME'    => 'ปิยะ',             //$result->NAME,
+					'SURNAME' => 'ทัพเรือง'       ,   //$result->SURNAME,
+					'CARDID'  => '1234567891234'
+				)
+			);
+			$this->session->set_userdata($userdata_header);
+	
+			// $data_header = $this->session->userdata('data_header');
+	
+			//*************************************************************************** */
+		}
 	}
 }

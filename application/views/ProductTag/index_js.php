@@ -42,24 +42,24 @@
     }
 
     function getData(){
-        // $.ajax({
-		// 	method: "GET",
-		// 	url: "<?php echo api_url('ProductTag') ?>",
-		// 	success: function(response){
-            var data = {"data":[
-            {"TagID":"2","TagName":"Hot","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 15:19:36","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"},
-            {"TagID":"3","TagName":"New","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 16:00:14","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"}],
-            "length":2}
-                bindData(data);
-        //         initControl();
-        //     }
-        // });
+        $.ajax({
+			method: "GET",
+			url: "<?php echo api_url('home ') ?>",
+			success: function(response){
+            // var data = {"data":[
+            // {"TagID":"2","TagName":"Hot","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 15:19:36","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"},
+            // {"TagID":"3","TagName":"New","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 16:00:14","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"}],
+            // "length":2}
+                bindData(response.data);
+                initControl();
+            }
+        });
     }
 
     function searchData(data){
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('ProductTag/search') ?>",
+            url: "<?php echo api_url('home') ?>",
             data: data,
             success: function(response){
                 bindData(response.data);
@@ -76,17 +76,17 @@
         // {'TagID': 1, 'TagName': 'test', 'UpdatedDate': '28/12/2536', 'UpdatedBy': 'bank'},
         // {'TagID': 1, 'TagName': 'test', 'UpdatedDate': '28/12/2536', 'UpdatedBy': 'bank'}];
         // console.log(data);
-        data = {"data":[
-            {"TagID":"2","TagName":"Hot","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 15:19:36","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"},
-            {"TagID":"3","TagName":"New","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 16:00:14","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"}],
-            "length":2}
+        // data = {"data":[
+        //     {"TagID":"2","TagName":"Hot","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 15:19:36","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"},
+        //     {"TagID":"3","TagName":"New","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 16:00:14","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"}],
+        //     "length":2}
         // data.length = 6;
-        console.log(data);
-        // if(data.length > 0){
+        // console.log(data);
+        if(data.length > 0){
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].TagName + '</td>';
+                str_table += '<td>' + data[i].Age + '</td>';
                 str_table += '<td>' + data[i].UpdatedDate + '</td>';
                 str_table += '<td>' + data[i].UpdatedBy + '</td>';
                 str_table += '<td class="p-2">';
@@ -97,10 +97,10 @@
 
                 $('#datatable tbody').append(str_table);
             }
-        // }else{
-        //     var str_table = '<tr><td colspan="7" class="text-danger">ไม่มีข้อมูล</td></tr>';
-        //     $('#datatable tbody').html(str_table);
-        // }
+        }else{
+            var str_table = '<tr><td colspan="7" class="text-danger">ไม่มีข้อมูล</td></tr>';
+            $('#datatable tbody').html(str_table);
+        }
     }
 
     function deleteData(id){

@@ -18,7 +18,7 @@
                     <a href="#" class="nav-link">ตารางเรียน</a>
                     <a href="#" class="nav-link">ตารางสอบ</a>
                     <a href="#" class="nav-link">ผลการเรียน</a>
-                    <a href="#" class="nav-link">ออกจากระบบ</a>
+                    <a href="<?php echo SITE; ?>/Home/logout" class="nav-link">ออกจากระบบ</a>
                 </li>
                 
                 </li>
@@ -60,7 +60,7 @@
                 <li class="menu-item col-sm-2 text-center" id="menu5">
                     <a class="menu-link" href="#">ผลการเรียน</a> </li>   
                 <li class="menu-item col-sm-2 text-center" id="menu6">
-                    <a class="menu-link" href="#">ออกจากระบบ</a> </li>             
+                    <a class="menu-link" href="<?php echo SITE; ?>/Home/logout">ออกจากระบบ</a> </li>             
             </ul>
         </div>
     </nav>

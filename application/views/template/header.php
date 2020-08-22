@@ -25,12 +25,6 @@
             </ul>
         </div>
 
-        <!-- <div class="container">
-            <div class="shop-header py-5">
-                <div class="shop-logo d-table-cell"></div>
-                <h1 class="d-table-cell pl-4">BCommerce</h1>
-            </div>
-        </div> -->
         <div class="container pt-4" style="paddgind-bottom:100px;">
             <div class="row py-1">
                 <div class="col-md-2 d-flex justify-content-center align-items-center">
@@ -39,30 +33,60 @@
                 <div class="col-md-6 text-left" >
                    <br> 
                     <h1 style="color:#666666;"><b>ระบบสารสนเทศงานทะเบียนออนไลน์</b></h1> 
-                    <h3 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</h3>
+                    <h3 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</b></h3>
                 </div>
                 <div class="col-md-4">
-                    <?php echo($FullName); ?>
-                    <?php echo($ID); ?>
-                    <?php echo($CARDID); ?>
+                    <div style="border:1px solid black; border-radius:12px;background:#9bdbf6" class="p-3 text-center">
+                        <?php echo $FullName; ?>
+                        <br>
+                        <?php if(array_search($UserTypeID, array(5,6,7))){ ?>
+                        รหัสนักศึกษา: <?php echo $StudentCode;?><br>
+                        เลขประจำตัวประชาชน: <?php echo $PersonalID; ?>
+                        <br>
+                        <?php }else{ ?>
+                        ตำแหน่ง: <?php echo $Position; ?>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>  
         </div>
         
-        <div class="nav-menu depth-1 col-md-12">  
+        <div class="nav-menu depth-1 col-md-12">
             <ul class="menu">
-                <li class="menu-item col-sm-2 text-center" id="menu1">
-                    <a class="menu-link" href="#">หน้าแรก</a></li>
-                <li class="menu-item col-sm-2 text-center" id="menu2">
-                    <a class="menu-link" href="#">กิจกรรม (กพช.)</a></li>
-                <li class="menu-item col-sm-2 text-center" id="menu3">
-                    <a class="menu-link" href="#">ตารางเรียน</a> </li>
-                <li class="menu-item col-sm-2 text-center" id="menu4">
-                    <a class="menu-link" href="#">ตารางสอบ</a> </li>  
-                <li class="menu-item col-sm-2 text-center" id="menu5">
-                    <a class="menu-link" href="#">ผลการเรียน</a> </li>   
-                <li class="menu-item col-sm-2 text-center" id="menu6">
-                    <a class="menu-link" href="<?php echo SITE; ?>/Home/logout">ออกจากระบบ</a> </li>             
+                <li class="menu-item text-center" id="menu1">
+                    <a class="menu-link" href="<?php echo SITE; ?>">หน้าแรก</a>
+                </li>
+                <?php if(array_search($UserTypeID, array(5,6,7))){ ?>
+                <li class="menu-item text-center" id="menu2">
+                    <a class="menu-link" href="#">กิจกรรม (กพช.)</a>
+                </li>
+                <li class="menu-item text-center" id="menu3">
+                    <a class="menu-link" href="#">ตารางเรียน</a>
+                </li>
+                <li class="menu-item text-center" id="menu4">
+                    <a class="menu-link" href="#">ตารางสอบ</a>
+                </li>
+                <li class="menu-item text-center" id="menu5">
+                    <a class="menu-link" href="#">ผลการเรียน</a>
+                </li>
+                
+                <?php }elseif($UserTypeID == 4){ ?>
+                <li class="menu-item text-center" id="menu2">
+                    <a class="menu-link" href="#">กลุ่มเรียน</a>
+                </li>
+                <li class="menu-item text-center" id="menu3">
+                    <a class="menu-link" href="#">รายชื่อวิชา</a>
+                </li>
+                <li class="menu-item text-center" id="menu4">
+                    <a class="menu-link" href="#">รายชื่อนักศึกษา</a>
+                </li>
+                <li class="menu-item text-center" id="menu5">
+                    <a class="menu-link" href="#">ผลการเรียนของนักศึกษา</a>
+                </li>
+                <?php } ?>
+                <li class="menu-item text-center" id="menu6">
+                    <a class="menu-link" href="<?php echo SITE; ?>/Home/logout">ออกจากระบบ</a>
+                </li>
             </ul>
         </div>
     </nav>

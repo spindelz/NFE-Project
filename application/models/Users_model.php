@@ -54,7 +54,7 @@ class Users_model extends MY_Model {
 		}
 
 		$db1 = $this->load->database('nfe1', TRUE);
-		$db1->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'5\' as UserTypeID, \'ประถมศึกษา\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db1->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, student.STD_CODE as StudentCode, student.CARDID as PersonalID, \'5\' as UserTypeID, \'ประถมศึกษา\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
 		$db1->from('student');
 		$db1->where('CARDID', $username);
 		$result = $db1->get()->row_array();
@@ -63,7 +63,7 @@ class Users_model extends MY_Model {
 		}
 
 		$db2 = $this->load->database('nfe2', TRUE);
-		$db2->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'6\' as UserTypeID, \'มัธยมศึกษาตอนต้น\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db2->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, student.STD_CODE as StudentCode, student.CARDID as PersonalID, \'6\' as UserTypeID, \'มัธยมศึกษาตอนต้น\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
 		$db2->from('student');
 		$db2->where('CARDID', $username);
 		$result = $db2->get()->row_array();
@@ -72,7 +72,7 @@ class Users_model extends MY_Model {
 		}
 
 		$db3 = $this->load->database('nfe3', TRUE);
-		$db3->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, \'7\' as UserTypeID, \'มัธยมศึกษาตอนปลาย\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
+		$db3->select('student.ID as UserID, student.CARDID as Username, student.CARDID AS Password, student.STD_CODE as StudentCode, student.CARDID as PersonalID, \'7\' as UserTypeID, \'มัธยมศึกษาตอนปลาย\' as UserTypeName, student.PRENAME as PrefixName, student.NAME as FirstName, student.SURNAME as LastName');
 		$db3->from('student');
 		$db3->where('CARDID', $username);
 		$result = $db3->get()->row_array();

@@ -43,7 +43,7 @@ class Home extends MY_Controller {
 	}
 
 	public function test_session(){
-		{
+		
 			/* set session model (test session) */
 			//************************************************************************
 			$userdata_header = array(
@@ -60,6 +60,9 @@ class Home extends MY_Controller {
 			// $data_header = $this->session->userdata('data_header');
 	
 			//*************************************************************************** */
-		}
+	}
+	
+	public function encryptPassword($pass){
+		echo $pass_decode = $this->encrypt->encode($pass);
 	}
 }

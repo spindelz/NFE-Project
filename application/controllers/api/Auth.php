@@ -57,7 +57,9 @@ class Auth extends REST_Controller {
 						'UserTypeName' => $result['UserTypeName'],
 						'PrefixName' => $result['PrefixName'],
 						'FirstName' => @$result['FirstName'],
-						'LastName' => @$result['LastName']
+						'LastName' => @$result['LastName'],
+						'StudentCode' => @$result['StudentCode'],
+						'PersonalID' => @$result['PersonalID']
 					)
 				);
 				$this->session->set_userdata($userdata);

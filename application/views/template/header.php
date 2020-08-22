@@ -72,7 +72,7 @@
                 
                 <?php }elseif($UserTypeID == 4){ ?>
                 <li class="menu-item text-center" id="menu2">
-                    <a class="menu-link" href="#">กลุ่มเรียน</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Group">กลุ่มเรียน</a>
                 </li>
                 <li class="menu-item text-center" id="menu3">
                     <a class="menu-link" href="#">รายชื่อวิชา</a>

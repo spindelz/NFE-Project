@@ -43,23 +43,22 @@ class Home extends MY_Controller {
 	}
 
 	public function test_session(){
-		
-			/* set session model (test session) */
-			//************************************************************************
-			$userdata_header = array(
-				'data_header' => array(
-					'ID'      => '6221000628',      //$result->ID,
-					'PRENAME' => 'พลทหาร',         //$result->PRENAME,
-					'NAME'    => 'ปิยะ',             //$result->NAME,
-					'SURNAME' => 'ทัพเรือง'       ,   //$result->SURNAME,
-					'CARDID'  => '1234567891234'
-				)
-			);
-			$this->session->set_userdata($userdata_header);
-	
-			// $data_header = $this->session->userdata('data_header');
-	
-			//*************************************************************************** */
+		/* set session model (test session) */
+		//************************************************************************
+		$userdata_header = array(
+			'data_header' => array(
+				'ID'      => '6221000628',      //$result->ID,
+				'PRENAME' => 'พลทหาร',         //$result->PRENAME,
+				'NAME'    => 'ปิยะ',             //$result->NAME,
+				'SURNAME' => 'ทัพเรือง'       ,   //$result->SURNAME,
+				'CARDID'  => '1234567891234'
+			)
+		);
+		$this->session->set_userdata($userdata_header);
+
+		// $data_header = $this->session->userdata('data_header');
+
+		//*************************************************************************** */
 	}
 	
 	public function encryptPassword($pass){

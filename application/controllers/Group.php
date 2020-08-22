@@ -14,6 +14,9 @@ class Group extends MY_Controller {
 	}
 	
 	public function index() {
-		$this->render('normal_page', 'Group', 'Group/index', FALSE, null);
+        $user_logined = $this->session->userdata('user_logined');
+        $data['TeachFirstName'] = $user_logined['FirstName'];
+        $data['TeachLastName'] = $user_logined['LastName'];
+		$this->render('normal_page', 'Group', 'Group/index', FALSE, $data);
 	}
 }

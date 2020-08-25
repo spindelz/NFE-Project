@@ -14,7 +14,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="#" class="nav-link">หน้าแรก</a>
-                    <a href="#" class="nav-link">กิจกรรม (กพช.)</a>
+                    <a href="<?php echo SITE; ?>Activity" class="nav-link">กิจกรรม (กพช.)</a>
                     <a href="#" class="nav-link">ตารางเรียน</a>
                     <a href="#" class="nav-link">ตารางสอบ</a>
                     <a href="#" class="nav-link">ผลการเรียน</a>
@@ -58,7 +58,7 @@
                 </li>
                 <?php if(array_search($UserTypeID, array(5,6,7))){ ?>
                 <li class="menu-item text-center" id="menu2">
-                    <a class="menu-link" href="#">กิจกรรม (กพช.)</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Activity">กิจกรรม (กพช.)</a>
                 </li>
                 <li class="menu-item text-center" id="menu3">
                     <a class="menu-link" href="#">ตารางเรียน</a>

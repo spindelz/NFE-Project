@@ -61,13 +61,13 @@
                     <a class="menu-link" href="<?php echo SITE; ?>Activity">กิจกรรม (กพช.)</a>
                 </li>
                 <li class="menu-item text-center" id="menu3">
-                    <a class="menu-link" href="#">ตารางเรียน</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>ClassSchedule">วิชาที่ลงทะเบียนเรียน</a>
                 </li>
                 <li class="menu-item text-center" id="menu4">
-                    <a class="menu-link" href="#">ตารางสอบ</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>ExamSchedule">ตารางสอบ</a>
                 </li>
                 <li class="menu-item text-center" id="menu5">
-                    <a class="menu-link" href="#">ผลการเรียน</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Result">ผลการเรียน</a>
                 </li>
                 
                 <?php }elseif($UserTypeID == 4){ ?>

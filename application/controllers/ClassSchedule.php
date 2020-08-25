@@ -19,15 +19,4 @@ class ClassSchedule extends MY_Controller {
 		$this->render('normal_page', 'ClassSchedule', 'ClassSchedule/index', null);
 	}
 
-	public function create() {
-		$data['pageName'] = 'เพิ่มแท็กสินค้า';
-		$this->render('normal_page', 'ClassScheduleCreate', 'ClassSchedule/form', FALSE, $data);
-	}
-	
-	public function edit($ClassScheduleID = null) {
-		$data['ClassScheduleID'] = $ClassScheduleID;
-		$data['pageName'] = 'แก้ไขแท็กสินค้า';
-		$this->render('normal_page', 'ClassScheduleEdit', 'ClassSchedule/form', FALSE, $data);
-    }
-
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Activity extends MY_Controller {
+class ExamSchedule extends MY_Controller {
 
 	var $allow_permission = TRUE;
 
@@ -11,6 +11,7 @@ class Activity extends MY_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->load->model('ExamSchedule_model');
 	}
 	
 	public function index() {
@@ -20,6 +21,6 @@ class Activity extends MY_Controller {
 			redirect(SITE.'home/login');
         }
 
-		$this->render('normal_page', 'Activity', 'Activity/index', FALSE);  
+		$this->render('normal_page', 'ExamSchedule', 'ExamSchedule/index', FALSE);  
     }
 }

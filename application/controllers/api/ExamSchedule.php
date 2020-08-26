@@ -5,7 +5,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Activity extends REST_Controller
+class ExamSchedule extends REST_Controller
 {
 
     public $primary_key = 'studentID';
@@ -15,7 +15,8 @@ class Activity extends REST_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('Activity_model');
+
+        $this->load->model('ExamSchedule_model');
     }
 
     public function index_get()
@@ -23,8 +24,8 @@ class Activity extends REST_Controller
         $data = array();
         // $studentID = $this->get($this->primary_key);
         // $userType =  $this->get($this->userType_key);
-        $studentID = '5211000152';
-        $userType = '5';
+        $studentID = '6112000470';
+        $userType = '6';
 
         switch ($userType) {
             case '5':
@@ -36,23 +37,15 @@ class Activity extends REST_Controller
             case '7':
                 $db = $this->load->database('nfe3', TRUE);
                 break;
-            default:
-                break;
         }
+        $samester = $this->input->post('');
 
-        $result = $this->Activity_model->getActivity($studentID, $db);
-
-        $sum = 0;
-        foreach ($result as $keyResult => $valueResult) {
-            $sum += $valueResult['HOUR'];
-        }
-        
-        $result['sumHour'] = $sum;
+        $result = $this->ExamSchedule_model->getExamSchedule($studentID,$db);
 
         $data['data'] = $result;
         $data['length'] = count($result);
         $data['debug'] = $db->last_query();
-
+        
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 }

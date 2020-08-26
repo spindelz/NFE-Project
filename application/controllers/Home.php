@@ -1,4 +1,4 @@
-<?php
+ <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends MY_Controller {
@@ -21,11 +21,7 @@ class Home extends MY_Controller {
 			redirect(SITE.'home/login');
 		}
 
-		$data_header = $this->test_session();
-
 		$this->render('normal_page', 'Home', 'Home/index', FALSE);  
-
-		
 	}
 
 	public function login() {
@@ -45,8 +41,8 @@ class Home extends MY_Controller {
 	public function test_session(){
 		/* set session model (test session) */
 		//************************************************************************
-		$userdata_header = array(
-			'data_header' => array(
+		$data = array(
+			'user_logined' => array(
 				'ID'      => '6221000628',      //$result->ID,
 				'PRENAME' => 'พลทหาร',         //$result->PRENAME,
 				'NAME'    => 'ปิยะ',             //$result->NAME,
@@ -54,7 +50,7 @@ class Home extends MY_Controller {
 				'CARDID'  => '1234567891234'
 			)
 		);
-		$this->session->set_userdata($userdata_header);
+		$this->session->set_userdata($data);
 
 		// $data_header = $this->session->userdata('data_header');
 

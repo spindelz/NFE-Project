@@ -23,19 +23,19 @@
                 <div class="card-body">
                     <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
                     <div class="row">
-                        <div class="col-md-4">
-                            <label rol="ProductTagName">ชื่อแท็กสินค้า</label>
-                            <input type="text" name="ProductTagName" id="ProductTagName" class="form-control" placeholder="ชื่อแท็กสินค้า">
+                    <div class="col-md-4 pr-5">
+                            <select class="form-control" name="Semestry" id="Semestry"></select>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-end mt-3">
-                        <a href="<?php echo SITE; ?>ProductTag/create" class="btn btn-primary mr-auto"><i class="fas fa-plus"></i> เพิ่มแท็กสินค้า</a>
-                        <a href="javascript:void(0)" class="btn btn-outline-primary mr-1" id="search_all"> แสดงทั้งหมด</a>
-                        <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i> ค้นหา</button>
-                    </div>
+                        <div class="col-md-4 pr-5">
+                            <input class="form-control" name="GroupName" id="GroupName" placeholder="ชื่อกลุ่มเรียน">
+                        </div>
+                        <div class="co;-md-4">
+                            <input type="submit" class="btn btn-success" value="ค้นหา">
+                        </div>
                     <?php echo form_close(); ?>
                     
                 </div>
+                
                 
             </div>
 
@@ -54,7 +54,7 @@
                         <tbody>
                         </tbody>
                     </table>
-                    <table class="table table-bordered table-striped text-center" id="datatable">
+                    <!-- <table class="table table-bordered table-striped text-center" id="datatable">
                         <thead>
                             <tr>
                                 <th>#</th>
@@ -66,7 +66,7 @@
                         </thead>
                         <tbody>
                         </tbody>
-                    </table>
+                    </table> -->
                 </div>
             </div>
             

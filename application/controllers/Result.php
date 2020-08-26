@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Activity extends MY_Controller {
+class Result extends MY_Controller {
 
 	var $allow_permission = TRUE;
 
@@ -20,6 +20,6 @@ class Activity extends MY_Controller {
 			redirect(SITE.'home/login');
         }
 
-		$this->render('normal_page', 'Activity', 'Activity/index', FALSE);  
+		$this->render('normal_page', 'Result', 'Result/index', FALSE);  
     }
 }

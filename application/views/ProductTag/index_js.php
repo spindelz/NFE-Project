@@ -2,6 +2,7 @@
     $(function(){
         initControl();
         getData();
+        bindSemestry();
     });
 
     function initControl(){
@@ -41,17 +42,13 @@
         });
     }
 
-    function getData(){
+    function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('home ') ?>",
-			success: function(response){
-            // var data = {"data":[
-            // {"TagID":"2","TagName":"Hot","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 15:19:36","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"},
-            // {"TagID":"3","TagName":"New","isActive":"1","CreatedBy":"1","CreatedDate":"2020-07-06 16:00:14","UpdatedBy":"Administrator","UpdatedDate":"06\/07\/2563"}],
-            // "length":2}
-                bindData(response.data);
-                initControl();
+			url: "<?php echo api_url('home') ?>",
+            data: data,
+			success: function(res){
+                bindData(res.data);
             }
         });
     }
@@ -86,13 +83,13 @@
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].Age + '</td>';
-                str_table += '<td>' + data[i].UpdatedDate + '</td>';
-                str_table += '<td>' + data[i].UpdatedBy + '</td>';
-                str_table += '<td class="p-2">';
-                str_table += '<a href="javascript:void(0)" class="btn btn-sm btn-warning btn-edit" data-id="' + data[i].TagID + '"><i class="fas fa-pencil-alt"></i></a> ';
-                str_table += '<a href="javascript:void(0)" class="btn btn-sm btn-danger btn-delete" data-id="' + data[i].TagID + '"><i class="fas fa-trash"></i></a>';
-                str_table += '</td>';
+                str_table += '<td>' + data[i].SEMESTRY + '</td>';
+                str_table += '<td>' + data[i].SUB_CODE + '</td>';
+                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                // str_table += '<td class="p-2">';
+                // str_table += '<a href="javascript:void(0)" class="btn btn-sm btn-warning btn-edit" data-id="' + data[i].TagID + '"><i class="fas fa-pencil-alt"></i></a> ';
+                // str_table += '<a href="javascript:void(0)" class="btn btn-sm btn-danger btn-delete" data-id="' + data[i].TagID + '"><i class="fas fa-trash"></i></a>';
+                // str_table += '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);
@@ -117,6 +114,24 @@
                     'success'
                 )
                 getData();
+            }
+        });
+    }
+    function bindSemestry(data){
+        $.ajax({
+			method: "GET",
+			url: "<?php echo api_url('result/getSemestry') ?>",
+            data: data,
+			success: function(res){
+                var elm = $('#Semestry');
+                var data = res.data;
+                elm.empty();
+                elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
+                for(i in data){
+                    elm.append($('<option>').val(data[i].SEMESTRY).html(data[i].SEMESTRY));
+                }
+                elm.val(data[0].SEMESTRY);
+                getData($('#formSearch').serialize());
             }
         });
     }

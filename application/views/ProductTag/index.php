@@ -21,8 +21,23 @@
         <div class="container">
 
             <div class="card">
+                
+                <div class="card-body">
+                    <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
+                    <div class="row">
+                    <div class="col-md-4 pr-5">
+                            <select class="form-control" name="Semestry" id="Semestry"></select>
+                        </div>
+                        <div class="col-md-4 pr-5">
+                            <input class="form-control" name="GroupName" id="GroupName" placeholder="ชื่อกลุ่มเรียน">
+                        </div>
+                        <div class="co;-md-4">
+                            <input type="submit" class="btn btn-success" value="ค้นหา">
+                        </div>
+                    <?php echo form_close(); ?>
                     
                 </div>
+                
                 
             </div>
 

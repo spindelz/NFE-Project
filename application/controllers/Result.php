@@ -14,6 +14,11 @@ class Result extends MY_Controller {
 	}
 	
 	public function index() {
+		$user_logined = $this->session->userdata('user_logined');
+
+		if(!isset($user_logined)){
+			redirect(SITE.'home/login');
+        }
 
 		$this->render('normal_page', 'Result', 'Result/index', FALSE);  
     }

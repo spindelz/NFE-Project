@@ -7,16 +7,20 @@ class ClassSchedule extends MY_Controller {
 
 	var $is_authen = FALSE; 
 
-	var $is_translation = TRUE; 
-
-	var $page_id = 8; 
+	var $is_translation = TRUE;
 
 	function __construct() {
 		parent::__construct();
 	}
 
 	public function index() {
-		$this->render('normal_page', 'ClassSchedule', 'ClassSchedule/index', null);
-	}
+		$user_logined = $this->session->userdata('user_logined');
+
+        if(!isset($user_logined)){
+            redirect(SITE.'home/login');
+        }
+
+        $this->render('normal_page', 'ClassSchedule', 'ClassSchedule/index', FALSE);  
+    }
 
 }

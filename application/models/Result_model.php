@@ -1,19 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ClassSchedule_model extends MY_Model {
+class Result_model extends MY_Model {
 
-    public $table_name = 'student';
+	public $table_name = 'student';
 
-    public $is_translation = false;
+	public $is_translation = false;
 
-    public $table_translation_name = null;
-
-    public function getClassSchedule($studentID, $db)
+	public $table_translation_name = null;
+    
+    public function getResult($studentID, $db)
     {
-
-        $db->select('grade.SEMESTRY,grade.SUB_CODE,subject.SUB_NAME,group.GRP_NAME,
-                     group.GRP_ADVIS,group.GRP_MEET');
+        $db->select('grade.SEMESTRY,group.GRP_NAME,
+                     group.GRP_ADVIS,grade.SUB_CODE,subject.SUB_CREDIT,subject.SUB_NAME,grade.GRADE'
+                    );
 
         $db->from($this->table_name);
 
@@ -22,14 +22,12 @@ class ClassSchedule_model extends MY_Model {
         $db->join('group','student.GRP_CODE = `group`.GRP_CODE','left');
 
         $db->where('student.ID',$studentID);
-        $db->order_by('grade.SEMESTRY','DESC');
-        
-        $result = $db->get()->result_array();
+
+		$result = $db->get()->result_array();
         return $result; 
-        
     }
 
-    public function getSemestry($studentID,$db){
+    public function getSemestryResult($studentID, $db){
         $db->select('grade.SEMESTRY');
 
         $db->from($this->table_name);
@@ -41,7 +39,7 @@ class ClassSchedule_model extends MY_Model {
         $db->group_by('grade.SEMESTRY');
         $db->order_by('grade.SEMESTRY', 'DESC');
 
-        $result = $db->get()->result_array();
+		$result = $db->get()->result_array();
         return $result; 
     }
 

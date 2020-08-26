@@ -5,7 +5,7 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class ClassSchedule extends REST_Controller
+class Result extends REST_Controller
 {
 
     public $primary_key = 'studentID';
@@ -15,7 +15,7 @@ class ClassSchedule extends REST_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('ClassSchedule_model');
+        $this->load->model('Result_model');
     }
 
     public function getData_get()
@@ -37,8 +37,17 @@ class ClassSchedule extends REST_Controller
                 $db = $this->load->database('nfe3', TRUE);
                 break;
         }
+        
+        $result = $this->Result_model->getResult($studentID,$db);
 
-        $result = $this->ClassSchedule_model->getClassSchedule($studentID,$db);
+        $sumGrade = 0;
+        $sumUnit = 0;
+        foreach ($result as $keyResult => $valueResult) {
+            $sumGrade += ($valueResult['GRADE']*$valueResult['SUB_CREDIT']);
+            $sumUnit += $valueResult['SUB_CREDIT'];
+        }
+        
+        $result['gradeAverage'] = $sumGrade/$sumUnit;
 
         $data['data'] = $result;
         $data['length'] = count($result);
@@ -66,7 +75,7 @@ class ClassSchedule extends REST_Controller
                 break;
         }
 
-        $result = $this->ClassSchedule_model->getSemestry($studentID, $db);
+        $result = $this->Result_model->getSemestryResult($studentID, $db);
         
         $data['data'] = $result;
         $data['length'] = count($result);

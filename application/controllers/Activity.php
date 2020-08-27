@@ -14,10 +14,7 @@ class Activity extends MY_Controller {
 	}
 	
 	public function index() {
-
-		if(!isset($user_logined)){
-			redirect(SITE.'home/login');
-        }
+		$user_logined = $this->session->userdata('user_logined');
 
 		$this->render('normal_page', 'Activity', 'Activity/index', FALSE);  
     }

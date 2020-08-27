@@ -8,7 +8,7 @@ use Restserver\Libraries\REST_Controller;
 class Activity extends REST_Controller
 {
 
-    public $primary_key = 'studentID';
+    public $primary_key = 'StudentCode';
 
     public $userType_key = 'UserTypeID';
 
@@ -20,11 +20,12 @@ class Activity extends REST_Controller
 
     public function index_get()
     {
+        $user_logined = $this->session->userdata('user_logined');
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $studentID = '5211000152';
-        $userType = '5';
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
+        // $studentID = '12200100015212000034';
+        // $userType = '6';
 
         switch ($userType) {
             case '5':

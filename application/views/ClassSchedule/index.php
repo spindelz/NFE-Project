@@ -12,13 +12,13 @@
             <div style="background: #FFFFCC; margin-left: 100px; margin-right: 100px;" class="p-3 mb-3">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>ภาคเรียน : <span id="Semestry"></span></p>
+                        <p>ภาคเรียน : <span id="SemestryTop"></span></p>
                         <p>ชื่อผู้สอน : <span id="TeacherName"></span></p>
                         <p>สถานที่พบกลุ่ม : <span id="MeetGroup"></span></p>
                     </div>
                     <div class="col-md-6">
                         <p>ชื่อกลุ่ม : <span id="GroupName"></span></p>
-                        <p>เบอร์โทรศัพท์ : <span id="PhoneNumber"></span></p>
+                        <!-- <p>เบอร์โทรศัพท์ : <span id="PhoneNumber"></span></p> -->
                     </div>
                 </div>
             </div>
@@ -27,9 +27,7 @@
                 <div class="card-body">
                     <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
                     <div class="row">
-                        <div class="col-md-4">
-                            <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
-                            <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
+                        <div class="col-md-4 pr-5">
                             <select class="form-control" name="Semestry" id="Semestry"></select>
                         </div>
                     

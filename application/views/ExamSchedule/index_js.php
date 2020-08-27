@@ -1,8 +1,7 @@
 <script>
     $(function(){
-        $('#StudentName').html('นายสมหวัง ดั่งใจ');
         initControl();
-        // bindSemestry();
+        getData();
     });
 
     function initControl(){
@@ -15,7 +14,7 @@
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getDataByTeach') ?>",
+			url: "<?php echo api_url('ExamSchedule/index') ?>",
             data: data,
 			success: function(res){
                 bindData(res.data);
@@ -30,14 +29,12 @@
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].SEMESTRY + '</td>';
-                str_table += '<td>' + data[i].GRP_NAME + '</td>';
-                str_table += '<td>' + data[i].FLD_NAME + '</td>';
-                str_table += '<td>';
-                str_table += '<a href="javascript:void(0)" class="text-primary btn-exam" data-id="' + data[i].GRP_CODE + '">ตารางสอบ</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-success btn-student" data-id="' + data[i].GRP_CODE + '">รายชื่อนศ.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-warning btn-subject" data-id="' + data[i].GRP_CODE + '">รายชื่อวิชา</a>';
-                str_table += '</td>';
+                str_table += '<td>' + data[i].EXAM_DAY + '</td>';
+                str_table += '<td>' + data[i].EXAM_START + ' - ' + data[i].EXAM_END + '</td>';
+                str_table += '<td>' + data[i].SUB_CODE + '</td>';
+                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                str_table += '<td>' + data[i].ROOMNO + '</td>';
+                str_table += '<td>' + data[i].FLD_NAME + '<br> ' + '#Link_GoogleMap' + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);
@@ -46,27 +43,5 @@
             var str_table = '<tr><td colspan="7" class="text-danger">ไม่มีข้อมูล</td></tr>';
             $('#datatable tbody').html(str_table);
         }
-    }
-
-    function bindSemestry(){
-        $.ajax({
-			method: "GET",
-			url: "<?php echo api_url('Group/getSemestry') ?>",
-            data: {
-                'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
-                'TeachLastName': '<?php echo @$TeachLastName; ?>'
-            },
-			success: function(res){
-                var elm = $('#Semestry');
-                var data = res.data;
-                elm.empty();
-                elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
-                for(i in data){
-                    elm.append($('<option>').val(data[i].SEMESTRY).html(data[i].SEMESTRY));
-                }
-                elm.val(data[0].SEMESTRY);
-                getData($('#formSearch').serialize());
-            }
-        });
     }
 </script>

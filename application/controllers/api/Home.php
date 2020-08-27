@@ -20,11 +20,14 @@ class Home extends REST_Controller
 
     public function index_get()
     {
+        $user_logined = $this->session->userdata('user_logined');
         $data = array();
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
         // $studentID =  $this->get($this->primary_key);
         // $userType =  $this->get($this->userType_key);
-        $studentID = '6221000066';
-        $userType = '5';
+        // $studentID = '6221000066';
+        // $userType = '5';
 
         switch ($userType) {
             case '5':

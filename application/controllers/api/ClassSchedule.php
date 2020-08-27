@@ -8,7 +8,7 @@ use Restserver\Libraries\REST_Controller;
 class ClassSchedule extends REST_Controller
 {
 
-    public $primary_key = 'studentID';
+    public $primary_key = 'StudentCode';
 
     public $userType_key = 'UserTypeID';
 
@@ -21,10 +21,9 @@ class ClassSchedule extends REST_Controller
     public function getData_get()
     {
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $studentID = '6221000066';
-        $userType = '5';
+        $user_logined = $this->session->userdata('user_logined');
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
 
         switch ($userType) {
             case '5':
@@ -49,10 +48,9 @@ class ClassSchedule extends REST_Controller
 
     public function getSemestry_get(){
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $userType = '5';
-        $studentID = '6221000066';
+        $user_logined = $this->session->userdata('user_logined');
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
         
         switch ($userType) {
             case '5':

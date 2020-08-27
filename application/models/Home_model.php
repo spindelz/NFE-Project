@@ -15,7 +15,7 @@ class Home_model extends MY_Model {
     {
         $db->select('student.PRENAME,student.NAME,student.SURNAME,student.ID,
                             student.CARDID,student.BIRDAY,student.CURPHONE,student.S_SCHOOL,
-                            student.CURADDR,student.CTAMBONID,student.CZIPCODE as Zipcode ,
+                            student.CURADDR,student.CTAMBONID,student.CZIPCODE as Zipcode ,student.S_PROVINCE,
                             tambon.NAME as Tambon,amphur.NAME as Amphur,province.NAME as Province'
                         );
 
@@ -25,7 +25,7 @@ class Home_model extends MY_Model {
         $db->join('amphur','tambon.AMPHURID = amphur.ID','left');
         $db->join('province','amphur.PROVID = province.ID','left');
 
-        $db->where('student.ID',$studentID);
+        $db->where('student.STD_CODE',$studentID);
         
 		$result = $db->get()->row_array();
         return $result; 

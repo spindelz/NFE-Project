@@ -21,10 +21,10 @@ class ClassSchedule_model extends MY_Model {
         $db->join('subject','grade.SUB_CODE = `subject`.SUB_CODE','left');
         $db->join('group','student.GRP_CODE = `group`.GRP_CODE','left');
 
-        $db->where('student.ID',$studentID);
+        $db->where('student.STD_CODE',$studentID);
         $db->order_by('grade.SEMESTRY','DESC');
         
-        $result = $db->get()->result_array();
+        $result = $db->get()->result();
         return $result; 
         
     }
@@ -35,13 +35,13 @@ class ClassSchedule_model extends MY_Model {
         $db->from($this->table_name);
         $db->join('grade','student.STD_CODE = grade.STD_CODE','left');
 
-        $db->where('student.ID',$studentID);
+        $db->where('student.STD_CODE',$studentID);
         $db->where('grade.SEMESTRY IS NOT NULL');
 
         $db->group_by('grade.SEMESTRY');
         $db->order_by('grade.SEMESTRY', 'DESC');
 
-        $result = $db->get()->result_array();
+        $result = $db->get()->result();
         return $result; 
     }
 

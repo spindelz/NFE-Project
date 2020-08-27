@@ -2,6 +2,7 @@
     $(function(){
         $('#StudentName').html('นายสมหวัง ดั่งใจ');
         initControl();
+        getData();
         // bindSemestry();
     });
 
@@ -15,7 +16,7 @@
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getDataByTeach') ?>",
+			url: "<?php echo api_url('Activity') ?>",
             data: data,
 			success: function(res){
                 bindData(res.data);
@@ -31,13 +32,13 @@
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
                 str_table += '<td>' + data[i].SEMESTRY + '</td>';
-                str_table += '<td>' + data[i].GRP_NAME + '</td>';
-                str_table += '<td>' + data[i].FLD_NAME + '</td>';
-                str_table += '<td>';
-                str_table += '<a href="javascript:void(0)" class="text-primary btn-exam" data-id="' + data[i].GRP_CODE + '">ตารางสอบ</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-success btn-student" data-id="' + data[i].GRP_CODE + '">รายชื่อนศ.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-warning btn-subject" data-id="' + data[i].GRP_CODE + '">รายชื่อวิชา</a>';
-                str_table += '</td>';
+                str_table += '<td>' + data[i].ACTIVITY + '</td>';
+                str_table += '<td>' + data[i].HOUR + '</td>';
+                // str_table += '<td>';
+                // str_table += '<a href="javascript:void(0)" class="text-primary btn-exam" data-id="' + data[i].GRP_CODE + '">ตารางสอบ</a> / ';
+                // str_table += '<a href="javascript:void(0)" class="text-success btn-student" data-id="' + data[i].GRP_CODE + '">รายชื่อนศ.</a> / ';
+                // str_table += '<a href="javascript:void(0)" class="text-warning btn-subject" data-id="' + data[i].GRP_CODE + '">รายชื่อวิชา</a>';
+                // str_table += '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);
@@ -51,7 +52,7 @@
     function bindSemestry(){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getSemestry') ?>",
+			url: "<?php echo api_url('Activity/getSemestry') ?>",
             data: {
                 'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
                 'TeachLastName': '<?php echo @$TeachLastName; ?>'

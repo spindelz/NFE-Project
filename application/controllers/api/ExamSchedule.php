@@ -21,12 +21,11 @@ class ExamSchedule extends REST_Controller
 
     public function index_get()
     {
+        $user_logined = $this->session->userdata('user_logined');
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $studentID = '6112000470';
-        $userType = '6';
-
+        
         switch ($userType) {
             case '5':
                 $db = $this->load->database('nfe1', TRUE);

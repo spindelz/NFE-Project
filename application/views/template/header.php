@@ -13,11 +13,18 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">หน้าแรก</a>
-                    <a href="<?php echo SITE; ?>Activity" class="nav-link">กิจกรรม (กพช.)</a>
+                    <a href="<?php echo SITE; ?>" class="nav-link">หน้าแรก</a>
+                    <?php if(array_search($UserTypeID, array(5,6,7))){ ?>
+                    <a href="#" class="nav-link">กิจกรรม (กพช.)</a>
                     <a href="#" class="nav-link">ตารางเรียน</a>
                     <a href="#" class="nav-link">ตารางสอบ</a>
                     <a href="#" class="nav-link">ผลการเรียน</a>
+                    <?php }elseif($UserTypeID == 4){ ?>
+                    <a href="<?php echo SITE; ?>Group" class="nav-link">กลุ่มเรียน</a>
+                    <a href="<?php echo SITE; ?>Subject" class="nav-link">รายชื่อวิชา</a>
+                    <a href="<?php echo SITE; ?>Student" class="nav-link">รายชื่อนักศึกษา</a>
+                    <a href="#" class="nav-link">ผลการเรียนของนักศึกษา</a>
+                    <?php } ?>
                     <a href="<?php echo SITE; ?>/Home/logout" class="nav-link">ออกจากระบบ</a>
                 </li>
                 
@@ -75,10 +82,10 @@
                     <a class="menu-link" href="<?php echo SITE; ?>Group">กลุ่มเรียน</a>
                 </li>
                 <li class="menu-item text-center" id="menu3">
-                    <a class="menu-link" href="#">รายชื่อวิชา</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Subject">รายชื่อวิชา</a>
                 </li>
                 <li class="menu-item text-center" id="menu4">
-                    <a class="menu-link" href="#">รายชื่อนักศึกษา</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Student">รายชื่อนักศึกษา</a>
                 </li>
                 <li class="menu-item text-center" id="menu5">
                     <a class="menu-link" href="#">ผลการเรียนของนักศึกษา</a>

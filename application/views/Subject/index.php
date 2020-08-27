@@ -6,7 +6,7 @@
                 กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี<br>
                 <span style="font-weight: 500;">ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</span><br>
             </div>
-            <h2 style="font-weight: 700;">รายชื่อนักศึกษา</h2>
+            <h2 style="font-weight: 700;">รายชื่อวิชา</h2>
         </div>
     </div>
 
@@ -20,22 +20,14 @@
                             <input class="form-control" name="GroupName" id="GroupName" placeholder="ชื่อกลุ่มเรียน">
                         </div>
                         <div class="col-md-3">
-                            <input class="form-control" name="StudentCode" id="StudentCode" placeholder="รหัสนักศึกษา">
+                            <input class="form-control" name="SubjectKeyword" id="SubjectKeyword" placeholder="รหัสวิชา, ชื่อวิชา">
                         </div>
-                        <div class="col-md-3">
-                            <input class="form-control" name="PersonalID" id="PersonalID" placeholder="รหัสประจำตัวประชาชน">
-                        </div>
-                        <div class="col-md-3">
-                            <input class="form-control" name="StudentName" id="StudentName" placeholder="ชื่อนักศึกษา">
-                        </div>
-                    </div>
-                    <div class="row mt-3">
                         <div class="col-md-3">
                             <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
                             <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
                             <select class="form-control" name="Semestry" id="Semestry"></select>
                         </div>
-                        <div class="col-md-9 text-right">
+                        <div class="co-md-3">
                             <input type="submit" class="btn btn-success" value="ค้นหา">
                         </div>
                     </div>
@@ -51,10 +43,8 @@
                                 <th>ลำดับ</th>
                                 <th>ชื่อกลุ่ม</th>
                                 <th>ภาคเรียน</th>
-                                <th>รหัสนักศึกษา</th>
-                                <th>รหัสประจำตัวประชาชน</th>
-                                <th>ชื่อนักศึกษา</th>
-                                <th>ดูรายละเอียด</th>
+                                <th>รหัสวิชา</th>
+                                <th>ชื่อวิชา</th>
                             </tr>
                         </thead>
                         <tbody class="text-center"></tbody>

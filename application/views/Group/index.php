@@ -13,12 +13,12 @@
                 <div class="card-body">
                     <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
                     <div class="row">
-                        <div class="col-md-4 pr-5">
+                        <div class="col-md-4">
                             <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
                             <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
                             <select class="form-control" name="Semestry" id="Semestry"></select>
                         </div>
-                        <div class="col-md-4 pr-5">
+                        <div class="col-md-4">
                             <input class="form-control" name="GroupName" id="GroupName" placeholder="ชื่อกลุ่มเรียน">
                         </div>
                         <div class="co;-md-4">
@@ -35,7 +35,7 @@
                         <thead class="text-center">
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>ภาคเรียน/ปี</th>
+                                <th>ภาคเรียน</th>
                                 <th>ชื่อกลุ่ม</th>
                                 <th>สถานที่พบกลุ่ม</th>
                                 <th>ดูรายละเอียด</th>

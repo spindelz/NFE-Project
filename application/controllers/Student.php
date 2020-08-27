@@ -5,7 +5,7 @@ class Student extends MY_Controller {
 
 	var $allow_permission = TRUE; 
 
-	var $is_authen = FALSE; 
+	var $is_authen = TRUE; 
 
 	var $is_translation = TRUE; 
 
@@ -16,7 +16,10 @@ class Student extends MY_Controller {
 	}
 
 	public function index() {
-		$this->render('normal_page', 'Student', 'Student/index', null);
+		$user_logined = $this->session->userdata('user_logined');
+        $data['TeachFirstName'] = $user_logined['FirstName'];
+        $data['TeachLastName'] = $user_logined['LastName'];
+		$this->render('normal_page', 'Student', 'Student/index', FALSE, $data);
 	}
 
 }

@@ -2,27 +2,24 @@
     $(function(){
         initControl();
         bindSemestry();
+        $('.select2').select2({theme: 'bootstrap4'});
     });
 
     function initControl(){
         $('#formSearch').submit(function(e){
             e.preventDefault();
+            // if()
             getData( $(this).serialize() );
-        });
-
-        $(document).on('click', '.btn-exam', function(){
-            $('#OrderNumber').val('');
-            getData($('#formSearch').serialize());
         });
     }
 
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getDataByTeach') ?>",
+			url: "<?php echo api_url('Student/getDataByTeach') ?>",
             data: data,
 			success: function(res){
-                bindData(res.data);
+                // bindData(res.data);
             }
         });
     }
@@ -33,13 +30,14 @@
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].SEMESTRY + '</td>';
                 str_table += '<td>' + data[i].GRP_NAME + '</td>';
-                str_table += '<td>' + data[i].FLD_NAME + '</td>';
+                str_table += '<td>' + data[i].SEMESTRY + '</td>';
+                str_table += '<td>' + data[i].STD_CODE + '</td>';
+                str_table += '<td>' + data[i].CARDID + '</td>';
+                str_table += '<td>' + data[i].StudentName + '</td>';
                 str_table += '<td>';
-                str_table += '<a href="<?php echo SITE; ?>Group/examSchedule/' + data[i].GRP_CODE + '?s=' + data[i].SEMESTRY + '" class="text-primary">ตารางสอบ</a> / ';
-                str_table += '<a href="<?php echo SITE; ?>Group/student/' + data[i].GRP_CODE + '?s=' + data[i].SEMESTRY + '" class="text-success" data-id="' + data[i].GRP_CODE + '">รายชื่อนศ.</a> / ';
-                str_table += '<a href="<?php echo SITE; ?>Group/subject/' + data[i].GRP_CODE + '?s=' + data[i].SEMESTRY + '" class="text-warning" data-id="' + data[i].GRP_CODE + '">รายชื่อวิชา</a>';
+                str_table += '<a href="javascript:void(0)" class="text-primary btn-profile" data-id="' + data[i].STD_CODE + '">ประวัตินศ.</a> / ';
+                str_table += '<a href="javascript:void(0)" class="text-success btn-activity" data-id="' + data[i].STD_CODE + '">กพช.</a>';
                 str_table += '</td>';
                 str_table += '</tr>';
 
@@ -54,7 +52,7 @@
     function bindSemestry(){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getSemestry') ?>",
+			url: "<?php echo api_url('Student/getSemestry') ?>",
             data: {
                 'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
                 'TeachLastName': '<?php echo @$TeachLastName; ?>'
@@ -68,7 +66,29 @@
                     elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
                 }
                 // elm.val(data[0].SEMESTRY);
-                getData($('#formSearch').serialize());
+                // getData($('#formSearch').serialize());
+            }
+        });
+    }
+    
+    function bindGroup(){
+        $.ajax({
+			method: "GET",
+			url: "<?php echo api_url('Student/getSemestry') ?>",
+            data: {
+                'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
+                'TeachLastName': '<?php echo @$TeachLastName; ?>'
+            },
+			success: function(res){
+                var elm = $('#Semestry');
+                var data = res.data;
+                elm.empty();
+                elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
+                for(i in data){
+                    elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
+                }
+                // elm.val(data[0].SEMESTRY);
+                // getData($('#formSearch').serialize());
             }
         });
     }

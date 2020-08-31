@@ -45,7 +45,7 @@ class Subject_model extends MY_Model {
             $db->group_end();
         }
 
-        $db->group_by('group.GRP_CODE, group.GRP_NAME, grade.SEMESTRY');
+        $db->group_by('subject.SUB_CODE, group.GRP_CODE, group.GRP_NAME, grade.SEMESTRY');
         $db->order_by('group.GRP_CODE', 'ASC');
         $db->order_by('grade.SEMESTRY', 'DESC');
         $db->order_by('subject.SUB_NAME', 'ASC');

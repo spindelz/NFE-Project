@@ -53,6 +53,14 @@ class Student_model extends MY_Model {
 			$db->like('student.CARDID', $criteria['PersonalID']);
         }
 
+        if(array_key_exists('GroupCode', $criteria) && !empty($criteria['GroupCode'])){
+			$db->where('group.GRP_CODE', $criteria['GroupCode']);
+        }
+
+        if(array_key_exists('Semestry', $criteria) && !empty($criteria['Semestry'])){
+			$db->where('grade.SEMESTRY', $criteria['Semestry']);
+        }
+
         $db->group_by('group.GRP_CODE, group.GRP_NAME, grade.SEMESTRY, student.STD_CODE');
         $db->order_by('group.GRP_CODE', 'ASC');
         $db->order_by('grade.SEMESTRY', 'DESC');
@@ -63,15 +71,23 @@ class Student_model extends MY_Model {
         return $result; 
     }
 
-    public function getSemestry($TeachFirstName, $TeachLastName, $db){
+    public function getSemestry($criteria, $db){
         $db->select('grade.SEMESTRY');
 
         $db->from('group');
         $db->join('grade', 'grade.GRP_CODE = group.GRP_CODE', 'left');
 
         $db->where('grade.SEMESTRY IS NOT NULL');
-        $db->like('group.GRP_ADVIS', $TeachFirstName);
-        $db->like('group.GRP_ADVIS', $TeachLastName);
+        $db->like('group.GRP_ADVIS', $criteria['TeachFirstName']);
+        $db->like('group.GRP_ADVIS', $criteria['TeachLastName']);
+
+        if(array_key_exists('GroupCode', $criteria) && !empty($criteria['GroupCode'])){
+			$db->where('group.GRP_CODE', $criteria['GroupCode']);
+        }
+
+        if(array_key_exists('Semestry', $criteria) && !empty($criteria['Semestry'])){
+			$db->where('grade.SEMESTRY', $criteria['Semestry']);
+        }
 
         $db->group_by('grade.SEMESTRY');
         $db->order_by('grade.SEMESTRY', 'DESC');

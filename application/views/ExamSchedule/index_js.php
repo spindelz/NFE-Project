@@ -14,8 +14,12 @@
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('ExamSchedule/index') ?>",
-            data: data,
+			url: "<?php echo api_url('ExamSchedule') ?>",
+            data: {
+                'isTeacher': '<?php echo @$isTeacher; ?>',
+                'GroupCode': '<?php echo @$GroupCode; ?>',
+                'Semestry': '<?php echo @$Semestry; ?>'
+            },
 			success: function(res){
                 bindData(res.data);
             }

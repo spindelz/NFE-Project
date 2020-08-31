@@ -26,7 +26,7 @@ class Group extends REST_Controller{
             $result = $this->Group_model->getDataByTeach($criteria, $db2);
             if(empty($result)){
                 $db3 = $this->load->database('nfe3', TRUE);
-                $result3 = $this->Group_model->getDataByTeach($criteria, $db3);
+                $result = $this->Group_model->getDataByTeach($criteria, $db3);
             }
         }
         $data['data'] = $result;

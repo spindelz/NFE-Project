@@ -34,8 +34,9 @@
                 str_table += '<td>' + data[i].CARDID + '</td>';
                 str_table += '<td>' + data[i].StudentName + '</td>';
                 str_table += '<td>';
-                str_table += '<a href="javascript:void(0)" class="text-primary btn-profile" data-id="' + data[i].STD_CODE + '">ประวัตินศ.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-success btn-activity" data-id="' + data[i].STD_CODE + '">กพช.</a>';
+                str_table += '<a href="<?php echo SITE; ?>Student/profile?st=' + data[i].STD_CODE + '&g=' + data[i].GRP_CODE + '&s=' + data[i].SEMESTRY + '" class="text-primary">ประวัตินศ.</a> / ';
+                str_table += '<a href="javascript:void(0)" class="text-success btn-activity" data-id="' + data[i].STD_CODE + '">กพช.</a> / ';
+                str_table += '<a href="javascript:void(0)" class="text-warning btn-activity" data-id="' + data[i].STD_CODE + '">ผลการเรียน</a>';
                 str_table += '</td>';
                 str_table += '</tr>';
 
@@ -48,24 +49,30 @@
     }
 
     function bindSemestry(){
-        $.ajax({
-			method: "GET",
-			url: "<?php echo api_url('Student/getSemestry') ?>",
-            data: {
-                'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
-                'TeachLastName': '<?php echo @$TeachLastName; ?>'
-            },
-			success: function(res){
-                var elm = $('#Semestry');
-                var data = res.data;
-                elm.empty();
-                elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
-                for(i in data){
-                    elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
+        var Semestry = '<?php echo @$Semestry; ?>';
+        if(Semestry != ''){
+            $('#Semestry').hide();
+            $('#Semestry').html($('<option>').val(Semestry).html('ภาคเรียนที่ ' + Semestry));
+            getData($('#formSearch').serialize());
+        }else{
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('Student/getSemestry') ?>",
+                data: {
+                    'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
+                    'TeachLastName': '<?php echo @$TeachLastName; ?>'
+                },
+                success: function(res){
+                    var elm = $('#Semestry');
+                    var data = res.data;
+                    elm.empty();
+                    elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
+                    for(i in data){
+                        elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
+                    }
+                    getData($('#formSearch').serialize());
                 }
-                // elm.val(data[0].SEMESTRY);
-                getData($('#formSearch').serialize());
-            }
-        });
+            });
+        }
     }
 </script>

@@ -19,41 +19,45 @@ class Student extends REST_Controller{
 
         $criteria = $this->get();
 
-        $db1 = $this->load->database('nfe1', TRUE);
-        $result = $this->Student_model->getDataByTeach($criteria, $db1);
+        $db = $this->load->database('nfe1', TRUE);
+        $result = $this->Student_model->getDataByTeach($criteria, $db);
         if(empty($result)){
-            $db2 = $this->load->database('nfe2', TRUE);
-            $result = $this->Student_model->getDataByTeach($criteria, $db2);
+            $db = $this->load->database('nfe2', TRUE);
+            $result = $this->Student_model->getDataByTeach($criteria, $db);
             if(empty($result)){
-                $db3 = $this->load->database('nfe3', TRUE);
-                $result = $this->Student_model->getDataByTeach($criteria, $db3);
+                $db = $this->load->database('nfe3', TRUE);
+                $result = $this->Student_model->getDataByTeach($criteria, $db);
             }
         }
         $data['data'] = $result;
         $data['length'] = count($result);
-        $data['debug'] = $db1->last_query();
+        $data['debug'] = $db->last_query();
  
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 
     public function getSemestry_get(){
-        $TeachFirstName = $this->get('TeachFirstName');
-        $TeachLastName = $this->get('TeachLastName');
+        $criteria = array();
+        // $criteria['TeachFirstName'] = $this->get('TeachFirstName');
+        // $criteria['TeachLastName'] = $this->get('TeachLastName');
+        // $criteria['GroupCode'] = $this->get('GroupCode');
+        // $criteria['Semestry'] = $this->get('Semestry');
+        $criteria = $this->get();
 
-        $db1 = $this->load->database('nfe1', TRUE);
-        $result = $this->Student_model->getSemestry($TeachFirstName, $TeachLastName, $db1);
+        $db = $this->load->database('nfe1', TRUE);
+        $result = $this->Student_model->getSemestry($criteria, $db);
         if(empty($result)){
-            $db2 = $this->load->database('nfe2', TRUE);
-            $result = $this->Student_model->getSemestry($TeachFirstName, $TeachLastName, $db2);
+            $db = $this->load->database('nfe2', TRUE);
+            $result = $this->Student_model->getSemestry($criteria, $db);
             if(empty($result)){
-                $db3 = $this->load->database('nfe3', TRUE);
-                $result = $this->Student_model->getSemestry($TeachFirstName, $TeachLastName, $db3);
+                $db = $this->load->database('nfe3', TRUE);
+                $result = $this->Student_model->getSemestry($criteria, $db);
             }
         }
         
         $data['data'] = $result;
         $data['length'] = count($result);
-        $data['debug'] = $db1->last_query();
+        $data['debug'] = $db->last_query();
  
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }

@@ -5,11 +5,13 @@
 
     });
 
-    function getData(data){
+    function getData(){
         $.ajax({
 			method: "GET",
 			url: "<?php echo api_url('Home/index') ?>",
-            data: data,
+            data: {
+                'isTeacher': '<?php echo @$isTeacher; ?>'
+            },
 			success: function(res){
 
                 $('#StudentName').html((res.data['PRENAME']) +' '+ (res.data['NAME']) +' '+ (res.data['SURNAME']));

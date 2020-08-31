@@ -9,6 +9,8 @@ class Result extends MY_Controller {
 
 	var $is_translation = TRUE;
 
+	var $page_id = 4;
+
 	function __construct() {
 		parent::__construct();
 	}
@@ -21,5 +23,9 @@ class Result extends MY_Controller {
         }
 
 		$this->render('normal_page', 'Result', 'Result/index', FALSE);  
-    }
+	}
+	
+	public function student(){
+		$this->render('normal_page', 'Result', 'Result/resultStudent', FALSE);  
+	}
 }

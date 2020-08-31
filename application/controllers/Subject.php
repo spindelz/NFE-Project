@@ -9,6 +9,8 @@ class Subject extends MY_Controller {
 
 	var $is_translation = TRUE;
 
+	var $page_id = 6;
+
 	function __construct() {
 		parent::__construct();
 	}

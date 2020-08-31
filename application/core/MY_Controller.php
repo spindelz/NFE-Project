@@ -35,8 +35,8 @@ class MY_Controller extends CI_Controller{
                 $user_logined = $this->session->userdata('user_logined');
                 if(isset($user_logined)){
                     $data_header['FullName'] = $user_logined['PrefixName'] . ' ' . @$user_logined['FirstName'] . ' ' . @$user_logined['LastName'];
-                    $data_header['UserTypeID'] = $user_logined['UserTypeID'];
-                    if(array_search($user_logined['UserTypeID'], array(5,6,7))){
+                    $data_header['UserTypeID'] = (int)$user_logined['UserTypeID'];
+                    if(array_search((int)$user_logined['UserTypeID'], array(5,6,7)) > -1){
                         $data_header['StudentCode'] = $user_logined['StudentCode'];
                         $data_header['PersonalID'] = $user_logined['PersonalID'];
                     }else{

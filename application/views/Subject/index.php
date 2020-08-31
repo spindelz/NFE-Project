@@ -1,12 +1,10 @@
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container text-center">
-            <div style="color: #517beb">
-                หลักสูตรการศึกษานอกระบบระดับการศึกษาขั้นพื้นฐาน พ.ศ. 2551<br>
-                กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี<br>
-                <span style="font-weight: 500;">ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</span><br>
+            <div class="container text-center" style="color: #517beb">
+                หลักสูตรการศึกษานอกระบบระดับการศึกษาขั้นพื้นฐาน พุทธศักราช 2551<br>
+                <span style="font-weight: 500;">ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</span>
             </div>
-            <h2 style="font-weight: 700;">รายชื่อวิชา</h2>
         </div>
     </div>
 
@@ -25,10 +23,12 @@
                         <div class="col-md-3">
                             <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
                             <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
+                            <input type="hidden" name="GroupCode" value="<?php echo @$GroupCode; ?>">
                             <select class="form-control" name="Semestry" id="Semestry"></select>
+                            <input type="submit" class="btn btn-success btn-ext-search hide" value="ค้นหา">
                         </div>
                         <div class="co-md-3">
-                            <input type="submit" class="btn btn-success" value="ค้นหา">
+                            <input type="submit" class="btn btn-success btn-int-search" value="ค้นหา">
                         </div>
                     </div>
                     <?php echo form_close(); ?>

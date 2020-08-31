@@ -30,7 +30,7 @@ class Home extends MY_Controller {
 			redirect(SITE.'home');
 		}
 		echo $user_logined['Username'];
-		$this->render('login_page', 'Login', 'home/login', FALSE, null);
+		$this->render('login_page', 'Login', 'Home/login', FALSE, null);
 	}
 	
 	public function logout() {

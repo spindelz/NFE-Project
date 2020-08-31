@@ -9,7 +9,7 @@ class Student extends MY_Controller {
 
 	var $is_translation = TRUE; 
 
-	var $page_id = 8; 
+	var $page_id = 7; 
 
 	function __construct() {
 		parent::__construct();
@@ -20,6 +20,15 @@ class Student extends MY_Controller {
         $data['TeachFirstName'] = $user_logined['FirstName'];
         $data['TeachLastName'] = $user_logined['LastName'];
 		$this->render('normal_page', 'Student', 'Student/index', FALSE, $data);
+	}
+
+	public function profile(){
+		$data['isTeacher'] = 1;
+		$data['StudentCode'] = $this->input->get('st');
+		$data['GroupCode'] = $this->input->get('g');
+		$data['Semestry'] = $this->input->get('s');
+
+		$this->render('normal_page', 'Profile', 'Profile/index', FALSE, $data);
 	}
 
 }

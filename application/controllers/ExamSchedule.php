@@ -9,12 +9,13 @@ class ExamSchedule extends MY_Controller {
 
 	var $is_translation = TRUE;
 
+	var $page_id = 3;
+
 	function __construct() {
 		parent::__construct();
 	}
 	
 	public function index() {
-
 		$this->render('normal_page', 'ExamSchedule', 'ExamSchedule/index', FALSE);  
     }
 }

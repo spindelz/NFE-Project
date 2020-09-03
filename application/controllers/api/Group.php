@@ -19,6 +19,10 @@ class Group extends REST_Controller{
 
         $criteria = $this->get();
 
+        echo '<pre>';
+        print_r($criteria);
+        echo '</>';exit;
+
         $db1 = $this->load->database('nfe1', TRUE);
         $result = $this->Group_model->getDataByTeach($criteria, $db1);
         if(empty($result)){
@@ -37,17 +41,17 @@ class Group extends REST_Controller{
     }
 
     public function getSemestry_get(){
-        $TeachFirstName = $this->get('TeachFirstName');
-        $TeachLastName = $this->get('TeachLastName');
+        // $TeachFirstName = $this->get('TeachFirstName');
+        // $TeachLastName = $this->get('TeachLastName');
 
         $db1 = $this->load->database('nfe1', TRUE);
-        $result = $this->Group_model->getSemestry($TeachFirstName, $TeachLastName, $db1);
+        $result = $this->Group_model->getSemestry( $db1);
         if(empty($result)){
             $db2 = $this->load->database('nfe2', TRUE);
-            $result = $this->Group_model->getSemestry($TeachFirstName, $TeachLastName, $db2);
+            $result = $this->Group_model->getSemestry( $db2);
             if(empty($result)){
                 $db3 = $this->load->database('nfe3', TRUE);
-                $result = $this->Group_model->getSemestry($TeachFirstName, $TeachLastName, $db3);
+                $result = $this->Group_model->getSemestry( $db3);
             }
         }
         

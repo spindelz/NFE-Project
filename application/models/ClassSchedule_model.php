@@ -9,7 +9,7 @@ class ClassSchedule_model extends MY_Model {
 
     public $table_translation_name = null;
 
-    public function getClassSchedule($studentID, $db)
+    public function getClassSchedule($studentID, $db, $SEMESTRY)
     {
 
         $db->select('grade.SEMESTRY,grade.SUB_CODE,subject.SUB_NAME,group.GRP_NAME,
@@ -22,9 +22,14 @@ class ClassSchedule_model extends MY_Model {
         $db->join('group','student.GRP_CODE = `group`.GRP_CODE','left');
 
         $db->where('student.STD_CODE',$studentID);
+
+        if(array_key_exists('Semestry', $SEMESTRY) && !empty($SEMESTRY['Semestry'])){
+			$db->where('grade.SEMESTRY', $SEMESTRY['Semestry']);
+        }
+
         $db->order_by('grade.SEMESTRY','DESC');
         
-        $result = $db->get()->result();
+        $result = $db->get()->result_array();
         return $result; 
         
     }
@@ -41,7 +46,7 @@ class ClassSchedule_model extends MY_Model {
         $db->group_by('grade.SEMESTRY');
         $db->order_by('grade.SEMESTRY', 'DESC');
 
-        $result = $db->get()->result();
+        $result = $db->get()->result_array();
         return $result; 
     }
 

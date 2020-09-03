@@ -9,9 +9,9 @@
     <div class="content pb-2">
         <div class="container">
             <div class="mb-2 clearfix">
-                <?php if($isTeacher){ ?>
+                <!-- <?php if($isTeacher){ ?> -->
                 <a href="<?php echo SITE;?>Group" class="btn btn-link">< กลับไปหน้ากลุ่มเรียน</a>
-                <?php } ?>
+                <!-- <?php } ?> -->
                 <a href="javascript:void(0)" class="btn btn-secondary float-right"><i class="fas fa-sm fa-print"></i> Print</a>
             </div>
 

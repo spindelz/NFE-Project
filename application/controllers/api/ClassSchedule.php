@@ -20,10 +20,11 @@ class ClassSchedule extends REST_Controller
 
     public function getData_get()
     {
-        $data = array();
         $user_logined = $this->session->userdata('user_logined');
         $studentID = $user_logined['StudentCode'];
         $userType =  $user_logined['UserTypeID'];
+        $data = array();
+        $SEMESTRY = $this->get();
 
         switch ($userType) {
             case '5':
@@ -37,7 +38,7 @@ class ClassSchedule extends REST_Controller
                 break;
         }
 
-        $result = $this->ClassSchedule_model->getClassSchedule($studentID,$db);
+        $result = $this->ClassSchedule_model->getClassSchedule($studentID,$db,$SEMESTRY);
 
         $data['data'] = $result;
         $data['length'] = count($result);
@@ -47,10 +48,10 @@ class ClassSchedule extends REST_Controller
     }
 
     public function getSemestry_get(){
-        $data = array();
         $user_logined = $this->session->userdata('user_logined');
         $studentID = $user_logined['StudentCode'];
         $userType =  $user_logined['UserTypeID'];
+        $data = array();
         
         switch ($userType) {
             case '5':

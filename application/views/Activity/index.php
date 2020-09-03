@@ -28,7 +28,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="3" class="text-right">รวม</td>
-                                <td><span id="GPA"></span></td>
+                                <td class="text-center"><span id="GPA">35</span></td>
                             </tr>
                         </tfoot> 
                     </table>

@@ -24,7 +24,7 @@ class ExamSchedule_model extends MY_Model {
         $db->where('student.STD_CODE',$studentID);
         $db->where('schedule.EXAM_DAY IS NOT NULL');
 
-        $db->order_by('schedule.EXAM_DAY' , 'schedule.EXAM_START ' ,'asc' , 'asc');
+        $db->order_by('schedule.EXAM_DAY, schedule.EXAM_START', 'ASC');
         
 		$result = $db->get()->result_array();
         return $result; 

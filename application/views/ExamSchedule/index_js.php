@@ -1,15 +1,7 @@
 <script>
     $(function(){
-        initControl();
         getData();
     });
-
-    function initControl(){
-        $('#formSearch').submit(function(e){
-            e.preventDefault();
-            getData( $(this).serialize() );
-        });
-    }
 
     function getData(data){
         $.ajax({

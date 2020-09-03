@@ -21,11 +21,10 @@ class Activity extends REST_Controller
     public function index_get()
     {
         $user_logined = $this->session->userdata('user_logined');
-        $data = array();
         $studentID = $user_logined['StudentCode'];
         $userType =  $user_logined['UserTypeID'];
-        // $studentID = '12200100015212000034';
-        // $userType = '6';
+        $data = array();
+        $result = array();
 
         switch ($userType) {
             case '5':
@@ -37,23 +36,22 @@ class Activity extends REST_Controller
             case '7':
                 $db = $this->load->database('nfe3', TRUE);
                 break;
-            default:
-                break;
         }
 
-        $result = $this->Activity_model->getActivity($studentID, $db);
+        $result['resultData'] = $this->Activity_model->getActivity($studentID, $db);
 
         $sum = 0;
-        foreach ($result as $keyResult => $valueResult) {
+        foreach ($result['resultData'] as $keyResult => $valueResult) {
             $sum += $valueResult['HOUR'];
         }
-        
+
         $result['sumHour'] = $sum;
 
-        $data['data'] = $result;
+        $data['data'] = $result['resultData'];
+        $data['hour'] = $result['sumHour'];
         $data['length'] = count($result);
         $data['debug'] = $db->last_query();
-
+ 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 }

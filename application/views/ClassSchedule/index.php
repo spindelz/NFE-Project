@@ -14,10 +14,11 @@
                     <div class="col-md-6">
                         <p>ภาคเรียน : <span id="SemestryTop"></span></p>
                         <p>ชื่อผู้สอน : <span id="TeacherName"></span></p>
-                        <p>สถานที่พบกลุ่ม : <span id="MeetGroup"></span></p>
+                        <!-- <p>สถานที่พบกลุ่ม : <span id="MeetGroup"></span></p> -->
                     </div>
                     <div class="col-md-6">
                         <p>ชื่อกลุ่ม : <span id="GroupName"></span></p>
+                        <p>สถานที่พบกลุ่ม : <span id="MeetGroup"></span></p>
                         <!-- <p>เบอร์โทรศัพท์ : <span id="PhoneNumber"></span></p> -->
                     </div>
                 </div>

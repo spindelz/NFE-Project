@@ -11,7 +11,7 @@
             <div style="background: #FFFFCC; margin-left: 100px; margin-right: 100px;" class="p-3 mb-3">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>ภาคเรียน : <span id="Semestry"></span></p>
+                        <p>ภาคเรียน : <span id="SemestryTop"></span></p>
                         <p>ชื่อกลุ่ม : <span id="GroupName"></span></p>
                     </div>
                     <div class="col-md-6">
@@ -24,13 +24,11 @@
                     <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
                     <div class="row">
                         <div class="col-md-4">
-                            <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
-                            <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
                             <select class="form-control" name="Semestry" id="Semestry"></select>
                         </div>
                     
                         <div class="co;-md-4">
-                            <input type="submit" class="btn btn-success" value="ค้นหา">
+                            <input type="submit" class="btn btn-success" value="ค้นหา ">
                         </div>
                     </div>
                     <?php echo form_close(); ?>
@@ -58,7 +56,7 @@
                         <tfoot>
                             <tr>
                                 <td colspan="5" class="text-right">ระดับผลการเรียนเฉลี่ย</td>
-                                <td><span id="GPA"></span></td>
+                                <td class="text-center"><span id="GPA"></span></td>
                             </tr>
                         </tfoot> 
                     </table>

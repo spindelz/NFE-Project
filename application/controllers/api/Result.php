@@ -8,7 +8,7 @@ use Restserver\Libraries\REST_Controller;
 class Result extends REST_Controller
 {
 
-    public $primary_key = 'studentID';
+    public $primary_key = 'StudentCode';
 
     public $userType_key = 'UserTypeID';
 
@@ -20,11 +20,13 @@ class Result extends REST_Controller
 
     public function getData_get()
     {
+        $user_logined = $this->session->userdata('user_logined');
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
+
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $studentID = '6221000066';
-        $userType = '5';
+        $result = array(); 
+        $SEMESTRY = $this->get();
 
         switch ($userType) {
             case '5':
@@ -38,18 +40,19 @@ class Result extends REST_Controller
                 break;
         }
         
-        $result = $this->Result_model->getResult($studentID,$db);
+        $result['resultData'] = $this->Result_model->getResult($db, $studentID ,$SEMESTRY);
 
         $sumGrade = 0;
         $sumUnit = 0;
-        foreach ($result as $keyResult => $valueResult) {
+        foreach ($result['resultData'] as $keyResult => $valueResult) {
             $sumGrade += ($valueResult['GRADE']*$valueResult['SUB_CREDIT']);
             $sumUnit += $valueResult['SUB_CREDIT'];
         }
         
-        $result['gradeAverage'] = $sumGrade/$sumUnit;
+        $result['gradeAverage'] = round(($sumGrade/$sumUnit) , 2);
 
-        $data['data'] = $result;
+        $data['data'] = $result['resultData'];
+        $data['gpa']  = $result['gradeAverage'];
         $data['length'] = count($result);
         $data['debug'] = $db->last_query();
 
@@ -57,11 +60,10 @@ class Result extends REST_Controller
     }
 
     public function getSemestry_get(){
+        $user_logined = $this->session->userdata('user_logined');
+        $studentID = $user_logined['StudentCode'];
+        $userType =  $user_logined['UserTypeID'];
         $data = array();
-        // $studentID = $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        $userType = '5';
-        $studentID = '6221000066';
         
         switch ($userType) {
             case '5':
@@ -75,7 +77,7 @@ class Result extends REST_Controller
                 break;
         }
 
-        $result = $this->Result_model->getSemestryResult($studentID, $db);
+        $result = $this->Result_model->getSemestryResult($db, $studentID);
         
         $data['data'] = $result;
         $data['length'] = count($result);

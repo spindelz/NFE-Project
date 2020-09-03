@@ -46,15 +46,15 @@ class Group_model extends MY_Model {
         return $result; 
     }
 
-    public function getSemestry($TeachFirstName, $TeachLastName, $db){
+    public function getSemestry($db){
         $db->select('grade.SEMESTRY');
 
         $db->from($this->table_name);
         $db->join('grade', 'grade.GRP_CODE = group.GRP_CODE', 'left');
 
         $db->where('grade.SEMESTRY IS NOT NULL');
-        $db->like('group.GRP_ADVIS', $TeachFirstName);
-        $db->like('group.GRP_ADVIS', $TeachLastName);
+        // $db->like('group.GRP_ADVIS', $TeachFirstName);
+        // $db->like('group.GRP_ADVIS', $TeachLastName);
 
         $db->group_by('grade.SEMESTRY');
         $db->order_by('grade.SEMESTRY', 'DESC');

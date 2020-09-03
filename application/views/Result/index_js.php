@@ -1,8 +1,7 @@
 <script>
     $(function(){
-        $('#StudentName').html('นายสมหวัง ดั่งใจ');
+        bindSemestry();
         initControl();
-        // bindSemestry();
     });
 
     function initControl(){
@@ -10,19 +9,31 @@
             e.preventDefault();
             getData( $(this).serialize() );
         });
+
+        $(document).on('click', '.btn-exam', function(){
+            $('#OrderNumber').val('');
+            getData($('#formSearch').serialize());
+        });
     }
 
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getDataByTeach') ?>",
+			url: "<?php echo api_url('Result/getData') ?>",
             data: data,
 			success: function(res){
                 bindData(res.data);
+                
+                $('#GPA').html(res.gpa);
+
+                $('#SemestryTop').html((res.data[0]['SEMESTRY']));
+                $('#GroupName').html((res.data[0]['GRP_NAME']));
+                $('#TeacherName').html((res.data[0]['GRP_ADVIS']));
+                
             }
         });
     }
-    
+
     function bindData(data){
         
         $('#datatable tbody').empty();
@@ -32,12 +43,9 @@
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
                 str_table += '<td>' + data[i].SEMESTRY + '</td>';
                 str_table += '<td>' + data[i].GRP_NAME + '</td>';
-                str_table += '<td>' + data[i].FLD_NAME + '</td>';
-                str_table += '<td>';
-                str_table += '<a href="javascript:void(0)" class="text-primary btn-exam" data-id="' + data[i].GRP_CODE + '">ตารางสอบ</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-success btn-student" data-id="' + data[i].GRP_CODE + '">รายชื่อนศ.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-warning btn-subject" data-id="' + data[i].GRP_CODE + '">รายชื่อวิชา</a>';
-                str_table += '</td>';
+                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                str_table += '<td>' + data[i].SUB_CREDIT + '</td>';
+                str_table += '<td>' + data[i].GRADE + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);
@@ -51,21 +59,20 @@
     function bindSemestry(){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Group/getSemestry') ?>",
+			url: "<?php echo api_url('ClassSchedule/getSemestry') ?>",
             data: {
-                'TeachFirstName': '<?php echo @$TeachFirstName; ?>',
-                'TeachLastName': '<?php echo @$TeachLastName; ?>'
             },
+            
 			success: function(res){
                 var elm = $('#Semestry');
                 var data = res.data;
                 elm.empty();
                 elm.html($('<option>').val('').html('ภาคเรียนทั้งหมด'));
                 for(i in data){
-                    elm.append($('<option>').val(data[i].SEMESTRY).html(data[i].SEMESTRY));
+                    elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
                 }
-                elm.val(data[0].SEMESTRY);
                 getData($('#formSearch').serialize());
+                
             }
         });
     }

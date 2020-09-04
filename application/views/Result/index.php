@@ -8,7 +8,7 @@
 
     <div class="content pb-2">
         <div class="container">
-            <div style="background: #FFFFCC; margin-left: 100px; margin-right: 100px;" class="p-3 mb-3">
+            <div style="background: #FFFFCC; margin-left: 100px; margin-right: 100px;" class="p-3 mb-3" id="headerData">
                 <div class="row">
                     <div class="col-md-6">
                         <p>ภาคเรียน : <span id="SemestryTop"></span></p>
@@ -45,7 +45,7 @@
                         <thead class="text-center">
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>ภาคเรียน</th>
+                                <th id="semestryCode">ภาคเรียน</th>
                                 <th>รหัสวิชา</th>
                                 <th>วิชา</th>
                                 <th>หน่วยกิต</th>
@@ -55,7 +55,7 @@
                         <tbody class="text-center"></tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="5" class="text-right">ระดับผลการเรียนเฉลี่ย</td>
+                                <td colspan="4" id="text-gpa" class="text-right">ระดับผลการเรียนเฉลี่ย</td>
                                 <td class="text-center"><span id="GPA"></span></td>
                             </tr>
                         </tfoot> 

@@ -57,13 +57,13 @@ class ExamSchedule extends REST_Controller
         }
         
         foreach ($result as $key => &$value) {
-            $value['EXAM_DAY'] = is_null($value['EXAM_DAY']) ? '' : $value['EXAM_DAY'];
-            $value['EXAM_START'] = is_null($value['EXAM_START']) ? '' : $value['EXAM_START'];
-            $value['EXAM_END'] = is_null($value['EXAM_END']) ? '' : $value['EXAM_END'];
+            $value['EXAM_DAY'] = is_null($value['EXAM_DAY']) ? '' : $value['EXAM_DAY'] ;
+            $value['EXAM_START'] = is_null($value['EXAM_START']) ? '' : $this->examTime($value['EXAM_START']);
+            $value['EXAM_END'] = is_null($value['EXAM_END']) ? '' : $this->examTime($value['EXAM_END']) ;
             $value['FLD_CODE'] = is_null($value['FLD_CODE']) ? '' : $value['FLD_CODE'];
             $value['FLD_NAME'] = is_null($value['FLD_NAME']) ? '' : $value['FLD_NAME'];
             $value['ROOMNO'] = is_null($value['ROOMNO']) ? '' : $value['ROOMNO'];
-            $value['ROOMNAME'] = is_null($value['ROOMNAME']) ? '' : $value['ROOMNAME'];
+            // $value['ROOMNAME'] = is_null($value['ROOMNAME']) ? '' : $value['ROOMNAME'];
         }
 
         $data['data'] = $result;
@@ -71,5 +71,19 @@ class ExamSchedule extends REST_Controller
         $data['debug'] = $db->last_query();
         
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
+
+    public function examTime($time){
+
+        if(strlen($time) < 4){
+            $time = '0'.$time;
+        }
+
+        $hour = substr($time, strlen($time)*-1 , 2);
+        $min = substr($time, -2, strlen($time) );
+        
+        $newTime = $hour. '.' .$min ;
+        
+        return $newTime ;
     }
 }

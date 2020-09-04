@@ -6,7 +6,7 @@
     function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('ExamSchedule') ?>",
+			url: "<?php echo api_url('ExamSchedule/index') ?>",
             data: {
                 'isTeacher': '<?php echo @$isTeacher; ?>',
                 'GroupCode': '<?php echo @$GroupCode; ?>',

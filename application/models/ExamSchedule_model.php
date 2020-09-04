@@ -12,7 +12,7 @@ class ExamSchedule_model extends MY_Model {
     public function getExamSchedule($studentID, $db)
     {
         $db->select('schedule.EXAM_DAY,schedule.EXAM_START,schedule.EXAM_END,
-                     grade.SUB_CODE,subject.SUB_NAME,grade.ROOMNO,field.FLD_NAME'
+                     grade.SUB_CODE,subject.SUB_NAME,grade.ROOMNO,field.FLD_NAME,field.FLD_CODE'
                         );
         $db->from($this->table_name);
 

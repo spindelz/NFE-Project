@@ -23,7 +23,6 @@ class Result extends REST_Controller
         $user_logined = $this->session->userdata('user_logined');
         $studentID = $user_logined['StudentCode'];
         $userType =  $user_logined['UserTypeID'];
-
         $data = array();
         $result = array(); 
         $SEMESTRY = $this->get();
@@ -41,6 +40,7 @@ class Result extends REST_Controller
         }
         
         $result['resultData'] = $this->Result_model->getResult($db, $studentID ,$SEMESTRY);
+        $result['semestry'] = $SEMESTRY;
 
         $sumGrade = 0;
         $sumUnit = 0;
@@ -53,6 +53,7 @@ class Result extends REST_Controller
 
         $data['data'] = $result['resultData'];
         $data['gpa']  = $result['gradeAverage'];
+        $data['semestry'] = $result['semestry'];
         $data['length'] = count($result);
         $data['debug'] = $db->last_query();
 

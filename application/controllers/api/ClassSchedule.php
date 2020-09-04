@@ -24,6 +24,7 @@ class ClassSchedule extends REST_Controller
         $studentID = $user_logined['StudentCode'];
         $userType =  $user_logined['UserTypeID'];
         $data = array();
+        $result = array();
         $SEMESTRY = $this->get();
 
         switch ($userType) {
@@ -38,9 +39,11 @@ class ClassSchedule extends REST_Controller
                 break;
         }
 
-        $result = $this->ClassSchedule_model->getClassSchedule($studentID,$db,$SEMESTRY);
+        $result['resultData']= $this->ClassSchedule_model->getClassSchedule($studentID,$db,$SEMESTRY);
+        $result['semestry'] = $SEMESTRY;
 
-        $data['data'] = $result;
+        $data['data'] = $result['resultData'];
+        $data['semestry'] = $result['semestry'];
         $data['length'] = count($result);
         $data['debug'] = $db->last_query();
 

@@ -22,26 +22,37 @@
 			url: "<?php echo api_url('Result/getData') ?>",
             data: data,
 			success: function(res){
-                bindData(res.data);
-                
-                $('#GPA').html(res.gpa);
 
-                $('#SemestryTop').html((res.data[0]['SEMESTRY']));
+                if(res.semestry['Semestry'] == ''){
+                    res.semestry['Semestry'] = 'ทั้งหมด' ;
+                    $("#semestryCode").show();
+                    bindData(res.data, 1);
+                    $('#text-gpa').attr('colspan', '5');
+                }else{
+                    $("#semestryCode").hide();
+                    bindData(res.data);
+                    $('#text-gpa').attr('colspan', '4');
+                }
+
+                $('#SemestryTop').html((res.semestry['Semestry']));
                 $('#GroupName').html((res.data[0]['GRP_NAME']));
                 $('#TeacherName').html((res.data[0]['GRP_ADVIS']));
                 
+                $('#GPA').html(res.gpa);
             }
         });
     }
 
-    function bindData(data){
+    function bindData(data, showSemestry){
         
         $('#datatable tbody').empty();
         if(data.length > 0){
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].SEMESTRY + '</td>';
+                if(showSemestry){
+                    str_table += '<td>' + data[i].SEMESTRY + '</td>';
+                }
                 str_table += '<td>' + data[i].GRP_NAME + '</td>';
                 str_table += '<td>' + data[i].SUB_NAME + '</td>';
                 str_table += '<td>' + data[i].SUB_CREDIT + '</td>';
@@ -71,6 +82,7 @@
                 for(i in data){
                     elm.append($('<option>').val(data[i].SEMESTRY).html('ภาคเรียนที่ ' + data[i].SEMESTRY));
                 }
+                elm.val(data[0].SEMESTRY);
                 getData($('#formSearch').serialize());
                 
             }

@@ -51,7 +51,7 @@
                         <thead class="text-center">
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>ภาคเรียน</th>
+                                <th id="semestryCode">ภาคเรียน</th>
                                 <th>รหัสวิชา</th>
                                 <th>วิชา</th>
                             </tr>

@@ -30,13 +30,13 @@
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
                 str_table += '<td>' + data[i].GRP_NAME + '</td>';
                 str_table += '<td>' + data[i].SEMESTRY + '</td>';
-                str_table += '<td>' + data[i].STD_CODE + '</td>';
+                str_table += '<td>' + data[i].StudentCode + '</td>';
                 str_table += '<td>' + data[i].CARDID + '</td>';
-                str_table += '<td>' + data[i].StudentName + '</td>';
+                str_table += '<td class="text-left">' + data[i].StudentName + '</td>';
                 str_table += '<td>';
-                str_table += '<a href="<?php echo SITE; ?>Student/profile?st=' + data[i].STD_CODE + '&g=' + data[i].GRP_CODE + '&s=' + data[i].SEMESTRY + '" class="text-primary">ประวัตินศ.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-success btn-activity" data-id="' + data[i].STD_CODE + '">กพช.</a> / ';
-                str_table += '<a href="javascript:void(0)" class="text-warning btn-activity" data-id="' + data[i].STD_CODE + '">ผลการเรียน</a>';
+                str_table += '<a href="<?php echo SITE; ?>Student/profile?st=' + data[i].STD_CODE + '&u=' + data[i].UserType + '" class="text-primary">ประวัตินศ.</a> / ';
+                str_table += '<a href="<?php echo SITE; ?>Student/activity?st=' + data[i].STD_CODE + '&u=' + data[i].UserType + '" class="text-success">กพช.</a> / ';
+                str_table += '<a href="<?php echo SITE; ?>Student/result?st=' + data[i].STD_CODE + '&u=' + data[i].UserType + '" class="text-warning">ผลการเรียน</a>';
                 str_table += '</td>';
                 str_table += '</tr>';
 

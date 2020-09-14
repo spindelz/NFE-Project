@@ -11,7 +11,7 @@
     <div class="content pb-2">
         <div class="container">
             <?php if(@$Semestry){ ?>
-                <a href="<?php echo SITE;?>Group" class="btn btn-link">< กลับไปหน้ากลุ่มเรียน</a>
+                <a href="<?php echo SITE;?>Group" class="btn btn-secondary mb-2">< กลับไปหน้ากลุ่มเรียน</a>
             <?php } ?>
             <div class="card">
                 <div class="card-body">

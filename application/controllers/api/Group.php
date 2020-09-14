@@ -19,23 +19,19 @@ class Group extends REST_Controller{
 
         $criteria = $this->get();
 
-        echo '<pre>';
-        print_r($criteria);
-        echo '</>';exit;
-
-        $db1 = $this->load->database('nfe1', TRUE);
-        $result = $this->Group_model->getDataByTeach($criteria, $db1);
+        $db = $this->load->database('nfe1', TRUE);
+        $result = $this->Group_model->getDataByTeach($criteria, $db);
         if(empty($result)){
-            $db2 = $this->load->database('nfe2', TRUE);
-            $result = $this->Group_model->getDataByTeach($criteria, $db2);
+            $db = $this->load->database('nfe2', TRUE);
+            $result = $this->Group_model->getDataByTeach($criteria, $db);
             if(empty($result)){
-                $db3 = $this->load->database('nfe3', TRUE);
-                $result = $this->Group_model->getDataByTeach($criteria, $db3);
+                $db = $this->load->database('nfe3', TRUE);
+                $result = $this->Group_model->getDataByTeach($criteria, $db);
             }
         }
         $data['data'] = $result;
         $data['length'] = count($result);
-        $data['debug'] = $db1->last_query();
+        $data['debug'] = $db->last_query();
  
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }

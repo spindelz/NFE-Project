@@ -27,10 +27,10 @@
                     bindData(res.data);
                 }
 
-                $('#SemestryTop').html((res.semestry['Semestry']));
-                $('#GroupName').html((res.data[0]['GRP_NAME']));
-                $('#MeetGroup').html((res.data[0]['GRP_MEET']));
-                $('#TeacherName').html((res.data[0]['GRP_ADVIS']));
+                $('#SemestryTop').html(res.semestry['Semestry']);
+                $('#GroupName').html(res.data[0]['GRP_NAME']);
+                $('#MeetGroup').html(res.data[0]['GRP_MEET']);
+                $('#TeacherName').html(res.data[0]['GRP_ADVIS']);
             }
         });
     }
@@ -46,7 +46,7 @@
                     str_table += '<td>' + data[i].SEMESTRY + '</td>';
                 }
                 str_table += '<td>' + data[i].SUB_CODE + '</td>';
-                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                str_table += '<td class="text-left">' + data[i].SUB_NAME + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);

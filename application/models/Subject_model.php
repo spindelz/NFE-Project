@@ -37,6 +37,10 @@ class Subject_model extends MY_Model {
         if(array_key_exists('Semestry', $criteria) && !empty($criteria['Semestry'])){
 			$db->where('grade.SEMESTRY', $criteria['Semestry']);
         }
+        
+        if(array_key_exists('GroupCode', $criteria) && !empty($criteria['GroupCode'])){
+			$db->where('group.GRP_CODE', $criteria['GroupCode']);
+        }
 
         if(array_key_exists('SubjectKeyword', $criteria) && !empty($criteria['SubjectKeyword'])){
             $db->group_start();

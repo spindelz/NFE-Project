@@ -14,7 +14,7 @@ class Student_model extends MY_Model {
     public function getDataByTeach($criteria, $db){
         $db->select('group.GRP_CODE, group.GRP_NAME');
         $db->select('grade.SEMESTRY');
-        $db->select('student.STD_CODE, student.CARDID, CONCAT(student.PRENAME, \' \', student.NAME, \' \', student.SURNAME) as StudentName');
+        $db->select('student.ID as StudentCode, student.STD_CODE, student.CARDID, CONCAT(student.PRENAME, \' \', student.NAME, \' \', student.SURNAME) as StudentName');
 
         $db->from('group');
         $db->join('grade', 'grade.GRP_CODE = group.GRP_CODE', 'left');
@@ -94,5 +94,41 @@ class Student_model extends MY_Model {
 
         $result = $db->get()->result_array();
         return $result; 
+    }
+
+    public function getStudentImage($StudentCode){
+        $this->db->select('ImageName, ImageRotate');
+        $this->db->from('student_image');
+        $this->db->where('student_image.StudentCode', $StudentCode);
+        $result = $this->db->get()->row_array();
+        return $result; 
+    }
+
+    public function saveStudentImage($entity){
+        $this->db->trans_start();
+
+        $this->db->insert('student_image', $entity);
+
+        if ($this->db->trans_status() === false) {
+			$this->db->trans_rollback();
+			return false;
+		} else {
+			$this->db->trans_commit();
+			return $this->db->insert_id();
+		}
+    }
+
+    public function updateStudentImage($entity, $condition){
+        $this->db->trans_start();
+
+        $this->db->update('student_image', $entity, $condition);
+
+        if ($this->db->trans_status() === false) {
+			$this->db->trans_rollback();
+			return false;
+		} else {
+			$this->db->trans_commit();
+			return true;
+		} 
     }
 }

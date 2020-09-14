@@ -5,29 +5,28 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Home extends REST_Controller
-{
-
+class Home extends REST_Controller{
     public $primary_key = 'studentID';
 
     public $userType_key = '';
 
-    function __construct()
-    {
+    function __construct(){
         parent::__construct();
         $this->load->model('Home_model');
+        $this->load->model('Student_model');
     }
 
-    public function index_get()
-    {
-        $user_logined = $this->session->userdata('user_logined');
+    public function index_get(){
         $data = array();
-        $studentID = $user_logined['StudentCode'];
-        $userType =  $user_logined['UserTypeID'];
-        // $studentID =  $this->get($this->primary_key);
-        // $userType =  $this->get($this->userType_key);
-        // $studentID = '6221000066';
-        // $userType = '5';
+
+        $criteria = $this->get();
+        $user_logined = $this->session->userdata('user_logined');
+        if($user_logined['StudentCode'] && empty($criteria['isTeacher'])){
+            $criteria['StudentCode'] = $user_logined['StudentCode'];
+            $userType =  $user_logined['UserTypeID'];
+        }else{
+            $userType = $criteria['UserType'];
+        }
 
         switch ($userType) {
             case '5':
@@ -42,8 +41,11 @@ class Home extends REST_Controller
             default:
                 break;
         }
-        $result = $this->Home_model->getDataByID($studentID,$db);
-
+        $result = $this->Home_model->getDataByID($criteria, $db);
+        $StudentImage = $this->Student_model->getStudentImage($criteria['StudentCode']);
+        $result['StudentImage'] = is_null($StudentImage['ImageName']) ? '' : $StudentImage['ImageName'];
+        $result['StudentImageRotate'] = is_null($StudentImage['ImageRotate']) ? 0 : $StudentImage['ImageRotate'];
+        
         $getDate = $result['BIRDAY'];
         $result['Age'] = $this->getAge($getDate);
         

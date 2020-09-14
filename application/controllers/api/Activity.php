@@ -12,17 +12,24 @@ class Activity extends REST_Controller
 
     public $userType_key = 'UserTypeID';
 
-    function __construct()
-    {
+    function __construct(){
         parent::__construct();
         $this->load->model('Activity_model');
     }
 
-    public function index_get()
-    {
-        $user_logined = $this->session->userdata('user_logined');
-        $studentID = $user_logined['StudentCode'];
-        $userType =  $user_logined['UserTypeID'];
+    public function index_get(){
+        $input = $this->get();
+        $data = $this->security->xss_clean($input);
+        
+        if($data['isTeacher']){
+            $studentID = $data['StudentCode'];
+            $userType =  $data['UserType'];
+        }else{
+            $user_logined = $this->session->userdata('user_logined');
+            $studentID = $user_logined['StudentCode'];
+            $userType =  $user_logined['UserTypeID'];
+        }
+        
         $data = array();
         $result = array();
 

@@ -28,9 +28,9 @@
                 str_table += '<td>' + data[i].EXAM_DAY + '</td>';
                 str_table += '<td>' + data[i].EXAM_START + ' - ' + data[i].EXAM_END + '</td>';
                 str_table += '<td>' + data[i].SUB_CODE + '</td>';
-                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                str_table += '<td class="text-left">' + data[i].SUB_NAME + '</td>';
                 str_table += '<td>' + data[i].ROOMNO + '</td>';
-                str_table += '<td>' + data[i].FLD_NAME + '<br> ' + '#Link_GoogleMap' + '</td>';
+                str_table += '<td class="text-left">' + data[i].FLD_NAME + '<br> ' + '#Link_GoogleMap' + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);

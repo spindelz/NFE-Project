@@ -37,8 +37,9 @@ class MY_Controller extends CI_Controller{
                     $data_header['FullName'] = $user_logined['PrefixName'] . ' ' . @$user_logined['FirstName'] . ' ' . @$user_logined['LastName'];
                     $data_header['UserTypeID'] = (int)$user_logined['UserTypeID'];
                     if(array_search((int)$user_logined['UserTypeID'], array(5,6,7)) > -1){
-                        $data_header['StudentCode'] = $user_logined['StudentCode'];
+                        $data_header['StudentCode'] = $user_logined['UserID'];
                         $data_header['PersonalID'] = $user_logined['PersonalID'];
+                        $data_header['UserTypeName'] = $user_logined['UserTypeName'];
                     }else{
                         $data_header['Position'] = $user_logined['UserTypeName'];
                     }

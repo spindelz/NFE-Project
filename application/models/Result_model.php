@@ -23,8 +23,8 @@ class Result_model extends MY_Model {
 
         $db->where('student.STD_CODE',$studentID);
         
-        if(array_key_exists('Semestry', $SEMESTRY) && !empty($SEMESTRY['Semestry'])){
-			$db->where('grade.SEMESTRY', $SEMESTRY['Semestry']);
+        if(!empty($SEMESTRY)){
+			$db->where('grade.SEMESTRY', $SEMESTRY);
         }
 
         $db->order_by('grade.SEMESTRY', 'DESC');

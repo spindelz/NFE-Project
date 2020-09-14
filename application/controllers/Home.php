@@ -21,7 +21,9 @@ class Home extends MY_Controller {
 			redirect(SITE.'home/login');
 		}
 
-		$this->render('normal_page', 'Profile', 'Profile/index', FALSE);  
+		$data['isTeacher'] = false;
+
+		$this->render('normal_page', 'Profile', 'Profile/index', FALSE, $data);  
 	}
 
 	public function login() {

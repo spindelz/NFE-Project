@@ -1,21 +1,20 @@
 <!-- <div class="overlay"></div> -->
-<div class="container" style="background: #00CCCC">
-    <div class="row py-1">
-        <div class="col-md-2 d-flex justify-content-center align-items-center">
+<div class="container" style="background: #00CCCC; width: 900px;">
+    <div class="row py-2">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
             <img src="<?php echo ASSETS_IMG; ?>/NFE.Chon_100.png" style="width:109px; height: 109px;">
         </div>
-        <div class="col-md-8 text-center" >
-            <h2 style="color:#666666;"><b>สำนักงานส่งเสริมการศึกษานอกระบบและการศึกษาตามอัธยาศัย</b></h2> 
-            <h5 style="color:#fff;"><b>กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</h5>
+        <div class="col-md-8 text-center pt-3">
+            <h2 style="color:#666666;"><b>กศน.อำเภอเมืองชลบุรี จังหวัดชลบุรี</b></h2> 
+            <h4 style="color:#666666;"><b>สังกัด สำนักงาน กศน.</b></h4>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-1"></div>
     </div>  
 </div>
 <div class="text-center pt-4">
-    <p style="color:#0099CC;">
+    <h2 style="color:#0099CC;">
         หลักสูตรการศึกษานอกระบบระดับการศึกษาขั้นพื้นฐาน พุทธศักราช 2551
-    </pre>
-    
+    </h2>
 </div>
 
 <div class="d-flex justify-content-center my-4">
@@ -54,21 +53,8 @@
                             <button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
                         </div>
                     </div>
-
                 </form>
-
-                </p>
-
             </div>
-
         </div>
-
     </div>
-</div>
-
-<div class="text-center pt-3 login-footer" style="margin: 0;">
-    <p class="text-danger">
-        *นักศึกษาใช้รหัสประจำตัวประชาชนในการเข้าสู่ระบบ <br>
-        **อาจารย์ใช้ Username และ Password ในการเข้าสู่ระบบ
-    </p>
 </div>

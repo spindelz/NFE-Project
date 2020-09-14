@@ -42,6 +42,12 @@ h1{
 label:not(.form-check-label):not(.custom-file-label){
     font-weight: 500;
 }
+label.custom-file-label, label.custom-file-label::after, .input-group-append .input-group-text{
+    line-height: 1;
+}
+.input-group-append .input-group-text{
+    font-size: 1.4rem;
+}
 
 .dropdown-nonclick{
     position: relative;

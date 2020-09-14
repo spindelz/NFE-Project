@@ -21,7 +21,6 @@ class Auth extends REST_Controller {
 
 		$input = $this->post();
 		$data = $this->security->xss_clean($input);
-		// echo '<pre>'; print_r($data); echo '</pre>'; die();
 
 		if(empty($data['username'])){
 			$this->response('error_request', parent::HTTP_OK);
@@ -30,7 +29,6 @@ class Auth extends REST_Controller {
 
 		$result = $this->Users_model->checkUsername($data['username']);
 		
-		// echo '<pre>'; print_r($result); echo '</pre>'; die();
 		if(empty($result)){
 			$this->response('not_found_username', parent::HTTP_OK);
 			return;

@@ -3,16 +3,18 @@
         getData();
     });
 
-    function getData(data,hour){
+    function getData(){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('Activity/index') ?>",
-            data: data,
-            hour: hour,
+			url: "<?php echo api_url('Activity') ?>",
+            data: {
+                'isTeacher': '<?php echo @$isTeacher ? 1 : ""; ?>',
+                'StudentCode': '<?php echo @$StudentCode; ?>',
+                'UserType': '<?php echo @$UserType; ?>'
+            },
 			success: function(res){
                 bindData(res.data);
-                $('#GPA').html((res.hour));
-        
+                $('#Hour').html(res.hour);
             }
         });
     }
@@ -25,7 +27,7 @@
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
                 str_table += '<td>' + data[i].SEMESTRY + '</td>';
-                str_table += '<td>' + data[i].ACTIVITY + '</td>';
+                str_table += '<td class="text-left">' + data[i].ACTIVITY + '</td>';
                 str_table += '<td>' + data[i].HOUR + '</td>';
                 str_table += '</tr>';
 

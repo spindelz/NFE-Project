@@ -20,9 +20,10 @@ class Result extends MY_Controller {
 
 		if(!isset($user_logined)){
 			redirect(SITE.'home/login');
-        }
+		}
+		$data['isTeacher'] = false;
 
-		$this->render('normal_page', 'Result', 'Result/index', FALSE);  
+		$this->render('normal_page', 'Result', 'Result/index', FALSE, $data);  
 	}
 	
 	public function student(){

@@ -2,7 +2,7 @@
     <div class="content-header">
         <div class="container text-center" style="color: #517beb">
             หลักสูตรการศึกษานอกระบบระดับการศึกษาขั้นพื้นฐาน พุทธศักราช 2551<br>
-            <span style="font-weight: 500;">ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี</span>
+            <span style="font-weight: 500;"><?php echo @$UserTypeName ? 'ระดับ '.$UserTypeName : 'ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี'; ?></span>
         </div>
     </div>
 
@@ -10,7 +10,7 @@
         <div class="container">
             <div class="mb-2 clearfix">
                 <!-- <?php if($isTeacher){ ?> -->
-                <a href="<?php echo SITE;?>Group" class="btn btn-link">< กลับไปหน้ากลุ่มเรียน</a>
+                <a href="<?php echo SITE;?>Group" class="btn btn-secondary">< กลับไปหน้ากลุ่มเรียน</a>
                 <!-- <?php } ?> -->
                 <a href="javascript:void(0)" class="btn btn-secondary float-right"><i class="fas fa-sm fa-print"></i> Print</a>
             </div>

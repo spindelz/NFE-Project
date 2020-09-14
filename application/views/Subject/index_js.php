@@ -36,7 +36,7 @@
                 str_table += '<td>' + data[i].GRP_NAME + '</td>';
                 str_table += '<td>' + data[i].SEMESTRY + '</td>';
                 str_table += '<td>' + data[i].SUB_CODE + '</td>';
-                str_table += '<td>' + data[i].SUB_NAME + '</td>';
+                str_table += '<td class="text-left">' + data[i].SUB_NAME + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);

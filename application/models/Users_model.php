@@ -85,7 +85,7 @@ class Users_model extends MY_Model {
 
 	public function getByID($UserID){
 		$this->_setColumnSelect();
-		$this->db->select('user_type.UserTypeNameTH as UserTypeName');
+		$this->db->select('user_type.UserTypeName');
 		$this->db->select('prefix.PrefixName');
 		$this->_setFrom();
 		$this->db->join('user_type', 'user_type.UserTypeID = users.UserTypeID', 'left');

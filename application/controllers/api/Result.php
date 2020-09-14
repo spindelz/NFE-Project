@@ -20,12 +20,21 @@ class Result extends REST_Controller
 
     public function getData_get()
     {
-        $user_logined = $this->session->userdata('user_logined');
-        $studentID = $user_logined['StudentCode'];
-        $userType =  $user_logined['UserTypeID'];
+        $input = $this->get();
+        $input = $this->security->xss_clean($input);
+        
+        if($input['isTeacher']){
+            $studentID = $input['StudentCode'];
+            $userType =  $input['UserType'];
+        }else{
+            $user_logined = $this->session->userdata('user_logined');
+            $studentID = $user_logined['StudentCode'];
+            $userType =  $user_logined['UserTypeID'];
+        }
+
         $data = array();
         $result = array(); 
-        $SEMESTRY = $this->get();
+        $SEMESTRY = $input['Semestry'];
 
         switch ($userType) {
             case '5':
@@ -61,9 +70,17 @@ class Result extends REST_Controller
     }
 
     public function getSemestry_get(){
-        $user_logined = $this->session->userdata('user_logined');
-        $studentID = $user_logined['StudentCode'];
-        $userType =  $user_logined['UserTypeID'];
+        $input = $this->get();
+        $data = $this->security->xss_clean($input);
+        
+        if($data['isTeacher']){
+            $studentID = $data['StudentCode'];
+            $userType =  $data['UserType'];
+        }else{
+            $user_logined = $this->session->userdata('user_logined');
+            $studentID = $user_logined['StudentCode'];
+            $userType =  $user_logined['UserTypeID'];
+        }
         $data = array();
         
         switch ($userType) {

@@ -11,13 +11,18 @@ class Home_model extends MY_Model {
 
 	public $table_translation_name = null;
 
-    public function getDataByID($studentID,$db)
-    {
+    public function getDataByID($criteria, $db){
+        
         $db->select('student.PRENAME,student.NAME,student.SURNAME,student.ID,
                             student.CARDID,student.BIRDAY,student.CURPHONE,student.S_SCHOOL,
-                            student.CURADDR,student.CTAMBONID,student.CZIPCODE as Zipcode ,student.S_PROVINCE,
-                            tambon.NAME as Tambon,amphur.NAME as Amphur,province.NAME as Province'
-                        );
+                            student.CURADDR,student.TAMBONID,student.CZIPCODE as Zipcode ,student.S_PROVINCE,
+                            tambon.NAME as Tambon,amphur.NAME as Amphur,province.NAME as Province');
+
+        $db->select('CONCAT(CASE WHEN ISNULL(student.CURADDR) THEN \'-\' ELSE student.CURADDR END
+            , \' ต.\', CASE WHEN ISNULL(tambon.NAME) THEN \'-\' ELSE tambon.NAME END
+            , \' อ.\', CASE WHEN ISNULL(amphur.NAME) THEN \'-\' ELSE amphur.NAME END
+            , \' จ.\', CASE WHEN ISNULL(province.NAME) THEN \'-\' ELSE province.NAME END
+            , \' \', student.CZIPCODE) as StudentAddress');
 
         $db->from($this->table_name);
 
@@ -25,7 +30,9 @@ class Home_model extends MY_Model {
         $db->join('amphur','tambon.AMPHURID = amphur.ID','left');
         $db->join('province','amphur.PROVID = province.ID','left');
 
-        $db->where('student.STD_CODE',$studentID);
+        if(array_key_exists('StudentCode', $criteria) && !empty($criteria['StudentCode'])){
+			$db->where('student.STD_CODE', $criteria['StudentCode']);
+        }
         
 		$result = $db->get()->row_array();
         return $result; 

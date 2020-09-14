@@ -23,6 +23,8 @@ class Result extends MY_Controller {
 		}
 		$data['isTeacher'] = false;
 
+        
+		$data['checkPrint'] = null;
 		$this->render('normal_page', 'Result', 'Result/index', FALSE, $data);  
 	}
 	

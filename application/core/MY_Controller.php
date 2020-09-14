@@ -74,6 +74,8 @@ class MY_Controller extends CI_Controller{
             case 'blank_page':
                 
                 $this->load->view($content, $data);
+                $this->load->view('template/script');
+                $this->load->view($content.'_js');
 
                 // $view["assets_js"] = !is_null($assets_js) ? $this->js_asset($assets_js) : '';
                 break;

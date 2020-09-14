@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Activity extends MY_Controller {
+class PrintData extends MY_Controller {
 
 	var $allow_permission = TRUE;
 
@@ -9,16 +9,21 @@ class Activity extends MY_Controller {
 
 	var $is_translation = TRUE;
 
-	var $page_id = 1;
-
 	function __construct() {
 		parent::__construct();
 	}
 	
 	public function index() {
 		$user_logined = $this->session->userdata('user_logined');
-		$data['checkPrint'] = null;
 
-		$this->render('normal_page', 'Activity', 'Activity/index', FALSE, $data);  
-    }
+		if(!isset($user_logined)){
+			redirect(SITE.'home/login');
+		}
+		
+		$page_name = $_GET['page_name'];
+		$content = $_GET['content'];
+		$data['checkPrint'] = '1';
+
+		$this->render('blank_page', $page_name, $content, FALSE, $data);  
+	}
 }

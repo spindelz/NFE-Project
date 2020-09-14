@@ -1,3 +1,4 @@
+<?php if ($checkPrint == null) : ?>
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container text-center" style="color: #517beb">
@@ -5,15 +6,18 @@
             <span style="font-weight: 500;"><?php echo @$UserTypeName ? 'ระดับ '.$UserTypeName : 'ยินดีต้อนรับสู่เว็บไซต์ของ กศน. อำเภอเมืองชลบุรี จังหวัดชลบุรี'; ?></span>
         </div>
     </div>
+    <?php endif; ?>
 
     <div class="content pb-2">
         <div class="container">
             <div class="mb-2 clearfix">
+            <?php if ($checkPrint == null) : ?>
                 <!-- <?php if($isTeacher){ ?> -->
                 <a href="<?php echo SITE;?>Group" class="btn btn-secondary">< กลับไปหน้ากลุ่มเรียน</a>
                 <!-- <?php } ?> -->
-                <a href="javascript:void(0)" class="btn btn-secondary float-right"><i class="fas fa-sm fa-print"></i> Print</a>
+                <a href="<?php echo SITE; ?>PrintData?page_name=ExamSchedule & content=ExamSchedule/index" class="btn btn-secondary float-right" target="_blank"><i class="fas fa-sm fa-print"></i> Print</a>
             </div>
+            <?php endif; ?>
 
             <div class="card">
                 <div class="card-body">

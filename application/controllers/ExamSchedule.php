@@ -16,6 +16,7 @@ class ExamSchedule extends MY_Controller {
 	}
 	
 	public function index() {
-		$this->render('normal_page', 'ExamSchedule', 'ExamSchedule/index', FALSE);  
+		$data['checkPrint'] = null;
+		$this->render('normal_page', 'ExamSchedule', 'ExamSchedule/index', FALSE, $data);  
     }
 }

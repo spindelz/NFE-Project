@@ -9,6 +9,11 @@
             e.preventDefault();
             getData( $(this).serialize() );
         });
+
+        $(document).on('click', '.btn-print', function(){
+            var data = $('#formSearch').serialize();
+            window.location.href = '<?php echo SITE; ?>Result/printData?' + data;
+        });
     }
 
     function getData(data){
@@ -18,8 +23,8 @@
             data: data,
 			success: function(res){
 
-                if(res.semestry['Semestry'] == ''){
-                    res.semestry['Semestry'] = 'ทั้งหมด' ;
+                if(res.semestry == ''){
+                    res.semestry = 'ทั้งหมด' ;
                     $("#semestryCode").show();
                     bindData(res.data, 1);
                     $('#text-gpa').attr('colspan', '5');

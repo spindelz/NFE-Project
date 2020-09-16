@@ -23,12 +23,16 @@ class Result extends MY_Controller {
 		}
 		$data['isTeacher'] = false;
 
-        
-		$data['checkPrint'] = null;
 		$this->render('normal_page', 'Result', 'Result/index', FALSE, $data);  
 	}
 	
 	public function student(){
 		$this->render('normal_page', 'Result', 'Result/resultStudent', FALSE);  
+	}
+
+	public function printData() {
+		$data['criterie'] = $this->input->get('Semestry');
+
+		$this->render('blank_page', 'Result', 'Result/print', FALSE, $data);  
 	}
 }

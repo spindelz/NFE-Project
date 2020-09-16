@@ -3,20 +3,17 @@
         getData();
     });
 
-    function getData(data,hour){
+    function getData(data){
         $.ajax({
 			method: "GET",
-			url: "<?php echo api_url('PrintData/index') ?>",
+			url: "<?php echo api_url('ExamSchedule') ?>",
             data: data,
-            hour: hour,
 			success: function(res){
                 bindData(res.data);
-                $('#GPA').html((res.hour));
-        
             }
         });
     }
-
+    
     function bindData(data){
         
         $('#datatable tbody').empty();
@@ -24,9 +21,12 @@
             for(i in data){
                 var str_table = '<tr>';
                 str_table += '<td>' + (parseInt(i) + 1) + '</td>';
-                str_table += '<td>' + data[i].SEMESTRY + '</td>';
-                str_table += '<td>' + data[i].ACTIVITY + '</td>';
-                str_table += '<td>' + data[i].HOUR + '</td>';
+                str_table += '<td>' + data[i].EXAM_DAY + '</td>';
+                str_table += '<td>' + data[i].EXAM_START + ' - ' + data[i].EXAM_END + '</td>';
+                str_table += '<td>' + data[i].SUB_CODE + '</td>';
+                str_table += '<td class="text-left">' + data[i].SUB_NAME + '</td>';
+                str_table += '<td>' + data[i].ROOMNO + '</td>';
+                str_table += '<td class="text-left">' + data[i].FLD_NAME + '</td>';
                 str_table += '</tr>';
 
                 $('#datatable tbody').append(str_table);

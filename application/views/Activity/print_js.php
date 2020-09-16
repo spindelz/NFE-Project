@@ -1,14 +1,7 @@
 <script>
     $(function(){
         getData();
-        initControl();
     });
-
-    function initControl(){
-        $(document).on('click', '.btn-print', function(){
-            window.location.href = '<?php echo SITE; ?>Activity/printData?' ;
-        });
-    }
 
     function getData(){
         $.ajax({

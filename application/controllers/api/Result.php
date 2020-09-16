@@ -34,7 +34,7 @@ class Result extends REST_Controller
 
         $data = array();
         $result = array(); 
-        $SEMESTRY = $input['Semestry'];
+        $SEMESTRY = $this->get('Semestry');
 
         switch ($userType) {
             case '5':

@@ -72,7 +72,7 @@ class MY_Controller extends CI_Controller{
                 $this->load->view('template/foot');
                 break;
             case 'blank_page':
-                
+                $this->load->view('template/head');
                 $this->load->view($content, $data);
                 $this->load->view('template/script');
                 $this->load->view($content.'_js');

@@ -17,8 +17,12 @@ class Activity extends MY_Controller {
 	
 	public function index() {
 		$user_logined = $this->session->userdata('user_logined');
-		$data['checkPrint'] = null;
-
+		$data['isTeacher'] = false;
 		$this->render('normal_page', 'Activity', 'Activity/index', FALSE, $data);  
-    }
+	}
+	
+	public function printData() {
+
+		$this->render('blank_page', 'Activity', 'Activity/print', FALSE);  
+	}
 }

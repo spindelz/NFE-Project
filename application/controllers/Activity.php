@@ -9,7 +9,7 @@ class Activity extends MY_Controller {
 
 	var $is_translation = TRUE;
 
-	var $page_id = 1;
+	var $page_id = 2;
 
 	function __construct() {
 		parent::__construct();

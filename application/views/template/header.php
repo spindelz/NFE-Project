@@ -57,32 +57,46 @@
         
         <div class="nav-menu depth-1 col-md-12">
             <ul class="menu">
-                <li class="menu-item text-center">
+                <li class="menu-item text-center<?php echo ($pageID == 1 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>">หน้าแรก</a>
                 </li>
-                <?php if(array_search($UserTypeID, array(5,6,7)) > -1){ ?>
-                <li class="menu-item text-center<?php echo ($pageID == 1 ? ' active' : ''); ?>">
+
+                <?php 
+                    if($Site == 1){
+                        if(array_search($UserTypeID, array(5,6,7)) > -1){ 
+                ?>
+                <li class="menu-item text-center<?php echo ($pageID == 2 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>Activity">กิจกรรม (กพช.)</a>
                 </li>
-                <li class="menu-item text-center<?php echo ($pageID == 2 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 3 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>ClassSchedule">วิชาที่ลงทะเบียนเรียน</a>
                 </li>
-                <li class="menu-item text-center<?php echo ($pageID == 3 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 4 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>ExamSchedule">ตารางสอบ</a>
                 </li>
-                <li class="menu-item text-center<?php echo ($pageID == 4 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 5 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>Result">ผลการเรียน</a>
                 </li>
                 
                 <?php }elseif($UserTypeID == 4){ ?>
-                <li class="menu-item text-center<?php echo ($pageID == 5 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 6 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>Group">กลุ่มเรียน</a>
                 </li>
-                <li class="menu-item text-center<?php echo ($pageID == 6 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 7 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>Subject">รายชื่อวิชา</a>
                 </li>
-                <li class="menu-item text-center<?php echo ($pageID == 7 ? ' active' : ''); ?>">
+                <li class="menu-item text-center<?php echo ($pageID == 8 ? ' active' : ''); ?>">
                     <a class="menu-link" href="<?php echo SITE; ?>Student">รายชื่อนักศึกษา</a>
+                </li>
+                <?php }}else{ ?>
+                <li class="menu-item text-center<?php echo ($pageID == 9 ? ' active' : ''); ?>">
+                    <a class="menu-link" href="<?php echo SITE; ?>Subject">เปิดชั้นเรียน</a>
+                </li>
+                <li class="menu-item text-center<?php echo ($pageID == 10 ? ' active' : ''); ?>">
+                <a class="menu-link" href="<?php echo SITE; ?>Group">เอกสารชั้นเรียน</a>
+                </li>
+                <li class="menu-item text-center<?php echo ($pageID == 11 ? ' active' : ''); ?>">
+                    <a class="menu-link" href="<?php echo SITE; ?>Student">ผลการเรียน</a>
                 </li>
                 <?php } ?>
             </ul>

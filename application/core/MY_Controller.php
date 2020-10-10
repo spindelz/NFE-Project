@@ -33,9 +33,11 @@ class MY_Controller extends CI_Controller{
                 // $this->load->view('template/sidebar');
                 $data_header['page'] = $page_name;
                 $user_logined = $this->session->userdata('user_logined');
+                $site = $this->session->userdata('Site');
                 if(isset($user_logined)){
                     $data_header['FullName'] = $user_logined['PrefixName'] . ' ' . @$user_logined['FirstName'] . ' ' . @$user_logined['LastName'];
                     $data_header['UserTypeID'] = (int)$user_logined['UserTypeID'];
+                    $data_header['Site'] = (isset($site) || !empty($site) ? $site : 1);
                     if(array_search((int)$user_logined['UserTypeID'], array(5,6,7)) > -1){
                         $data_header['StudentCode'] = $user_logined['UserID'];
                         $data_header['PersonalID'] = $user_logined['PersonalID'];

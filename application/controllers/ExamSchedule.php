@@ -9,7 +9,7 @@ class ExamSchedule extends MY_Controller {
 
 	var $is_translation = TRUE;
 
-	var $page_id = 3;
+	var $page_id = 4;
 
 	function __construct() {
 		parent::__construct();

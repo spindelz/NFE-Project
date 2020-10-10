@@ -9,7 +9,7 @@ class Student extends MY_Controller {
 
 	var $is_translation = TRUE; 
 
-	var $page_id = 7;
+	var $page_id = 8;
 
 	function __construct() {
 		parent::__construct();

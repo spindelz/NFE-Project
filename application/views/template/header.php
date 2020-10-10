@@ -90,13 +90,13 @@
                 </li>
                 <?php }}else{ ?>
                 <li class="menu-item text-center<?php echo ($pageID == 9 ? ' active' : ''); ?>">
-                    <a class="menu-link" href="<?php echo SITE; ?>Subject">เปิดชั้นเรียน</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>Openclass">เปิดชั้นเรียน</a>
                 </li>
                 <li class="menu-item text-center<?php echo ($pageID == 10 ? ' active' : ''); ?>">
-                <a class="menu-link" href="<?php echo SITE; ?>Group">เอกสารชั้นเรียน</a>
+                <a class="menu-link" href="<?php echo SITE; ?>#">เอกสารชั้นเรียน</a>
                 </li>
                 <li class="menu-item text-center<?php echo ($pageID == 11 ? ' active' : ''); ?>">
-                    <a class="menu-link" href="<?php echo SITE; ?>Student">ผลการเรียน</a>
+                    <a class="menu-link" href="<?php echo SITE; ?>#">ผลการเรียน</a>
                 </li>
                 <?php } ?>
             </ul>

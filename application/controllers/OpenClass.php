@@ -7,7 +7,9 @@ class OpenClass extends MY_Controller{
 
     var $is_authen = TRUE;
 
-	var $is_translation = TRUE;
+    var $is_translation = TRUE;
+    
+    var $page_id = 9;
 
     function __construct() {
         parent :: __construct();
@@ -22,6 +24,23 @@ class OpenClass extends MY_Controller{
         }
 
         $this->render('normal_page', 'OpenClass','OpenClass/index',FALSE);
+
+    }
+
+    function form($id){
+        $user_logined = $this->session->userdata('user_logined');
+
+        if(!isset($user_logined)){
+            redirect(SITE.'home/login');
+        }
+
+        $data = array();
+
+        if($id){
+            $data['ClassID'] = $id;
+        }
+
+        $this->render('normal_page', 'OpenClass','OpenClass/form', $data);
 
     }
 

@@ -36,9 +36,9 @@
             var clk_crt = 1 ;
             var clk_nfe = 1 ;
 
-            $("input[type='radio']").change(function(e) {
+            $('[name="isExtendTime"]').change(function(e) {
                 e.preventDefault();
-                if ($(this).val() == "late") {
+                if ($(this).val() == 1) {
                     $(".lateTable").collapse('show');
                 } else {
                     $(".lateTable").collapse('hide');

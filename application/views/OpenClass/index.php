@@ -3,7 +3,7 @@
         <div class="container">
             <div class="content-header" style="color: #517beb">
                 <div class="d-flex">
-                    <h2 class="mb-0"><b>เอกสารเปิดชั้นเรียน</b></h2>
+                    <h2 class="mb-0 mr-auto"><b>เอกสารเปิดชั้นเรียน</b></h2>
                     <a href="<?php echo SITE; ?>OpenClass/form" class="btn btn-success ml-3">เพิ่มหลักสูตรชั้นเรียน</a>
                 </div>
                 

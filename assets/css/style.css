@@ -116,6 +116,10 @@ label.custom-file-label, label.custom-file-label::after, .input-group-append .in
     background: #ddd !important;
 }
 
+.card-title{
+    font-size: 1.7rem;
+}
+
 @media screen and (max-width: 768px) {
     .navbar-toggle-menu{
         display: flex !important;

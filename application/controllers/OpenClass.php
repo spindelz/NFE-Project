@@ -27,7 +27,7 @@ class OpenClass extends MY_Controller{
 
     }
 
-    function form($id){
+    function form($id = ''){
         $user_logined = $this->session->userdata('user_logined');
 
         if(!isset($user_logined)){

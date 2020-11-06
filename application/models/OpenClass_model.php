@@ -5,55 +5,49 @@ class OpenClass_model extends MY_Model {
 
 	public $is_translation = false;
 
-	public function getProvince($db){
+	public function getProvince(){
 
-		$db->select('NAME');
+		$this->db->select('province.ID, province.NAME');
 
-		$db->from('province');
+		$this->db->from('province');
 
-		// if($prov != NULL){
-		// 	$db->where('NAME', $prov);
-		// }
+		$this->db->order_by('province.NAME','ASC');
 
-		$db->order_by('NAME','ASC');
-
-		$result = $db->get()->result_array();
+		$result = $this->db->get()->result_array();
 
 		return $result;
 	}
 
-	public function getAmphur($db,$prov){
+	public function getAmphur($prov){
 
-		$db->select('amphur.NAME');
+		$this->db->select('amphur.ID, amphur.NAME');
 		
-		$db->from('amphur');
+		$this->db->from('amphur');
 
 		if(!empty($prov)){
-			$db->join('province','amphur.PROVID = province.ID','left');
-			$db->where('province.NAME', $prov);
+			$this->db->where('amphur.PROVID', $prov);
 		}
 
-		$db->order_by('NAME','ASC');
+		$this->db->order_by('amphur.NAME','ASC');
 
-		$result = $db->get()->result_array();
+		$result = $this->db->get()->result_array();
 
 		return $result;
 	}
 
-	public function getTambon($db,$amphur){
+	public function getTambon($amphur){
 
-		$db->select('tambon.NAME');
+		$this->db->select('tambon.ID, tambon.NAME, tambon.POSTCODE');
 		
-		$db->from('tambon');
+		$this->db->from('tambon');
 
 		if(!empty($amphur)){
-			$db->join('amphur','tambon.AMPHURID = amphur.ID');
-			$db->where('amphur.NAME', $amphur);
+			$this->db->where('tambon.AMPHURID', $amphur);
 		}
 
-		$db->order_by('NAME','ASC');
+		$this->db->order_by('tambon.NAME','ASC');
 
-		$result = $db->get()->result_array();
+		$result = $this->db->get()->result_array();
 
 		return $result;
 	}

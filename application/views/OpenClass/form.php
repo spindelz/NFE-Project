@@ -125,20 +125,20 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="font-weight-bold" for="provinceId">จังหวัด</label>
-                                                <select class="form-control" id="provinceId" name="ProvinceID"></select>
+                                                <label class="font-weight-bold" for="province">จังหวัด</label>
+                                                <select class="form-control" id="province" name="ProvinceID"></select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="font-weight-bold" for="amphurId">อำเภอ</label>
-                                                <select class="form-control" id="amphurId" name="AmphurID"></select>
+                                                <label class="font-weight-bold" for="amphur">อำเภอ</label>
+                                                <select class="form-control" id="amphur" name="AmphurID"></select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="font-weight-bold" for="tambonId">ตำบล</label>
-                                                <select class="form-control" id="tambonId" name="TombonID"></select>
+                                                <label class="font-weight-bold" for="tambon">ตำบล</label>
+                                                <select class="form-control" id="tambon" name="TombonID"></select>
                                             </div>
                                         </div>
                                     </div>
@@ -426,8 +426,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="font-weight-bold pl-4">คณะกรรมการพิจารณาหลักสูตร</div>
-                            <div class="row px-4">
+                            <div class="font-weight-bold pl-4 border-bottom">คณะกรรมการพิจารณาหลักสูตร</div>
+                            <div class="row px-4 pt-4">
                                 <div class="col-md-6 pr-5">
                                     <label class="font-weight-bold" for="HeadBoardName">ชื่อประธาน / คณะกรรมการสถานศึกษา</label>
                                     <input type="text" class="form-control" id="HeadBoardName" name="HeadBoardName">

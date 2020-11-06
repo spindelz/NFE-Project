@@ -40,73 +40,37 @@ class OpenClass extends REST_Controller{
     }
 
     public function province_get(){
-        $db = $this->load->database('nfe1', TRUE);
 
-        // echo "<pre>";print_r ($prov);echo "</pre>";exit;
-
-        $result = $this->OpenClass_model->getProvince($db);
-
-        // echo "<pre>";print_r ($result['province']);echo "</pre>";exit;
+        $result = $this->OpenClass_model->getProvince();
 
         $data['province'] = $result;
         $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 
     public function amphur_get(){
-        $prov = $this->get('Address_Province');
-        $db = $this->load->database('nfe1', TRUE);
+        $prov = $this->get('ProvinceID');
 
-        // echo "<pre>";print_r ($prov);echo "</pre>";exit;
-
-        $result = $this->OpenClass_model->getAmphur($db,$prov);
-
-        // echo "<pre>";print_r ($result['province']);echo "</pre>";exit;
-
+        $result = $this->OpenClass_model->getAmphur($prov);
+        
         $data['amphur'] = $result;
         $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 
     public function tambon_get(){
-        $amphur = $this->get('Address_Amphur');
-        $db = $this->load->database('nfe1', TRUE);
+        $amphur = $this->get('AmphurID');
 
-        // echo "<pre>";print_r ($prov);echo "</pre>";exit;
-
-        $result = $this->OpenClass_model->getTambon($db,$amphur);
-
-        // echo "<pre>";print_r ($result['province']);echo "</pre>";exit;
+        $result = $this->OpenClass_model->getTambon($amphur);
 
         $data['tambon'] = $result;
         $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
-// --------------------------------------------------
-//     public function province_get(){
-//         $result = array();
-//         $prov = $this->get();
-//         $db = $this->load->database('nfe1', TRUE);
-
-//         // echo "<pre>";print_r ($prov);echo "</pre>";exit;
-
-//         $result['province'] = $this->OpenClass_model->getProvince($db);
-//         $result['amphur'] = $this->OpenClass_model->getAmphur($db,$prov);
-//         $result['tambon'] = $this->OpenClass_model->getTambon($db,$prov);
-
-//         // echo "<pre>";print_r ($result['province']);echo "</pre>";exit;
-
-//         $data['province'] = $result['province'];
-//         $data['amphur'] = $result['amphur'];
-//         $data['tambon'] = $result['tambon'];
-//         $data['length'] = count($result);
-//         $data['length-province'] = print_r ($prov);
-//         $data['length-amphur'] = count($result['amphur']);
-//         $data['length-tambon'] = count($result['tambon']);
-
-//         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
-//     }
 }

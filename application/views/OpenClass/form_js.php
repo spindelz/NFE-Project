@@ -2,9 +2,13 @@
     $(function() {
         // postData();
         initControl();
-        SearchProvince();
-        SearchAmphur();
-        SearchTambon();
+        bindProvince();
+        bindAmphur();
+        bindTambon();
+        bindNFETambon();
+        bindCareerType();
+        bindBudgetType();
+        bindLecturer();
     });
 
     function initControl() {
@@ -14,13 +18,12 @@
             postData(data);
         });
 
-        $('#provinceId').on('change', function() {
-            // alert( this.value );
-            SearchAmphur($(this).serialize());
+        $(document).on('change', '#province', function(){
+            bindAmphur($(this).val());
         });
-        
-        $('#amphurId').on('change', function() {
-            SearchTambon($(this).serialize());
+
+        $(document).on('change', '#amphur', function(){
+            bindTambon($(this).val());
         });
 
         $(document).ready(function() {
@@ -158,78 +161,137 @@
         });
     }
 
-    function SearchProvince() {
+    function bindProvince() {
         $.ajax({
             method: "GET",
             url: "<?php echo api_url('OpenClass/province') ?>",
-            data: {},
             success: function(res) {
 
-                var prov = $('#provinceId');
-                var data_province = res.province;
+                var prov = $('#province');
                 prov.empty();
                 prov.html($('<option>').val('').html('เลือกจังหวัด'));
                 if (res.length > 0) {
-                    for (i in data_province) {
-                        prov.append($('<option>').val(data_province[i].NAME).html('จังหวัด ' + data_province[i].NAME));
+                    for (i in res.province) {
+                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
                     }
-                    // prov.val(data_province[0].NAME);
-                    // SearchAmphur($(this).serialize());
                 }
             }
         });
     }
 
-    function SearchAmphur(data){
-        $.ajax({
-            method: "GET",
-            url: "<?php echo api_url('OpenClass/amphur') ?>",
-            data: data,
-            success: function(res) {
-
-                var amp = $('#amphurId');
-                var data_amphur = res.amphur;
-                amp.empty();
-                amp.html($('<option>').val('').html('เลือกอำเภอ'));
-                if (res.length > 0) {
-                    for (i in data_amphur) {
-                        amp.append($('<option>').val(data_amphur[i].NAME).html('อำเภอ ' + data_amphur[i].NAME));
+    function bindAmphur(provinceID = ''){
+        var amphur = $('#amphur');
+        amphur.empty();
+        amphur.html($('<option>').val('').html('เลือกอำเภอ'));
+        if(provinceID != ''){
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('OpenClass/amphur') ?>",
+                data: {'ProvinceID': provinceID},
+                success: function(res) {
+                    if (res.length > 0) {
+                        for (i in res.amphur) {
+                            amphur.append($('<option>').val(res.amphur[i].ID).html('อำเภอ ' + res.amphur[i].NAME));
+                        }
                     }
-                    // amp.val(data_amphur[0].NAME);
-                    // SearchTambon($(this).serialize());
                 }
-
-            }
-        });
+            });
+        }
     }
 
-    function SearchTambon(data){
+    function bindTambon(amphurID = ''){
+        var tambon = $('#tambon');
+        tambon.empty();
+        tambon.html($('<option>').val('').html('เลือกตำบล'));
+        if(amphurID != ''){
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('OpenClass/tambon') ?>",
+                data: {'AmphurID': amphurID},
+                success: function(res) {
+                    if (res.length > 0) {
+                        for (i in res.tambon) {
+                            tambon.append($('<option>').val(res.tambon[i].ID).html('ตำบล ' + res.tambon[i].NAME));
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function bindNFETambon(data){
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('OpenClass/tambon') ?>",
-            data: data,
+            url: "<?php echo api_url('NFETambon/getData') ?>",
+            data: {
+                'isActive': 1,
+                'OrganizationLavel': '1,2',
+                'Amphur': '<?php echo @$AmphurID; ?>'
+            },
             success: function(res) {
 
                 var nfeTambon = $('#nfeTambon');
-                var data_nfeTambon = res.tambon;
+                var data_nfeTambon = res.data;
                 nfeTambon.empty();
-                nfeTambon.html($('<option>').val('').html('กศน. ตำบล'));
+                nfeTambon.html($('<option>').val('').html('เลือกกศน.ตำบล'));
                 if (res.length > 0) {
                     for (i in data_nfeTambon) {
-                        nfeTambon.append($('<option>').val(data_nfeTambon[i].NAME).html('จังหวัด ' + data_nfeTambon[i].NAME));
+                        nfeTambon.append($('<option>').val(data_nfeTambon[i].OrganizationID).html(data_nfeTambon[i].OrganizationNameTH));
                     }
-                    // nfeTambon.val(data_nfeTambon[0].NAME);
                 }
+            }
+        });
+    }
 
-                var tam = $('#tambonId');
-                var data_tambon = res.tambon;
-                tam.empty();
-                tam.html($('<option>').val('').html('เลือกตำบล'));
+    function bindCareerType(data){
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('CareerType/getData') ?>",
+            success: function(res) {
+                var occType = $('#occType');
+                
+                occType.empty();
+                occType.html($('<option>').val('').html('เลือกหมวดอาชีพ'));
                 if (res.length > 0) {
-                    for (i in data_tambon) {
-                        tam.append($('<option>').val(data_tambon[i].NAME).html('อำเภอ ' + data_tambon[i].NAME));
+                    for (i in res.data) {
+                        occType.append($('<option>').val(res.data[i].CareerTypeID).html(res.data[i].CareerTypeName));
                     }
-                    // tam.val(data_tambon[0].NAME);
+                }
+            }
+        });
+    }
+
+    function bindBudgetType(data){
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('BudgetType/getData') ?>",
+            success: function(res) {
+                var budget = $('#budget');
+                
+                budget.empty();
+                budget.html($('<option>').val('').html('เลือกงบประมาณที่ใช้'));
+                if (res.length > 0) {
+                    for (i in res.data) {
+                        budget.append($('<option>').val(res.data[i].BudgetTypeID).html(res.data[i].BudgetTypeName));
+                    }
+                }
+            }
+        });
+    }
+
+    function bindLecturer(data){
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('Lecturer/getData') ?>",
+            success: function(res) {
+                var lecturer = $('#LecturerID');
+                
+                lecturer.empty();
+                lecturer.html($('<option>').val('').html('เลือกวิทยากร'));
+                if (res.length > 0) {
+                    for (i in res.data) {
+                        lecturer.append($('<option>').val(res.data[i].LecturerID).html(res.data[i].LecturerName));
+                    }
                 }
             }
         });

@@ -35,7 +35,7 @@ class OpenClass extends MY_Controller{
         }
 
         $data = array();
-
+        // $data['AmphurID'] = 
         if($id){
             $data['ClassID'] = $id;
         }

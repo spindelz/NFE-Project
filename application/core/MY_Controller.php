@@ -49,7 +49,7 @@ class MY_Controller extends CI_Controller{
                 $data_header['pageID'] = $this->page_id;
                 
                 $this->load->view('template/header', $data_header);
-                
+                $data['AmphurID'] = $this->config->item('NFE_AmphurID');
                 $this->load->view($content, $data);
                 $script_file = explode('/', $content);
                 $script_file = $script_file[0];
@@ -57,8 +57,9 @@ class MY_Controller extends CI_Controller{
                 // echo '<pre>'; print_r($user_logined); echo '</pre>'; die();
                 $this->load->view('template/footer');
                 
+                // echo $data['AmphurID']; die();
                 $this->load->view('template/script');
-                $this->load->view($content.'_js');
+                $this->load->view($content.'_js', $data);
                 $this->load->view('template/foot');
                 
                 break;

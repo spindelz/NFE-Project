@@ -52,6 +52,16 @@ class OpenClass extends REST_Controller{
 
     public function amphur_get(){
         $prov = $this->get('ProvinceID');
+<<<<<<< Updated upstream
+=======
+        $db = $this->load->database('nfe1', TRUE);
+
+        // echo "<pre>";print_r ($prov);echo "</pre>";exit;
+
+        $result = $this->OpenClass_model->getAmphur($db,$prov);
+
+        // echo "<pre>";print_r ($result['province']);echo "</pre>";exit;
+>>>>>>> Stashed changes
 
         $result = $this->OpenClass_model->getAmphur($prov);
         
@@ -64,6 +74,11 @@ class OpenClass extends REST_Controller{
 
     public function tambon_get(){
         $amphur = $this->get('AmphurID');
+        $db = $this->load->database('nfe1', TRUE);
+
+        // echo "<pre>";print_r ($prov);echo "</pre>";exit;
+
+        $result = $this->OpenClass_model->getTambon($db,$amphur);
 
         $result = $this->OpenClass_model->getTambon($amphur);
 
@@ -73,4 +88,10 @@ class OpenClass extends REST_Controller{
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
+
+    public function studentList(){
+        $stdudent = $this->get('TraceStudent');
+
+    }
+
 }

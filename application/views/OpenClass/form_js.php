@@ -12,7 +12,7 @@
     });
 
     function initControl() {
-        $('#formSaveData').submit(function(e) {
+        $('#formOpenClass_Home').submit(function(e) {   
             e.preventDefault();
             var data = new FormData(this);
             postData(data);
@@ -28,16 +28,21 @@
 
         $(document).ready(function() {
 
-            var input_budget_box = '<input type="text" class="form-control" id="moneyOth_box" name="Budget" placeholder="กรอกเงินสนับสนุนอื่นๆที่นี่" required>';
-            var addCourseStr_attr_1   = 1 , addCourseStr_attr_2   = 2;
-            var add_materials_attr_1  = 1 , add_materials_attr_2  = 3;
-            var add_evaluation_attr_1 = 1 , add_evaluation_attr_2 = 3;
-            var add_criteria_attr_1   = 1 , add_criteria_attr_2   = 3;
-            var add_nfetable_attr_1   = 1 , add_nfetable_attr_2   = 2;
-            var clk_mat = 1 ;
-            var clk_evalue = 1 ;
-            var clk_crt = 1 ;
-            var clk_nfe = 1 ;
+
+            var input_budget_box = '<input type="text" class="form-control" id="moneyOth_box" name="BudgetTypeID" placeholder="กรอกเงินสนับสนุนอื่นๆที่นี่" required>';
+            var input_CareerID_box = '<input type="text" class="form-control" id="CareerOther" name="CareerOther" placeholder="กรอกอาชีพอื่นๆที่นี่" required>';
+            var input_GroupTargetID_box = '<input type="text" class="form-control" id="GroupTargetOther" name="GroupTargetOther" placeholder="กรอกกลุ่มเป้าหมายอื่นๆที่นี่" required>';
+            var input_InterestedByID_box = '<input type="text" class="form-control" id="InterestedByOther" name="InterestedByOther" placeholder="กรอกความสนใจอื่นๆที่นี่" required>';
+            var input_PeopleStatusID_box = '<input type="text" class="form-control" id="PeopleStatusOther" name="PeopleStatusOther" placeholder="กรอกสถานะอื่นๆที่นี่" required>';
+            var addCourseStr_attr_1   = 0 , addCourseStr_attr_2   = 1;
+            var add_materials_attr_1  = 0 , add_materials_attr_2  = 1;
+            var add_evaluation_attr_1 = 0 , add_evaluation_attr_2 = 1;
+            var add_criteria_attr_1   = 0 , add_criteria_attr_2   = 1;
+            var add_nfetable_attr_1   = 0 , add_nfetable_attr_2   = 1;
+            var clk_mat = 0 ;
+            var clk_evalue = 0 ;
+            var clk_crt = 0 ;
+            var clk_nfe = 0 ;
 
             $('[name="isExtendTime"]').change(function(e) {
                 e.preventDefault();
@@ -48,7 +53,7 @@
                 }
             });
             
-            $("#budget").on('change',function(e) {
+            $("#budgetTypeID").on('change',function(e) {
                 e.preventDefault();
                 if ($(this).val() == "") {
                     $(".coll_budget").collapse('show');
@@ -56,6 +61,58 @@
                 } else {
                     $(".coll_budget").collapse('hide');
                     e.preventDefault(); $("#moneyOth_box").remove();
+                }
+            });
+            //--------------------
+            // บันทึกประวัติ ผู้เรียน  
+            // >>   อาชีพ
+            $("#CareerID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "") {
+                    $(".coll_career").collapse('show');
+                    $(".coll_career").append(input_CareerID_box);
+                } else {
+                    $(".coll_career").collapse('hide');
+                    e.preventDefault(); $("#CareerOther").remove();
+                }
+            });
+            //--------------------
+            // บันทึกประวัติผู้เรียน  
+            // >>   กลุ่มเป้าหมาย
+            $("#GroupTargetID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "") {
+                    $(".coll_groupTar").collapse('show');
+                    $(".coll_groupTar").append(input_GroupTargetID_box);
+                } else {
+                    $(".coll_groupTar").collapse('hide');
+                    e.preventDefault(); $("#GroupTargetOther").remove();
+                }
+            });
+            //--------------------
+            // บันทึกประวัติผู้เรียน  
+            // >>   สนใจเข้าร่วมกิจรรมเนื่องจาก
+            $("#InterestedByID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "") {
+                    $(".coll_interest").collapse('show');
+                    $(".coll_interest").append(input_InterestedByID_box);
+                } else {
+                    $(".coll_interest").collapse('hide');
+                    e.preventDefault(); $("#InterestedByOther").remove();
+                }
+            });
+            //--------------------
+            // บันทึกประวัติผู้เรียน  
+            // >>   สถานะ
+            $("#PeopleStatusID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "") {
+                    $(".coll_status").collapse('show');
+                    $(".coll_status").append(input_PeopleStatusID_box);
+                } else {
+                    $(".coll_status").collapse('hide');
+                    e.preventDefault(); $("#PeopleStatusOther").remove();
                 }
             });
 
@@ -67,14 +124,14 @@
                     case 'addCourseStr':
                             $("#course-str"+addCourseStr_attr_1).clone().appendTo('.main-co-str');
 
-                            if(addCourseStr_attr_1 > 0){
+                            if(addCourseStr_attr_1 >= 0){
                             $("#course-str"+addCourseStr_attr_1).attr("id","course-str" + addCourseStr_attr_2);
-                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"stuctName" + addCourseStr_attr_2});
-                            $("#stuctPurpose"+addCourseStr_attr_1).attr({"id":"stuctPurpose" + addCourseStr_attr_2,"name":"StructurePurpose" + addCourseStr_attr_2});
-                            $("#stuctDescript"+addCourseStr_attr_1).attr({"id":"stuctDescript" + addCourseStr_attr_2,"name":"StructureDescription" + addCourseStr_attr_2});
-                            $("#stuctMethod"+addCourseStr_attr_1).attr({"id":"stuctMethod" + addCourseStr_attr_2,"name":"StructureMethod" + addCourseStr_attr_2});
-                            $("#stuctLec"+addCourseStr_attr_1).attr({"id":"stuctLec" + addCourseStr_attr_2,"name":"StructureLecture" + addCourseStr_attr_2});
-                            $("#stuctLab"+addCourseStr_attr_1).attr({"id":"stuctLab" + addCourseStr_attr_2,"name":"StructureLab" + addCourseStr_attr_2}); 
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][Topic]"});
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][Objective]"});
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][Content]"});
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][LearningProcess]"});
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][TheoryTime]"});
+                            $("#stuctName"+addCourseStr_attr_1).attr({"id":"stuctName" + addCourseStr_attr_2,"name":"CourseStructure[" + addCourseStr_attr_1 + "][PracticeTime]"}); 
 
                             addCourseStr_attr_1 += 1;
                             addCourseStr_attr_2 += 1;
@@ -83,55 +140,49 @@
                         break;
                     
                     case 'add_materials':
-                            $("#mt-r"+clk_mat).clone().appendTo('.main-materials');
-                            $("#mt-r"+clk_mat).attr("id","mt-r" + (clk_mat + 1));
+                            $("#mtr_tb"+clk_mat).clone().appendTo('.main-materials');
+                            $("#mtr_tb"+clk_mat).attr("id","mtr_tb" + (clk_mat + 1));
 
-                            var i=2;
-                            while(i > 0){
-                                $("#addmaterials"+add_materials_attr_1).attr({"id":"addmaterials" + add_materials_attr_2,"name":"Materials" + add_materials_attr_2});
-                                
-                                add_materials_attr_1 += 1;
-                                add_materials_attr_2 += 1;
-                                i-- ;
-                            }
+                            $("#mtr"+add_materials_attr_1).attr({"id":"mtr" + add_materials_attr_2,"name":"LearningMaterial[" + add_materials_attr_2 + "][Name]"});
+                            $("#mtr_tb"+add_materials_attr_1).addClass("pt-3");
+                            // $("#mtr"+add_materials_attr_1).attr("class", "col-md-11 pt-3");
+
+                            add_materials_attr_1 += 1;
+                            add_materials_attr_2 += 1;
                             clk_mat +=1 ;
+
                         break;
                     case 'add_evaluation':
                             $("#evalue"+clk_evalue).clone().appendTo('.main-evalue');
                             $("#evalue"+clk_evalue).attr("id","evalue" + (clk_evalue + 1));
                             
-                            var i=2;
-                            while(i > 0){
-                                $("#addevaluation"+add_evaluation_attr_1).attr({"id":"addevaluation" + add_evaluation_attr_2,"name":"Evaluation" + add_evaluation_attr_2});
-                                
-                                add_evaluation_attr_1 += 1;
-                                add_evaluation_attr_2 += 1;
-                                i-- ;
-                            }
+                            $("#evl"+add_evaluation_attr_1).attr({"id":"evl" + add_evaluation_attr_2,"name":"Evaluate[" + add_evaluation_attr_2 + "][Detail]"});
+                            $("#evalue"+add_evaluation_attr_1).addClass("pt-3");
+
+                            add_evaluation_attr_1 += 1;
+                            add_evaluation_attr_2 += 1;
                             clk_evalue +=1 ;
+
                         break;
                     case 'add_criteria':
-                            $("#crt"+clk_crt).clone().appendTo('.main-crt');
-                            $("#crt"+clk_crt).attr("id","crt" + (clk_crt + 1));
+                            $("#criteria"+clk_crt).clone().appendTo('.main-crt');
+                            $("#criteria"+clk_crt).attr("id","criteria" + (clk_crt + 1));
                             
-                            var i=2;
-                            while(i > 0){
-                                $("#addcriteria"+add_criteria_attr_1).attr({"id":"addcriteria" + add_criteria_attr_2,"name":"Criterion" + add_criteria_attr_2});
-                                
-                                add_criteria_attr_1 += 1;
-                                add_criteria_attr_2 += 1;
-                                i-- ;
-                            }
+                            $("#crt"+add_criteria_attr_1).attr({"id":"crt" + add_criteria_attr_2,"name":"CriteriaComplete[" + add_criteria_attr_2 + "][Detail]"});
+                            $("#criteria"+add_criteria_attr_1).addClass("pt-3");
+
+                            add_criteria_attr_1 += 1;
+                            add_criteria_attr_2 += 1;
                             clk_crt +=1 ;
+
                         break;
                     case 'add_nfetable':
                             $("#nfe-tb"+clk_nfe).clone().appendTo('.main-nfetb');
                             $("#nfe-tb"+clk_nfe).attr("id","nfe-tb" + (clk_nfe + 1));
 
-                            $("#nfetable_day"+add_nfetable_attr_1).attr({"id":"nfetable_day" + add_nfetable_attr_2,"name":"nfeTable_Day" + add_nfetable_attr_2});
-                            $("#nfetable_time"+add_nfetable_attr_1).attr({"id":"nfetable_time" + add_nfetable_attr_2,"name":"nfeTable_Time" + add_nfetable_attr_2});
-                            $("#nfetable_manage"+add_nfetable_attr_1).attr({"id":"nfetable_manage" + add_nfetable_attr_2,"name":"nfeTable_Manage" + add_nfetable_attr_2});
-                            $("#nfetable_note"+add_nfetable_attr_1).attr({"id":"nfetable_note" + add_nfetable_attr_2,"name":"nfeTable_Note" + add_nfetable_attr_2});
+                            $("#nfeTable"+add_nfetable_attr_1).attr({"id":"nfeTable" + add_nfetable_attr_2,"name":"ClassDetail[" + add_nfetable_attr_2 + "][LearningDateTime]"});
+                            $("#nfeTable"+add_nfetable_attr_1).attr({"id":"nfeTable" + add_nfetable_attr_2,"name":"ClassDetail[" + add_nfetable_attr_2 + "][LearningDetail]"});
+                            $("#nfeTable"+add_nfetable_attr_1).attr({"id":"nfeTable" + add_nfetable_attr_2,"name":"ClassDetail[" + add_nfetable_attr_2 + "][Remark]"});
 
                             add_nfetable_attr_1 += 1;
                             add_nfetable_attr_2 += 1;

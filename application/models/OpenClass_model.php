@@ -37,7 +37,7 @@ class OpenClass_model extends MY_Model {
 
 	public function getTambon($amphur){
 
-		$db->select('tambon.NAME,tambon.POSTCODE');
+		$this->db->select('tambon.NAME,tambon.POSTCODE');
 		
 		$this->db->from('tambon');
 

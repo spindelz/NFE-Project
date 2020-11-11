@@ -11,10 +11,10 @@
                 <div class="card-header p-0 border-bottom-0">
                     <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">บันทึกเปิดชั้นเรียน</a>
+                            <a class="nav-link " id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">บันทึกเปิดชั้นเรียน</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="false">บันทึกข้อมูลวิทยากร</a>
+                            <a class="nav-link active" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="true">บันทึกข้อมูลวิทยากร</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">บันทึกประวัติผู้เรียน </a>
@@ -23,16 +23,16 @@
                             <a class="nav-link " id="custom-tabs-three-settings-tab" data-toggle="pill" href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings" aria-selected="false">นิเทศ/ติดตามผล</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " id="custom-tabs-three-result-tab" data-toggle="pill" href="#custom-tabs-three-result" role="tab" aria-controls="custom-tabs-three-result" aria-selected="true">ผลการเรียน</a>
+                            <a class="nav-link " id="custom-tabs-three-result-tab" data-toggle="pill" href="#custom-tabs-three-result" role="tab" aria-controls="custom-tabs-three-result" aria-selected="false">ผลการเรียน</a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-three-settings-tab" data-toggle="pill" href="#custom-tabs-three-settings" role="tab" aria-controls="custom-tabs-three-settings" aria-selected="false">สรุปประเมินผล</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <div class="card-body">
                     <div class="tab-content" id="custom-tabs-three-tabContent">
-                        <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
+                        <div class="tab-pane fade " id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
                         <?php echo form_open('', $attributes = array('method' => 'post', 'class' => 'form-horizontal', 'id' => 'formOpenClass_Home')); ?>
                             
                             <div class="row px-4">
@@ -114,10 +114,10 @@
                                             <div class="form-group">
                                                 <label class="font-weight-bold" >งบประมาณที่ใช้</label>
                                                 <select class="form-control" id="budgetTypeID" name="BudgetTypeID">
-                                                    <option value="เงินงบประมาณ">เงินงบประมาณ</option>
-                                                    <option value="เงินงบประมาณบูรณาการ">เงินงบประมาณบูรณาการ(EEC)</option>
-                                                    <option value="เงินสนับสนุนจากท้องถิ่น">เงินสนับสนุนจากท้องถิ่น</option>
-                                                    <option value="">เงินสนับสนุนอื่นๆ</option>
+                                                    <option value="1">เงินงบประมาณ</option>
+                                                    <option value="2">เงินงบประมาณบูรณาการ(EEC)</option>
+                                                    <option value="3">เงินสนับสนุนจากท้องถิ่น</option>
+                                                    <option value="4">เงินสนับสนุนอื่นๆ</option>
                                                 </select>
                                                 <div class="collapse coll_budget pt-3"></div>
                                             </div>
@@ -137,8 +137,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="font-weight-bold" for="province">จังหวัด</label>
-                                                <select class="form-control" id="province" name="ProvinceID"></select>
+                                                <label class="font-weight-bold" for="ProvinceID">จังหวัด</label>
+                                                <select class="form-control" id="ProvinceID" name="ProvinceID"></select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -388,11 +388,11 @@
                                 <div class="font-weight-bold">การขยายเวลา</div>
                                 <div class="custom-control custom-radio custom-control-inline ml-4">
                                     <input type="radio" id="Extend" name="isExtendTime" class="custom-control-input" value="1">
-                                    <label class="custom-control-label" >ขยายเวลา</label>
+                                    <label class="custom-control-label" for="Extend">ขยายเวลา</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" id="notExtend" name="isExtendTime" class="custom-control-input" value="0">
-                                    <label class="custom-control-label" >ไม่ขยายเวลา</label>
+                                    <label class="custom-control-label" for="notExtend">ไม่ขยายเวลา</label>
                                 </div>
                                 <div class="row collapse lateTable">
                                     <div class="col-md-6 row">
@@ -457,7 +457,7 @@
                             <?php echo form_close(); ?>
                         </div>
 
-                        <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
+                        <div class="tab-pane fade show active" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
                         <?php echo form_open('', $attributes = array('method' => 'post', 'class' => 'form-horizontal', 'id' => 'formOpenClass_lecturer')); ?>
                             <div class="row">
                                 <!-- <div class="card card-default mx-4"> -->
@@ -467,7 +467,7 @@
                                                 <label class="font-weight-bold" for="RegisterDate"> วันที่สมัคร : </label>
                                             </div>
                                             <div class="col-md-8 px-4">
-                                                <input type="text" class="form-control" id="RegisterDate" name="RegisterDate">
+                                                <input type="date" class="form-control" id="RegisterDate" name="RegisterDate">
                                             </div>
                                         </div>
                                     </div>
@@ -477,10 +477,10 @@
                                                 <label class="font-weight-bold" for="FirstName"> ชื่อวิทยากร : </label>
                                             </div>
                                             <div class="col-md-4 px-4">
-                                                <input type="text" class="form-control" id="FirstName" name="FirstName">
+                                                <input type="text" class="form-control" id="FirstName" name="FirstName" placeholder="ชื่อ">
                                             </div>
                                             <div class="col-md-4 px-4">
-                                                <input type="text" class="form-control" id="LastName" name="LastName">
+                                                <input type="text" class="form-control" id="LastName" name="LastName" placeholder="นามสกุล">
                                             </div>
                                         </div>
                                     </div>
@@ -590,7 +590,12 @@
                                                 <label class="font-weight-bold" for="LecturerID">วุฒิการศึกษา : </label>
                                             </div>
                                             <div class="col-md-6 px-4">
-                                                <select class="form-control" id="LecturerID" name="LecturerID"></select>
+                                                <select class="form-control" id="LecturerID" name="LecturerID">
+                                                    <option value="12">ต่ำกว่าปริญญาตรี</option>
+                                                    <option value="13">ปริญญาตรี</option>
+                                                    <option value="14">ปริญญาโท</option>
+                                                    <option value="15">ปริญญาเอก</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -610,7 +615,13 @@
                                                 <label class="font-weight-bold" for="LecturerTypeID">ประเภทของวิทยากร : </label>
                                             </div>
                                             <div class="col-md-6 px-4">
-                                                <select class="form-control" id="LecturerTypeID" name="LecturerTypeID"></select>
+                                                <select class="form-control" id="LecturerTypeID" name="LecturerTypeID">
+                                                    <option value="1">ข้าราชการ</option>
+                                                    <option value="2">ลูกจ้าง</option>
+                                                    <option value="3">วิทยากรภายนอก</option>
+                                                    <option value="4">อื่นๆ</option>
+                                                </select>
+                                                <div class="collapse coll_lacturerType pt-3"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -851,7 +862,7 @@
                                 <div class="col-md-9">
                                     <div class="col-md-12">
                                         <div class="form-group ">
-                                                <select class="form-control" id="TambonID" name="CurrentNFETambonID"></select>
+                                                <select class="form-control" id="TambonID" name="CurrentNFETombonID"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -937,17 +948,17 @@
                                         <div class="form-group px-3">
                                         <select class="form-control" id="DegreeID" name="DegreeID">
                                             <option value="">เลือกวุฒิการศึกษา</option>
-                                            <option value="ต่ำกว่า ป.4">ต่ำกว่าป.4</option>
-                                            <option value="ป.4">ป.4</option>
-                                            <option value="ป.6">ป.6</option>
-                                            <option value="ป.7">ป.7</option>
-                                            <option value="มัธยมศึกษาตอนต้น">มัธยมศึกษาตอนต้น</option>
-                                            <option value="มัธยมศึกษาตอนปลาย">มัธยมศึกษาตอนปลาย</option>
-                                            <option value="ปวช.">ปวช.</option>
-                                            <option value="ปวท.">ปวท.</option>
-                                            <option value="ปวส.">ปวส.</option>
-                                            <option value="ปริญญาตรี">ปริญญาตรี</option>
-                                            <option value="สูงกว่าปริญญาตรี">สูงกว่าปริญญาตรี</option>
+                                            <option value="1">ต่ำกว่าป.4</option>
+                                            <option value="2">ป.4</option>
+                                            <option value="3">ป.6</option>
+                                            <option value="4">ป.7</option>
+                                            <option value="5">มัธยมศึกษาตอนต้น</option>
+                                            <option value="6">มัธยมศึกษาตอนปลาย</option>
+                                            <option value="7">ปวช.</option>
+                                            <option value="8">ปวท.</option>
+                                            <option value="9">ปวส.</option>
+                                            <option value="10">ปริญญาตรี</option>
+                                            <option value="11">สูงกว่าปริญญาตรี</option>
                                         </select>
                                         </div>
                                     </div>
@@ -1015,12 +1026,12 @@
                                 <div class="row col-md-6">
                                     <div class="col-md-6">
                                         <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="TambonID">ตำบล : </label>
+                                            <label class="font-weight-bold" for="TombonID">ตำบล : </label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group px-3">
-                                        <select class="form-control" id="TambonID" name="TambonID"></select>
+                                        <select class="form-control" id="TombonID" name="TombonID"></select>
                                         </div>
                                     </div>
                                 </div>
@@ -1080,23 +1091,23 @@
                                     <div class="col-md-6">
                                         <div class="form-group px-3">
                                             <select class="form-control" id="GroupTargetID" name="GroupTargetID">
-                                                <option value="เด็กด้อยโอกาส">เด็กด้อยโอกาส</option>
-                                                <option value="สตรีกลุ่มเสี่ยง">สตรีกลุ่มเสี่ยง</option>
-                                                <option value="ผู้สูงอายุ">ผู้สูงอายุ</option>
-                                                <option value="คนพิการ">คนพิการ</option>
-                                                <option value="ผู้นำท้องถิ่น">ผู้นำท้องถิ่น</option>
-                                                <option value="อบต.">อบต.</option>
-                                                <option value="ผู้ต้องขัง">ผู้ต้องขัง</option>
-                                                <option value="ทหารกองประจำการ">ทหารกองประจำการ</option>
-                                                <option value="ผู้ใช้แรงงาน">ผู้ใช้แรงงาน</option>
-                                                <option value="แรงงานต่างด้าว">แรงงานต่างด้าว</option>
-                                                <option value="เกษตรกร">เกษตรกร</option>
-                                                <option value="อสม.">อสม.</option>
-                                                <option value="ผู้ปฏิบัติศาสนกิจ">ผู้ปฏิบัติศาสนกิจ</option>
-                                                <option value="เยาวชน">เยาวชน</option>
-                                                <option value="ชาวไทยภูเขา">ชาวไทยภูเขา</option>
-                                                <option value="ชุมชนแออัด">ชุมชนแออัด</option>
-                                                <option value="">อื่นๆ</option>
+                                                <option value="1">เด็กด้อยโอกาส</option>
+                                                <option value="2">สตรีกลุ่มเสี่ยง</option>
+                                                <option value="3">ผู้สูงอายุ</option>
+                                                <option value="4">คนพิการ</option>
+                                                <option value="5">ผู้นำท้องถิ่น</option>
+                                                <option value="6">อบต.</option>
+                                                <option value="7">ผู้ต้องขัง</option>
+                                                <option value="8">ทหารกองประจำการ</option>
+                                                <option value="9">ผู้ใช้แรงงาน</option>
+                                                <option value="10">แรงงานต่างด้าว</option>
+                                                <option value="11">เกษตรกร</option>
+                                                <option value="12">อสม.</option>
+                                                <option value="13">ผู้ปฏิบัติศาสนกิจ</option>
+                                                <option value="14">เยาวชน</option>
+                                                <option value="15">ชาวไทยภูเขา</option>
+                                                <option value="16">ชุมชนแออัด</option>
+                                                <option value="17">อื่นๆ</option>
                                             </select>
                                             <div class="collapse coll_groupTar pt-3"></div>
                                         </div>
@@ -1111,11 +1122,11 @@
                                     <div class="col-md-6">
                                         <div class="form-group px-3">
                                             <select class="form-control" id="InterestedByID" name="InterestedByID">
-                                                <option value="เป็นพื้นฐานในการศึกษาต่อในระดับ/สาขา">เป็นพื้นฐานในการศึกษาต่อในระดับ/สาขา . . .</option>
-                                                <option value="ต้องการเปลี่ยนอาชีพ">ต้องการเปลี่ยนอาชีพ</option>
-                                                <option value="ต้องการใช้เวลาว่างให้เป็นประโยชน์">ต้องการใช้เวลาว่างให้เป็นประโยชน์</option>
-                                                <option value="ต้องการมีอาชีพเสริม/อาชีพหลัก">ต้องการมีอาชีพเสริม/อาชีพหลัก</option>
-                                                <option value="">อื่นๆ</option>
+                                                <option value="1">เป็นพื้นฐานในการศึกษาต่อในระดับ/สาขา . . .</option>
+                                                <option value="2">ต้องการเปลี่ยนอาชีพ</option>
+                                                <option value="3">ต้องการใช้เวลาว่างให้เป็นประโยชน์</option>
+                                                <option value="4">ต้องการมีอาชีพเสริม/อาชีพหลัก</option>
+                                                <option value="5">อื่นๆ</option>
                                             </select>
                                             <div class="collapse coll_interest pt-3"></div>
                                         </div>
@@ -1130,14 +1141,14 @@
                                     <div class="col-md-6">
                                         <div class="form-group px-3">
                                             <select class="form-control" id="PeopleStatusID" name="PeopleStatusID">
-                                                <option value="ว่างงาน">ว่างงาน</option>
-                                                <option value="สมาชิกกองทุนสตรี">สมาชิกกองทุนสตรี</option>
-                                                <option value="ผู้ถือบัตรสวัสติการของรัฐ">ผู้ถึอบัตรสวัสดิการของรัฐ</option>
-                                                <option value="อสม/อสส">อสม/อสส</option>
-                                                <option value="รับข้าง">รับจ้าง</option>
-                                                <option value="เกษตรกร">เกษตรกร</option>
-                                                <option value="สมาชิกกองทุนหมู่บ้าน">สมาชิกกองทุนหมู่บ้าน</option>
-                                                <option value="">อื่นๆ</option>
+                                                <option value="1">ว่างงาน</option>
+                                                <option value="2">สมาชิกกองทุนสตรี</option>
+                                                <option value="3">ผู้ถึอบัตรสวัสดิการของรัฐ</option>
+                                                <option value="4">อสม/อสส</option>
+                                                <option value="5">รับจ้าง</option>
+                                                <option value="6">เกษตรกร</option>
+                                                <option value="7">สมาชิกกองทุนหมู่บ้าน</option>
+                                                <option value="8">อื่นๆ</option>
                                             </select>
                                             <div class="collapse coll_status pt-3"></div>
                                         </div>
@@ -1165,558 +1176,583 @@
                         </div>
 
                         <div class="tab-pane fade " id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
-                        <?php echo form_open('', $attributes = array('method' => 'post', 'class' => 'form-horizontal', 'id' => 'formOpenClass_Trace')); ?>    
-                            <div class="row">
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" >ผู้เรียน : </label>
+                            <?php echo form_open('', $attributes = array('method' => 'post', 'class' => 'form-horizontal', 'id' => 'formOpenClass_Trace')); ?>    
+                                <div class="row">
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" >ผู้เรียน : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <select class="form-control select2 " id="TraceStudent" name="TraceStudent">
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <select class="form-control select2 " id="TraceStudent" name="TraceStudent">
-                                            </select>
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="TraceDate">วันที่ออกติดตาม : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <input type="date" class="form-control" id="TraceDate" name="TraceDate">
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">วันที่ออกติดตาม : </label>
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="form-group row pt-2">
+                                                <div class="col-md-12">
+                                                    <div class="form-group px-4">
+                                                        <label class="font-weight-bold" for="LecturerID">ชื่อผู้ติดตามผล  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-2 px-4">
+                                                            <label class="font-weight-bold" >ชื่อผู้ติดตามผลที่ 1 : </label>
+                                                        </div>
+                                                        <div class="col-md-3 px-4">
+                                                            <input type="text" class="form-control" id="FollowerFirstName1" name="FollowerFirstName1" placeholder="ชื่อจริง">
+                                                        </div>
+                                                        <div class="col-md-3 px-4">
+                                                            <input type="text" class="form-control" id="FollowerLastName1" name="FollowerLastName1" placeholder="นามสกุล">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-2 px-4">
+                                                            <label class="font-weight-bold" >ชื่อผู้ติดตามผลที่ 2 : </label>
+                                                        </div>
+                                                        <div class="col-md-3 px-4">
+                                                            <input type="text" class="form-control" id="FollowerFirstName2" name="FollowerFirstName2" placeholder="ชื่อจริง">
+                                                        </div>
+                                                        <div class="col-md-3 px-4">
+                                                            <input type="text" class="form-control" id="FollowerLastName2" name="FollowerLastName2" placeholder="นามสกุล">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <input type="date" class="form-control" id="addmaterials1" name="LearningMaterial[0][Name]">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
+                                    <div class="col-md-12">
                                         <div class="form-group row pt-2">
-                                            <div class="col-md-12">
-                                                <div class="form-group px-4">
-                                                    <label class="font-weight-bold" for="LecturerID">ชื่อผู้ติดตามผล  </label>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <div class="col-md-2 px-4">
-                                                        <label class="font-weight-bold" for="LecturerID">ชื่อผู้ติดตามผลที่ 1 : </label>
-                                                    </div>
-                                                    <div class="col-md-3 px-4">
-                                                        <input type="text" class="form-control" id="addmaterials1" name="LearningMaterial[0][Name]" placeholder="ชื่อจริง">
-                                                    </div>
-                                                    <div class="col-md-3 px-4">
-                                                        <input type="text" class="form-control" id="addmaterials1" name="LearningMaterial[0][Name]" placeholder="นามสกุล">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group row">
-                                                    <div class="col-md-2 px-4">
-                                                        <label class="font-weight-bold" for="LecturerID">ชื่อผู้ติดตามผลที่ 2 : </label>
-                                                    </div>
-                                                    <div class="col-md-3 px-4">
-                                                        <input type="text" class="form-control" id="addmaterials1" name="LearningMaterial[0][Name]" placeholder="ชื่อจริง">
-                                                    </div>
-                                                    <div class="col-md-3 px-4">
-                                                        <input type="text" class="form-control" id="addmaterials1" name="LearningMaterial[0][Name]" placeholder="นามสกุล">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group row pt-2">
-                                        <div class="col-md-3 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ได้นำความรู้ไปใช้เกี่ยวกับ : </label>
-                                        </div>
-                                        <div class="col-md-5 px-3">
-                                                <select class="form-control" id="LecturerID" name="LecturerID"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <div class="col-md-8 px-3">
-                                            <label class="font-weight-bold" for="courseStory">เนื้อหาสรุปการติดตาม</label>
-                                            <textarea class="form-control" id="courseStory" name="CourseHistory" rows="4" placeholder="กรอกรายละเอียด" required></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (เปิดอบรม)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (ครูผู้สอนกับผู้ฝึกอบรม)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (เจ้าของงานกับกลุ่มจัดฝึกอบรม)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (ผู้ฝึกอบรมและฝึกปฏิบัติ)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (ผู้อบรมพร้อมชิ้นงานที่สำเร็จ)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group ">
-                                        <div class="col-md-12 px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ภาพกิจกรรม (ผู้นิเทศกิจกรรมการฝึกอบรม)  </label>
-                                        </div>
-                                        <div class="col-md-11 px-4">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input form-control" name="PlaceImage" id="image">
-                                                <label class="custom-file-label" for="image">อัพโหลดรูปภาพ</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="container-fluid text-right pt-4">
-                                    <a href="javascript:void(0)" class="btn btn-secondary">ยกเลิก</a>
-                                    <input type="submit" class="btn btn-success" value="บันทึก">
-                                </div>  
-                            </div>
-                        </div>
-        <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
-        <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
-        <!-- --------------------------------------------------------------------------------------------------------------------------------------- -->
-
-                        <div class="tab-pane fade " id="custom-tabs-three-result" role="tabpanel" aria-labelledby="custom-tabs-three-result-tab">
-                            <div class="row">
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ผู้เรียน : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <select class="form-control" id="LecturerID" name="LecturerID"></select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">เลขวุฒิใบสมัคร : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">เกรด : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-6">
-                                    <div class="col-md-4">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ออกเมื่อวันที่ : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-12">
-                                    <div class="col-md-5">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ความรู้ความเข้าใจในเนื้อหาสาระ (20 คะแนน) : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-12">
-                                    <div class="col-md-5">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ทักษะการปฏิบัติ (40 คะแนน) : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-12">
-                                    <div class="col-md-5">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">คุณภาพของผลงาน / ผลการปฏิบัติ (40 คะแนน) : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-12">
-                                    <div class="col-md-5">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ผลการประเมิณรวม (100 คะแนน) : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row col-md-12">
-                                    <div class="col-md-5">
-                                        <div class="form-group px-4">
-                                            <label class="font-weight-bold" for="LecturerID">ระดับการประเมิณ (เกรด 1-4) : </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group px-3">
-                                            <input type="text" class="form-control" id="Religion" name="Religion">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 ">
-                                    <div class="card card-default mx-4">
-                                        <div class="col-md-5">
-                                            <div class="form-group px-4">
-                                                <label class="font-weight-bold" for="LecturerID">ส่วนพื้นที่การดำเนินสอนของวิทยากร : </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 px-5">
-                                            <div class="form-check custom-control custom-radio custom-control-inline ml-3">
-                                                <input type="radio" id="" class="form-check-input custom-control-input" name="ClassTypeID" value="1" required>
-                                                <label class="custom-control-label mb-0" > ในเขตเทศบาล </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row px-5">
-                                            <div class="col-md-2 ml-4">
-                                            <label class="font-weight-bold" for="LecturerID">ชื่อหมู่บ้าน / ชุมชน : </label>
-                                            </div>
-                                            <div class="col-md-4 px-5">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 px-5">
-                                            <div class="form-check custom-control custom-radio custom-control-inline ml-3">
-                                                <input type="radio" id="" class="form-check-input custom-control-input" name="ClassTypeID" value="1" required>
-                                                <label class="custom-control-label mb-0" > นอกเขตเทศบาล </label>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row px-5">
-                                            <div class="col-md-2 ml-4">
-                                                <label class="font-weight-bold" for="LecturerID">ชื่อหมู่บ้าน / ชุมชน : </label>
-                                            </div>
-                                            <div class="col-md-4 px-5">
-                                                <input type="text" class="form-control" id="Religion" name="Religion">
-                                            </div>
-                                            <div class="col-md-1 ">
-                                                <label class="font-weight-bold" for="LecturerID">หมู่ที่ : </label>
-                                            </div>
-                                            <div class="col-md-4 px-5">
-                                                <input type="text" class="form-control" id="Religion" name="Religion">
-                                            </div>
-                                            <div class="col-md-2 ml-4">
-                                                <label class="font-weight-bold" for="LecturerID">ตำบล : </label>
-                                            </div>
-                                            <div class="col-md-4 px-5">
-                                                <select class="form-control" id="LecturerID" name="LecturerID"></select>
-                                            </div>
-                                            <div class="col-md-1 ">
-                                                <label class="font-weight-bold" for="LecturerID">จังหวัด : </label>
-                                            </div>
-                                            <div class="col-md-4 px-5">
-                                                <select class="form-control" id="LecturerID" name="LecturerID"></select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
-                                        <div class="col-md-5">
-                                            <div class="form-group px-4">
-                                                <label class="font-weight-bold" for="LecturerID">ส่วนวิธีการสำรวจความต้องการเรียน ดำเนินการอย่างไร : </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ml-4 ">
-                                            <div class="form-group px-5">
-                                                <div class="form-check form-check-inline custom-checkbox">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="monday" name="ClassDays[]" value="1">
-                                                    <label class="form-check-label custom-control-label" for="monday"> ประชาคม </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group px-5">
-                                                <div class="form-check form-check-inline custom-checkbox">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="monday" name="ClassDays[]" value="1">
-                                                    <label class="form-check-label custom-control-label" for="monday"> แนะแนว </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group px-5">
-                                                <div class="form-check form-check-inline custom-checkbox">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="monday" name="ClassDays[]" value="1">
-                                                    <label class="form-check-label custom-control-label" for="monday"> สำรวจความต้องการ </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group px-5">
-                                                <div class="form-check form-check-inline custom-checkbox">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="monday" name="ClassDays[]" value="1">
-                                                    <label class="form-check-label custom-control-label" for="monday"> อื่นๆ </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
-                                        <div class="col-md-5">
-                                            <div class="form-group px-4">
-                                                <label class="font-weight-bold" for="LecturerID">ส่วนการติดตามผู้ผ่านการฝึกอบรม : </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12 ml-4 ">
-                                            <div class="form-group row px-5 ml-1 ">
-                                                <div class="form-check form-check-inline custom-checkbox col-md-1">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="12" name="25" value="2">
-                                                    <label class="form-check-label custom-control-label" for="12"> ไม่มี </label>
-                                                </div>
-                                                <div class="col-md-2 mt-1">
-                                                    <label class="font-weight-bold " for="LecturerID">เพราะ : </label>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5 ml-1 ">
-                                                <div class="form-check form-check-inline custom-checkbox col-md-1">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="12" name="25" value="2">
-                                                    <label class="form-check-label custom-control-label" for="12"> มี </label>
-                                                </div>
-                                                <div class="col-md-2 mt-1">
-                                                    <label class="font-weight-bold " for="LecturerID"> ดำเนินการอย่างไร : </label>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
-                                        <div class="form-group row">
-                                            <div class="col-md-5 px-4">
-                                                    <label class="font-weight-bold" for="LecturerID">ผลประเมิณความพึงพอใจในการจัดการโครงการอยู่ในระดับ : </label>
+                                            <div class="col-md-3 px-4">
+                                                <label class="font-weight-bold" for="KnowledgeID">ได้นำความรู้ไปใช้เกี่ยวกับ : </label>
                                             </div>
                                             <div class="col-md-5 px-3">
-                                                    <select class="form-control" id="LecturerID" name="LecturerID"></select>
+                                                    <select class="form-control" id="KnowledgeID" name="KnowledgeID">
+                                                        <option value="1">ต้องการมีรายได้</option>
+                                                        <option value="2">ต้องการมีอาชีพ</option>
+                                                        <option value="3">ต้องการได้รับการพัฒนา</option>
+                                                        <option value="4">ใช้เวลาว่างให้เกิดประโยชน์</option>
+                                                        <option value="5">อื่นๆ</option>
+                                                    </select>
+                                                    <div class="collapse coll_knowladge pt-3"></div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="col-md-8 px-3">
+                                                <label class="font-weight-bold" for="Conclude">เนื้อหาสรุปการติดตาม</label>
+                                                <textarea class="form-control" id="Conclude" name="Conclude" rows="4" placeholder="กรอกรายละเอียด" required></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold">ภาพกิจกรรม (เปิดอบรม)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="OpenClassImage" id="OpenClassImage">
+                                                    <label class="custom-file-label" for="OpenClassImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold" >ภาพกิจกรรม (ครูผู้สอนกับผู้ฝึกอบรม)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="TeacherStudentImage" id="TeacherStudentImage">
+                                                    <label class="custom-file-label" for="TeacherStudentImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold" >ภาพกิจกรรม (เจ้าของงานกับกลุ่มจัดฝึกอบรม)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="OwnerStuffImage" id="OwnerStuffImage">
+                                                    <label class="custom-file-label" for="OwnerStuffImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold" >ภาพกิจกรรม (ผู้ฝึกอบรมและฝึกปฏิบัติ)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="StudentClassImage" id="StudentClassImage">
+                                                    <label class="custom-file-label" for="StudentClassImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold" >ภาพกิจกรรม (ผู้อบรมพร้อมชิ้นงานที่สำเร็จ)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="TeacherSuccessImage" id="TeacherSuccessImage">
+                                                    <label class="custom-file-label" for="TeacherSuccessImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group ">
+                                            <div class="col-md-12 px-4">
+                                                <label class="font-weight-bold" >ภาพกิจกรรม (ผู้นิเทศกิจกรรมการฝึกอบรม)  </label>
+                                            </div>
+                                            <div class="col-md-11 px-4">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input form-control" name="PeopleClassImage" id="PeopleClassImage">
+                                                    <label class="custom-file-label" for="PeopleClassImage">อัพโหลดรูปภาพ</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid text-right pt-4">
+                                        <a href="javascript:void(0)" class="btn btn-secondary">ยกเลิก</a>
+                                        <input type="submit" class="btn btn-success" value="บันทึก">
+                                    </div>  
                                 </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
+                            <?php echo form_close(); ?>
+                        </div>
+
+                        <div class="tab-pane fade " id="custom-tabs-three-result" role="tabpanel" aria-labelledby="custom-tabs-three-result-tab">
+                            <?php echo form_open('', $attributes = array('method' => 'post', 'class' => 'form-horizontal', 'id' => 'formOpenClass_Result')); ?>    
+                                <div class="row">
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" >ผู้เรียน : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <select class="form-control select2 " id="StudentID" name="StudentID">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="DiplomaNumber">เลขวุฒิใบสมัคร : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="DiplomaNumber" name="DiplomaNumber">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="GradeResultID">เกรด : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="GradeResultID" name="GradeResultID">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="GradeResultDate">ออกเมื่อวันที่ : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="GradeResultDate" name="GradeResultDate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
                                         <div class="col-md-5">
                                             <div class="form-group px-4">
-                                                <label class="font-weight-bold" for="LecturerID">ผู้ผ่านการอบรมได้นำความรู้ไปใช้จริง  </label>
+                                                <label class="font-weight-bold" for="UnderstandScore">ความรู้ความเข้าใจในเนื้อหาสาระ (20 คะแนน) : </label>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 ml-4 ">
-                                            <div class="form-group row px-5 ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> เพิ่มรายได้ : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5 ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> ลดรายจ่าย : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5  ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> นำไปประกอบวิชาชีพ : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5  ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> พัฒนาคุณภาพชีวิต : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5  ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> ใช้เวลาว่างให้เกิดประโยชน์ : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row px-5  ">
-                                                <div class="col-md-2 ">
-                                                    <label class="font-weight-bold " for="LecturerID"> อื่นๆ : </label>
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">จำนวน </label>
-                                                </div>
-                                                <div class="col-md-4 ">
-                                                    <input type="text" class="form-control" id="Religion" name="Religion">
-                                                </div>
-                                                <div class="col-md-1 ">
-                                                    <label class="font-weight-bold " for="LecturerID">คน  </label>
-                                                </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="UnderstandScore" name="UnderstandScore">
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="card card-default mx-4">
-                                        <div class="col-md-5 ">
+                                    <div class="row col-md-12">
+                                        <div class="col-md-5">
                                             <div class="form-group px-4">
-                                                <label class="font-weight-bold" for="LecturerID">ส่วนปัญหา อุปสรรค และข้อเสนอแนะ  </label>
+                                                <label class="font-weight-bold" for="SkillScore">ทักษะการปฏิบัติ (40 คะแนน) : </label>
                                             </div>
                                         </div>
-                                        <div class="col-md-12 ml-4 ">
-                                            <div class="col-md-6 ml-4">
-                                                <label class="font-weight-bold " for="LecturerID">ปัญหา อุปสรรค  </label>
+                                        <div class="col-md-6">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="SkillScore" name="SkillScore">
                                             </div>
-                                            <div class="form-group row px-5 ml-1 ">
-                                                <div class="form-check form-check-inline custom-checkbox col-md-1">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="2" name="29" value="2">
-                                                    <label class="form-check-label custom-control-label" for="12"> ไม่มี </label>
-                                                </div>
-                                                <div class="form-check form-check-inline custom-checkbox col-md-1">
-                                                    <input class="form-check-input custom-control-input" type="checkbox" id="16" name="5" value="2">
-                                                    <label class="form-check-label custom-control-label" for="12"> มี </label>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-5">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="PracticeResultScore">คุณภาพของผลงาน / ผลการปฏิบัติ (40 คะแนน) : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="PracticeResultScore" name="PracticeResultScore">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-5">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="AssessmentScore">ผลการประเมิณรวม (100 คะแนน) : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="AssessmentScore" name="AssessmentScore">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row col-md-12">
+                                        <div class="col-md-5">
+                                            <div class="form-group px-4">
+                                                <label class="font-weight-bold" for="SatisfactionLevel">ระดับการประเมิณ (เกรด 1-4) : </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group px-3">
+                                                <input type="text" class="form-control" id="SatisfactionLevel" name="SatisfactionLevel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 ">
+                                        <div class="card card-default mx-4">
+                                            <div class="col-md-5">
+                                                <div class="form-group px-4">
+                                                    <label class="font-weight-bold" for="LecturerID">ส่วนพื้นที่การดำเนินสอนของวิทยากร : </label>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 ml-4">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold" for="courseStory">ข้อเสนอแนะ</label>
-                                                    <textarea class="form-control" id="courseStory" name="CourseHistory" rows="4" placeholder="กรอกรายละเอียด" required></textarea>
+                                            <div class="col-md-6 px-5">
+                                                <div class="form-check custom-control custom-radio custom-control-inline ml-3">
+                                                    <input type="radio" id="isInField" class="form-check-input custom-control-input" name="isInField" value="0" required>
+                                                    <label class="custom-control-label mb-0" for="isInField"> ในเขตเทศบาล </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row px-5">
+                                                <div class="col-md-2 ml-4">
+                                                <label class="font-weight-bold" for="VillageNameInField">ชื่อหมู่บ้าน / ชุมชน : </label>
+                                                </div>
+                                                <div class="col-md-4 px-5">
+                                                        <input type="text" class="form-control" id="VillageNameInField" name="VillageNameInField">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 px-5">
+                                                <div class="form-check custom-control custom-radio custom-control-inline ml-3">
+                                                    <input type="radio" id="isNotField" class="form-check-input custom-control-input" name="isInField" value="1" required>
+                                                    <label class="custom-control-label mb-0" for="isNotField"> นอกเขตเทศบาล </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row px-5">
+                                                <div class="col-md-2 ml-4">
+                                                    <label class="font-weight-bold" for="VillageNameOutField">ชื่อหมู่บ้าน / ชุมชน : </label>
+                                                </div>
+                                                <div class="col-md-4 px-5">
+                                                    <input type="text" class="form-control" id="VillageNameOutField" name="VillageNameOutField">
+                                                </div>
+                                                <div class="col-md-1 ">
+                                                    <label class="font-weight-bold" for="MooOutField">หมู่ที่ : </label>
+                                                </div>
+                                                <div class="col-md-4 px-5">
+                                                    <input type="text" class="form-control" id="MooOutField" name="MooOutField">
+                                                </div>
+                                                <div class="col-md-2 ml-4">
+                                                    <label class="font-weight-bold" for="TombonIDOutField">ตำบล : </label>
+                                                </div>
+                                                <div class="col-md-4 px-5">
+                                                    <select class="form-control" id="TombonIDOutField" name="TombonIDOutField"></select>
+                                                </div>
+                                                <div class="col-md-1 ">
+                                                    <label class="font-weight-bold" for="ProvinceIDOutField">จังหวัด : </label>
+                                                </div>
+                                                <div class="col-md-4 px-5">
+                                                    <select class="form-control" id="ProvinceIDOutField" name="ProvinceIDOutField"></select>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="form-group row">
+                                                <div class="form-group px-4">
+                                                    <label class="font-weight-bold" >ส่วนวิธีการสำรวจความต้องการเรียน ดำเนินการอย่างไร : </label>
+                                                </div>
+                                                <div class="col-md-6 ml-4 ">
+                                                    <div class="col-md-12">
+                                                        <select class="form-control " id="WantToLearnID" name="WantToLearnID">
+                                                            <option value="1">ประชาคม</option>
+                                                            <option value="2">แนะแนว</option>
+                                                            <option value="3">สำรวจความต้องการ</option>
+                                                            <option value="4">อื่นๆ</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12 pt-2 collapse coll_wantToLearn">
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="col-md-5">
+                                                <div class="form-group px-4">
+                                                    <label class="font-weight-bold" >ส่วนการติดตามผู้ผ่านการฝึกอบรม : </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ml-4 ">
+                                                <div class="form-group row px-5 ml-1 ">
+                                                    <div class="form-check custom-control custom-radio custom-control-inline col-md-1">
+                                                        <input class="form-check-input custom-control-input" type="radio" id="isHasFollow0" name="isHasFollow" value="0">
+                                                        <label class="form-check-label custom-control-label" for="isHasFollow0"> ไม่มี </label>
+                                                    </div>
+                                                    <div class="col-md-2 collapse coll_bc0">
+                                                        <label class="font-weight-bold ">เพราะ : </label>
+                                                    </div>
+                                                    <div class="col-md-4 collapse coll_followDetil0">
+                                                        <input type="text" class="form-control" id="FollowDetail" name="FollowDetail">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5 ml-1 ">
+                                                    <div class="form-check custom-control custom-radio custom-control-inline col-md-1">
+                                                        <input class="form-check-input custom-control-input" type="radio" id="isHasFollow1" name="isHasFollow" value="1">
+                                                        <label class="form-check-label custom-control-label" for="isHasFollow1"> มี </label>
+                                                    </div>
+                                                    <div class="col-md-2 collapse coll_bc1">
+                                                        <label class="font-weight-bold " > ดำเนินการอย่างไร : </label>
+                                                    </div>
+                                                    <div class="col-md-4 collapse coll_followDetil1">
+                                                        <input type="text" class="form-control" id="FollowDetail" name="FollowDetail">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="form-group row pt-2">
+                                                <div class="col-md-5 px-4">
+                                                        <label class="font-weight-bold" for="SatisfactionLevel">ผลประเมิณความพึงพอใจในการจัดการโครงการอยู่ในระดับ : </label>
+                                                </div>
+                                                <div class="col-md-6 px-3">
+                                                        <select class="form-control" id="SatisfactionLevel" name="SatisfactionLevel">
+                                                            <option value="1">พอใช้</option>
+                                                            <option value="2">ปานกลาง</option>
+                                                            <option value="3">ดี</option>
+                                                            <option value="4">ดีมาก</option>
+                                                        </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="form-group row pt-2">
+                                                <div class="col-md-5 px-4">
+                                                    <label class="font-weight-bold" >ผู้ผ่านการอบรมได้นำความรู้ไปใช้จริง :</label>
+                                                </div>
+                                                <div class="col-md-6 ">
+                                                    <div class="col-md-12">
+                                                        <select class="form-control " id="KnowledgeID" name="KnowledgeID">
+                                                            <option value="6">เพิ่มรายได้</option>
+                                                            <option value="7">ลดรายจ่าย</option>
+                                                            <option value="8">นำไปประกอบอาชีพ</option>
+                                                            <option value="9">พัฒนาาคุณภาพชีวิต</option>
+                                                            <option value="10">ใช้เวลาว่างให้เกิดประโยชน์</option>
+                                                            <option value="11">อื่นๆ</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-12 pt-2 collapse coll_Knowledge">
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="col-md-5">
+                                                <div class="form-group px-4">
+                                                    <label class="font-weight-bold" for="LecturerID">ผู้ผ่านการอบรมได้นำความรู้ไปใช้จริง  </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ml-4 ">
+                                                <div class="form-group row px-5 ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> เพิ่มรายได้ : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5 ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> ลดรายจ่าย : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5  ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> นำไปประกอบวิชาชีพ : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5  ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> พัฒนาคุณภาพชีวิต : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5  ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> ใช้เวลาว่างให้เกิดประโยชน์ : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row px-5  ">
+                                                    <div class="col-md-3 ">
+                                                        <label class="font-weight-bold " for="LecturerID"> อื่นๆ : </label>
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">จำนวน </label>
+                                                    </div>
+                                                    <div class="col-md-4 ">
+                                                        <input type="text" class="form-control" id="Religion" name="Religion">
+                                                    </div>
+                                                    <div class="col-md-1 ">
+                                                        <label class="font-weight-bold " for="LecturerID">คน  </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="col-md-12">
+                                        <div class="card card-default mx-4">
+                                            <div class="col-md-5 ">
+                                                <div class="form-group px-4">
+                                                    <label class="font-weight-bold" >ส่วนปัญหา อุปสรรค และข้อเสนอแนะ  </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 ml-4 ">
+                                                <div class="col-md-6 ml-4">
+                                                    <label class="font-weight-bold " >ปัญหา อุปสรรค  </label>
+                                                </div>
+                                                <div class="form-group px-5 ml-1 ">
+                                                    <div class="form-check form-check-inline custom-radio col-md-1">
+                                                        <input class="form-check-input custom-control-input" type="radio" id="isProblem0" name="isProblem" value="1">
+                                                        <label class="form-check-label custom-control-label" for="isProblem0"> มี </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline custom-radio col-md-1">
+                                                        <input class="form-check-input custom-control-input" type="radio" id="isProblem1" name="isProblem" value="0">
+                                                        <label class="form-check-label custom-control-label" for="isProblem1"> ไม่มี </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col=md-6 ml-4 collapse coll_isProblem">
+                                                    <input type="text" class="form-control" id="ProblemDetail" name="ProblemDetail" placeholder="กรอกปัญหา อุปสรรค ที่นี่" required>
+                                                </div>
+                                                <div class="col-md-6 ml-4">
+                                                    <div class="form-group">
+                                                        <label class="font-weight-bold" for="courseStory">ข้อเสนอแนะ</label>
+                                                        <textarea class="form-control" id="courseStory" name="CourseHistory" rows="4" placeholder="กรอกรายละเอียด" required></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid text-right pt-4">
+                                        <a href="javascript:void(0)" class="btn btn-secondary">ยกเลิก</a>
+                                        <input type="submit" class="btn btn-success" value="บันทึก">
+                                    </div>
                                 </div>
-                                <div class="container-fluid text-right pt-4">
-                                    <a href="javascript:void(0)" class="btn btn-secondary">ยกเลิก</a>
-                                    <input type="submit" class="btn btn-success" value="บันทึก">
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="tab-pane fade " id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
+                            <?php echo form_close(); ?>
                         </div>
 
+                
+                        <!-- <div class="tab-pane fade " id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
+                        </div> -->
                     </div>
                 </div>
                 <!-- /.card -->

@@ -3,6 +3,7 @@
         // postData();
         initControl();
         bindProvince();
+        bindBirthProvince();
         bindAmphur();
         bindTambon();
         bindNFETambon();
@@ -13,6 +14,26 @@
 
     function initControl() {
         $('#formOpenClass_Home').submit(function(e) {   
+            e.preventDefault();
+            var data = new FormData(this);
+            postData(data);
+        });
+        $('#formOpenClass_lecturer').submit(function(e) {   
+            e.preventDefault();
+            var data = new FormData(this);
+            postData(data);
+        });
+        $('#formOpenClass_Profile').submit(function(e) {   
+            e.preventDefault();
+            var data = new FormData(this);
+            postData(data);
+        });
+        $('#formOpenClass_Trace').submit(function(e) {   
+            e.preventDefault();
+            var data = new FormData(this);
+            postData(data);
+        });
+        $('#formOpenClass_Result').submit(function(e) {   
             e.preventDefault();
             var data = new FormData(this);
             postData(data);
@@ -34,6 +55,10 @@
             var input_GroupTargetID_box = '<input type="text" class="form-control" id="GroupTargetOther" name="GroupTargetOther" placeholder="กรอกกลุ่มเป้าหมายอื่นๆที่นี่" required>';
             var input_InterestedByID_box = '<input type="text" class="form-control" id="InterestedByOther" name="InterestedByOther" placeholder="กรอกความสนใจอื่นๆที่นี่" required>';
             var input_PeopleStatusID_box = '<input type="text" class="form-control" id="PeopleStatusOther" name="PeopleStatusOther" placeholder="กรอกสถานะอื่นๆที่นี่" required>';
+            var input_LecturerTypeOther_box = '<input type="text" class="form-control" id="LecturerTypeOther" name="LecturerTypeOther" placeholder="กรอกประเภทวิทยากรอื่นๆที่นี่" required>';
+            var input_KnowledgeOther_box = '<input type="text" class="form-control" id="KnowledgeOther" name="KnowledgeOther" placeholder="กรอกอื่นๆที่นี่" required>';
+            var input_WantToLearnOther_box = '<input type="text" class="form-control" id="WantToLearnOther" name="WantToLearnOther" placeholder="กรอกอื่นๆที่นี่" required>';
+            var inpur_followDetil_box = '<input type="text" class="form-control" id="FollowDetail" name="FollowDetail" required>'
             var addCourseStr_attr_1   = 0 , addCourseStr_attr_2   = 1;
             var add_materials_attr_1  = 0 , add_materials_attr_2  = 1;
             var add_evaluation_attr_1 = 0 , add_evaluation_attr_2 = 1;
@@ -52,10 +77,40 @@
                     $(".lateTable").collapse('hide');
                 }
             });
+
+            $('[name="isProblem"]').change(function(e) {
+                e.preventDefault();
+                if ($(this).val() == 1) {
+                    $(".coll_isProblem").collapse('show');
+                } else {
+                    $(".coll_isProblem").collapse('hide');
+                }
+            });
+
+            $('[name="isHasFollow"]').change(function(e) {
+                e.preventDefault();
+                if ($(this).val() == 1) {
+                    $(".coll_bc0").collapse('hide');
+                    $(".coll_followDetil0").collapse('hide');
+                    // e.preventDefault(); $("#FollowDetail").remove();
+
+                    $(".coll_bc1").collapse('show');
+                    $(".coll_followDetil1").collapse('show');
+                    // $(".coll_followDetil1").append(inpur_followDetil_box);
+                } else {
+                    $(".coll_bc1").collapse('hide');
+                    $(".coll_followDetil1").collapse('hide');
+                    // e.preventDefault(); $("#FollowDetail").remove();
+
+                    $(".coll_bc0").collapse('show');
+                    $(".coll_followDetil0").collapse('show');
+                    // $(".coll_followDetil0").append(inpur_followDetil_box);
+                }
+            });
             
             $("#budgetTypeID").on('change',function(e) {
                 e.preventDefault();
-                if ($(this).val() == "") {
+                if ($(this).val() == "4") {
                     $(".coll_budget").collapse('show');
                     $(".coll_budget").append(input_budget_box);
                 } else {
@@ -81,7 +136,7 @@
             // >>   กลุ่มเป้าหมาย
             $("#GroupTargetID").on('change',function(e) {
                 e.preventDefault();
-                if ($(this).val() == "") {
+                if ($(this).val() == "17") {
                     $(".coll_groupTar").collapse('show');
                     $(".coll_groupTar").append(input_GroupTargetID_box);
                 } else {
@@ -94,7 +149,7 @@
             // >>   สนใจเข้าร่วมกิจรรมเนื่องจาก
             $("#InterestedByID").on('change',function(e) {
                 e.preventDefault();
-                if ($(this).val() == "") {
+                if ($(this).val() == "5") {
                     $(".coll_interest").collapse('show');
                     $(".coll_interest").append(input_InterestedByID_box);
                 } else {
@@ -107,12 +162,51 @@
             // >>   สถานะ
             $("#PeopleStatusID").on('change',function(e) {
                 e.preventDefault();
-                if ($(this).val() == "") {
+                if ($(this).val() == "8") {
                     $(".coll_status").collapse('show');
                     $(".coll_status").append(input_PeopleStatusID_box);
                 } else {
                     $(".coll_status").collapse('hide');
                     e.preventDefault(); $("#PeopleStatusOther").remove();
+                }
+            });
+            //--------------------
+            // บันทึกข้อมูลวิทยากร 
+            // >>   ประเภทวิทยากร
+            $("#LecturerTypeID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "4") {
+                    $(".coll_lacturerType").collapse('show');
+                    $(".coll_lacturerType").append(input_LecturerTypeOther_box);
+                } else {
+                    $(".coll_lacturerType").collapse('hide');
+                    e.preventDefault(); $("#LecturerTypeOther").remove();
+                }
+            });
+            //--------------------
+            // ผลการเรียน
+            // >>   ผู้ผ่านการอบรมได้นำความรู้ไปใช้จริง
+            $("#KnowledgeID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "11") {
+                    $(".coll_Knowledge").collapse('show');
+                    $(".coll_Knowledge").append(input_KnowledgeOther_box);
+                } else {
+                    $(".coll_Knowledge").collapse('hide');
+                    e.preventDefault(); $("#KnowledgeOther").remove();
+                }
+            });
+            //--------------------
+            //  ผลการเรียน
+            // >>   สำรวจความต้องการเรียน
+            $("#WantToLearnID").on('change',function(e) {
+                e.preventDefault();
+                if ($(this).val() == "4") {
+                    $(".coll_wantToLearn").collapse('show');
+                    $(".coll_wantToLearn").append(input_WantToLearnOther_box);
+                } else {
+                    $(".coll_wantToLearn").collapse('hide');
+                    e.preventDefault(); $("#WantToLearnOther").remove();
                 }
             });
 
@@ -218,7 +312,25 @@
             url: "<?php echo api_url('OpenClass/province') ?>",
             success: function(res) {
 
-                var prov = $('#province');
+                var prov = $('#ProvinceID');
+                prov.empty();
+                prov.html($('<option>').val('').html('เลือกจังหวัด'));
+                if (res.length > 0) {
+                    for (i in res.province) {
+                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
+                    }
+                }
+            }
+        });
+    }
+
+    function bindBirthProvince() {
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('OpenClass/province') ?>",
+            success: function(res) {
+
+                var prov = $('#BirthProvinceID');
                 prov.empty();
                 prov.html($('<option>').val('').html('เลือกจังหวัด'));
                 if (res.length > 0) {
@@ -281,7 +393,7 @@
             },
             success: function(res) {
 
-                var nfeTambon = $('#nfeTambon');
+                var nfeTambon = $('#TambonID');
                 var data_nfeTambon = res.data;
                 nfeTambon.empty();
                 nfeTambon.html($('<option>').val('').html('เลือกกศน.ตำบล'));

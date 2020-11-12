@@ -73,4 +73,16 @@ class OpenClass extends REST_Controller{
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
+
+    public function getDetailOpenClass_post(){
+        $ClassID = $this->get('ClassID');
+
+        $result = array();//$this->OpenClass_model->getTambon($amphur);
+
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
+
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
 }

@@ -1,7 +1,7 @@
 <?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class OpenClass extends MY_Controller{
+class Lecturer extends MY_Controller{
     
     var $allow_permission = TRUE;
 
@@ -9,11 +9,11 @@ class OpenClass extends MY_Controller{
 
     var $is_translation = TRUE;
     
-    var $page_id = 9;
+    var $page_id = 11;
 
     function __construct() {
         parent :: __construct();
-        $this->load->model('OpenClass_model');
+        $this->load->model('Lecturer_model');
     }
 
     function index(){
@@ -23,8 +23,7 @@ class OpenClass extends MY_Controller{
             redirect(SITE.'home/login');
         }
 
-        $this->render('normal_page', 'OpenClass','OpenClass/index');
-
+        $this->render('normal_page', 'Lecturer','Lecturer/index');
     }
 
     function form($id = ''){
@@ -35,10 +34,9 @@ class OpenClass extends MY_Controller{
         }
 
         $data = array();
-        $data['ClassID'] = 1;
+        $data['LecturerID'] = 1;
 
-        $this->render('normal_page', 'OpenClass','OpenClass/form', false, $data);
-
+        $this->render('normal_page', 'Lecturer','Lecturer/form', false, $data);
     }
 
 }

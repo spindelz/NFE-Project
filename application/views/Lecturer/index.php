@@ -3,8 +3,8 @@
         <div class="container">
             <div class="content-header" style="color: #517beb">
                 <div class="d-flex">
-                    <h2 class="mb-0 mr-auto"><b>เอกสารเปิดชั้นเรียน</b></h2>
-                    <a href="<?php echo SITE; ?>OpenClass/form" class="btn btn-success ml-3">เพิ่มหลักสูตรชั้นเรียน</a>
+                    <h2 class="mb-0 mr-auto"><b>ข้อมูลวิทยากร</b></h2>
+                    <a href="<?php echo SITE; ?>Lecturer/form" class="btn btn-success ml-3">เพิ่มข้อมูลวิทยากร</a>
                 </div>
                 
             </div>
@@ -13,12 +13,7 @@
                     <?php echo form_open('', $attributes = array('method' => 'get', 'class' => 'form-horizontal', 'id' => 'formSearch')); ?>
                     <div class="row">
                         <div class="col-md-4">
-                            <input type="hidden" name="TeachFirstName" value="<?php echo @$TeachFirstName; ?>">
-                            <input type="hidden" name="TeachLastName" value="<?php echo @$TeachLastName; ?>">
-                            <select class="form-control" name="Semestry" id="Semestry"></select>
-                        </div>
-                        <div class="col-md-4">
-                            <input class="form-control" name="GroupName" id="GroupName" placeholder="ชื่อกลุ่มเรียน">
+                            <input class="form-control" name="LecturerName" id="LecturerName" placeholder="ชื่อวิทยากร">
                         </div>
                         <div class="col-md-4">
                             <input type="submit" class="btn btn-success" value="ค้นหา">
@@ -34,14 +29,13 @@
                         <thead class="text-center">
                             <tr>
                                 <th style="width:5%">ลำดับ</th>
-                                <th style="width:30%">หลักสูตร</th>
-                                <th style="width:10%">กศน.ตำบล</th>
-                                <th style="width:10%">ชื่อวิทยากร</th>
-                                <th style="width:10%">ผู้จบหลักสูตร</th>
+                                <th style="width:25%">ชื่อวิทยากร</th>
+                                <th style="width:10%">ประเภทของวิทยากร</th>
+                                <th style="width:10%">เบอร์โทรศัพท์</th>
                                 <th style="width:10%">สถานะ</th>
-                                <th style="width:10%">วันที่บันทึก</th>
-                                <th style="width:10%">ผู้บันทึก</th>
-                                <th style="width:5%"></th>
+                                <th style="width:10%">วันที่สมัคร</th>
+                                <th style="width:15%">ผู้บันทึก</th>
+                                <th style="width:15%"></th>
                             </tr>
                         </thead>
                         <tbody class="text-center"></tbody>

@@ -17,7 +17,8 @@
         <script src="<?php echo ASSETS_JS; ?>/raphael.min.js"></script>
         <!-- <script src="<?php //echo ASSETS_JS; ?>/jquery.mapael.min.js"></script> -->
         <!-- <script src="<?php //echo ASSETS_JS; ?>/usa_states.min.js"></script> -->
-        <!-- Bootstrap Switch -->
+        
+        <script src="<?php echo ASSETS_JS; ?>/jquery.tmpl.min.js"></script>
         
         <!-- IonIcons -->
         <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>

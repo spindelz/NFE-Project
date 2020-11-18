@@ -1,14 +1,18 @@
 <script>
     $(function() {
-        // postData();
         initControl();
+        bindBirthProvince();
         bindProvince();
         bindAmphur();
         bindTambon();
-        bindNFETambon();
-        bindCareerType();
-        bindBudgetType();
-        bindLecturer();
+        bindWorkProvince();
+        bindWorkAmphur();
+        bindWorkTambon();
+        bindCourceProvince();
+        bindCourceAmphur();
+        bindPrefix();
+        bindLecturerType();
+        bindDegree();
 
         bindData();
     });
@@ -17,90 +21,82 @@
         $('#formSaveData').submit(function(e) {
             e.preventDefault();
             var data = new FormData(this);
-            postData(data);
+            saveData(data);
         });
 
-        $(document).on('change', '#province', function(){
+        $(document).on('change', '#CurrentProvinceID', function(){
             bindAmphur($(this).val());
         });
 
-        $(document).on('change', '#amphur', function(){
+        $(document).on('change', '#CurrentAmphurID', function(){
             bindTambon($(this).val());
         });
 
-        $(document).on('click', '.add-course-structure', function(){
-            bindCourseStructure();
+        $(document).on('change', '#CurrentTambonID', function(){
+            $('#CurrentPostCode').val($('#CurrentTambonID option[value="' + $(this).val() + '"]').data('postcode'));
         });
 
-        $(document).on('click', '.removeCourseStructure', function(){
-            var index = $(this).data('index');
-            $('#CourseStructure .callout[data-index=' + index + ']').remove();
+        $(document).on('change', '#WorkProvinceID', function(){
+            bindWorkAmphur($(this).val());
         });
 
-        $(document).on('click', '.add-class-detail', function(){
-            bindClassDetail();
+        $(document).on('change', '#WorkAmphurID', function(){
+            bindWorkTambon($(this).val());
+        });
+        
+        $(document).on('change', '#WorkTambonID', function(){
+            $('#WorkPostCode').val($('#WorkTambonID option[value="' + $(this).val() + '"]').data('postcode'));
         });
 
-        $(document).on('click', '.removeClassDetail', function(){
-            var index = $(this).data('index');
-            $('#ClassDetail .row[data-index=' + index + ']').remove();
+        $(document).on('change', '#CourceProvinceID', function(){
+            bindCourceAmphur($(this).val());
         });
 
-        $(document).on('click', '.add-learning-material', function(){
-            bindLearningMaterial();
-        });
-
-        $(document).on('click', '.removeLearningMaterial', function(){
-            var index = $(this).data('index');
-            $('#LearningMaterial .row[data-index=' + index + ']').remove();
-        });
-
-        $(document).on('click', '.add-evaluate', function(){
-            bindEvaluate();
-        });
-
-        $(document).on('click', '.removeEvaluate', function(){
-            var index = $(this).data('index');
-            $('#Evaluate .row[data-index=' + index + ']').remove();
-        });
-
-        $(document).on('click', '.add-criteria-complete', function(){
-            bindCriteriaComplete();
-        });
-
-        $(document).on('click', '.removeCriteriaComplete', function(){
-            var index = $(this).data('index');
-            $('#CriteriaComplete .row[data-index=' + index + ']').remove();
-        });
-
-        $(document).on('change', '[name="BudgetTypeID"]', function(){
-            if($(this).val() == 4){
-                $('.budget-other').remove();
-                $(this).closest('.row').after($('<div class="form-group budget-other">').html('<label class="font-weight-bold" for="OtherBudget">งบประมาณที่ใช้อื่นๆ <span class="text-danger">*</span></label><input type="text" class="form-control" id="OtherBudget" name="OtherBudget" required>'));
-            }else{
-                $('.budget-other').remove();
-            }
-        });
-
-        $(document).on('change', '[name="isExtendTime"]', function(){
+        $(document).on('change', '[name="isExperience"]', function(){
             if ($(this).val() == 1) {
-                $('.lateTable').collapse('show');
-                $('.lateTable input').attr('required', 'required');
+                $('.experience').collapse('show');
+                $('.experience input').attr('required', 'required');
+                $('.experience select').attr('required', 'required');
             } else {
-                $('.lateTable').collapse('hide');
-                $('.lateTable input').removeAttr('required');
+                $('.experience').collapse('hide');
+                $('.experience input').removeAttr('required');
+                $('.experience select').removeAttr('required');
             }
         });
 
-        $('#formOpenClass').submit(function(){
-            console.log(12);
+        $(document).on('change', '[name="LecturerTypeID"]', function(){
+            if($(this).val() == 4){
+                $('.lecturer-type-other').remove();
+                $(this).closest('.form-group').after($('<div class="form-group lecturer-type-other">').html('<label class="font-weight-bold" for="LecturerTypeOther">ประเภทวิทยากรอื่นๆ <span class="text-danger">*</span></label><input type="text" class="form-control" id="LecturerTypeOther" name="LecturerTypeOther" maxlength="50" required>'));
+            }else{
+                $('.lecturer-type-other').remove();
+            }
         });
+
+        $(document).on('focus', 'input[type="text"]', function(){
+            var maxlength = $(this).attr('maxlength');
+            $(this).after('<small class="text-mute">จำนวนตัวอักษรสูงสุด: ' + maxlength + ' ตัว</small>');
+        });
+
+        $(document).on('focusout', 'input', function(){
+            $('input + .text-mute').remove();
+        });
+
+        $(document).on('focus', 'textarea', function(){
+            var maxlength = $(this).attr('maxlength');
+            $(this).after('<small class="text-mute">กำหนดตัวอักษร: ' + maxlength + ' ตัว</small>');
+        });
+
+        $(document).on('focusout', 'textarea', function(){
+            $('textarea + .text-mute').remove();
+        });
+        
     }
 
-    function postData(data) {
+    function saveData(data) {
         $.ajax({
             method: "POST",
-            url: "<?php echo api_url('OpenClass/saveData') ?>",
+            url: "<?php echo api_url('Lecturer/save') ?>",
             processData: false,
             contentType: false,
             cache: false,
@@ -110,7 +106,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'ข้อความจากระบบ',
-                    text: 'เพิ่มข้อมูลสำเร็จ',
+                    text: 'บันทึกข้อมูลสำเร็จ',
                 });
             }
         });
@@ -120,74 +116,56 @@
         $.ajax({
             method: "POST",
             url: "<?php echo api_url('OpenClass/getDetailOpenClass') ?>",
-            data: { 'ClassID': $('[name="ClassID"]').val() },
+            data: { 'LecturerID': $('[name="LecturerID"]').val() },
             success: function(res) {
 
-                bindCourseStructure(res);
-                $('#CourseStructure .callout:first-child .removeCourseStructure').hide();
-
-                bindClassDetail(res);
-                $('#ClassDetail .callout:first-child .removeClassDetail').hide();
-
-                bindLearningMaterial(res);
-                $('#LearningMaterial .row:first-child .removeLearningMaterial').hide();
-
-                bindEvaluate(res);
-                $('#Evaluate .row:first-child .removeEvaluate').hide();
-
-                bindCriteriaComplete(res);
-                $('#CriteriaComplete .row:first-child .removeCriteriaComplete').hide();
             }
         });
     }
 
-    function bindCourseStructure(data = {}){
-        var index = $('#CourseStructure .callout').length;
-        data['index'] = index;
-        
-        var $template = $('#CourseStructureTemp').tmpl(data);
-        $("#CourseStructure").append($template);
+    function bindPrefix() {
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('Common/prefix') ?>",
+            success: function(res) {
+
+                var prov = $('#PrefixID');
+                prov.empty();
+                prov.html($('<option>').val('').html('เลือกคำนำหน้าชื่อ'));
+                if (res.length > 0) {
+                    for (i in res.data) {
+                        prov.append($('<option>').val(res.data[i].PrefixID).html(res.data[i].PrefixName));
+                    }
+                }
+            }
+        });
     }
 
-    function bindClassDetail(data = {}){
-        var index = $('#ClassDetail .callout').length;
-        data['index'] = index;
-        
-        var $template = $('#ClassDetailTemp').tmpl(data);
-        $("#ClassDetail").append($template);
-    }
+    function bindBirthProvince() {
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('Common/province') ?>",
+            success: function(res) {
 
-    function bindLearningMaterial(data = {}){
-        var index = $('#LearningMaterial .row').length;
-        data['index'] = index;
-        
-        var $template = $('#LearningMaterialTemp').tmpl(data);
-        $("#LearningMaterial").append($template);
-    }
-
-    function bindEvaluate(data = {}){
-        var index = $('#Evaluate .row').length;
-        data['index'] = index;
-        
-        var $template = $('#EvaluateTemp').tmpl(data);
-        $("#Evaluate").append($template);
-    }
-
-    function bindCriteriaComplete(data = {}){
-        var index = $('#CriteriaComplete .row').length;
-        data['index'] = index;
-        
-        var $template = $('#CriteriaCompleteTemp').tmpl(data);
-        $("#CriteriaComplete").append($template);
+                var prov = $('#BirthProvinceID');
+                prov.empty();
+                prov.html($('<option>').val('').html('เลือกจังหวัด'));
+                if (res.length > 0) {
+                    for (i in res.province) {
+                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
+                    }
+                }
+            }
+        });
     }
 
     function bindProvince() {
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('OpenClass/province') ?>",
+            url: "<?php echo api_url('Common/province') ?>",
             success: function(res) {
 
-                var prov = $('#province');
+                var prov = $('#CurrentProvinceID');
                 prov.empty();
                 prov.html($('<option>').val('').html('เลือกจังหวัด'));
                 if (res.length > 0) {
@@ -200,13 +178,13 @@
     }
 
     function bindAmphur(provinceID = ''){
-        var amphur = $('#amphur');
+        var amphur = $('#CurrentAmphurID');
         amphur.empty();
         amphur.html($('<option>').val('').html('เลือกอำเภอ'));
         if(provinceID != ''){
             $.ajax({
                 method: "GET",
-                url: "<?php echo api_url('OpenClass/amphur') ?>",
+                url: "<?php echo api_url('Common/amphur') ?>",
                 data: {'ProvinceID': provinceID},
                 success: function(res) {
                     if (res.length > 0) {
@@ -220,18 +198,18 @@
     }
 
     function bindTambon(amphurID = ''){
-        var tambon = $('#tambon');
+        var tambon = $('#CurrentTambonID');
         tambon.empty();
         tambon.html($('<option>').val('').html('เลือกตำบล'));
         if(amphurID != ''){
             $.ajax({
                 method: "GET",
-                url: "<?php echo api_url('OpenClass/tambon') ?>",
+                url: "<?php echo api_url('Common/tambon') ?>",
                 data: {'AmphurID': amphurID},
                 success: function(res) {
                     if (res.length > 0) {
                         for (i in res.tambon) {
-                            tambon.append($('<option>').val(res.tambon[i].ID).html('ตำบล ' + res.tambon[i].NAME));
+                            tambon.append($('<option data-postcode="' + res.tambon[i].POSTCODE + '">').val(res.tambon[i].ID).html('ตำบล ' + res.tambon[i].NAME));
                         }
                     }
                 }
@@ -239,210 +217,137 @@
         }
     }
 
-    function bindNFETambon(data){
+    function bindWorkProvince() {
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('NFETambon/getData') ?>",
-            data: {
-                'isActive': 1,
-                'OrganizationLavel': '1,2',
-                'Amphur': '<?php echo @$AmphurID; ?>'
-            },
+            url: "<?php echo api_url('Common/province') ?>",
             success: function(res) {
 
-                var nfeTambon = $('#nfeTambon');
-                var data_nfeTambon = res.data;
-                nfeTambon.empty();
-                nfeTambon.html($('<option>').val('').html('เลือกกศน.ตำบล'));
+                var prov = $('#WorkProvinceID');
+                prov.empty();
+                prov.html($('<option>').val('').html('เลือกจังหวัด'));
                 if (res.length > 0) {
-                    for (i in data_nfeTambon) {
-                        nfeTambon.append($('<option>').val(data_nfeTambon[i].OrganizationID).html(data_nfeTambon[i].OrganizationNameTH));
+                    for (i in res.province) {
+                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
                     }
                 }
             }
         });
     }
 
-    function bindCareerType(data){
+    function bindWorkAmphur(provinceID = ''){
+        var amphur = $('#WorkAmphurID');
+        amphur.empty();
+        amphur.html($('<option>').val('').html('เลือกอำเภอ'));
+        if(provinceID != ''){
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('Common/amphur') ?>",
+                data: {'ProvinceID': provinceID},
+                success: function(res) {
+                    if (res.length > 0) {
+                        for (i in res.amphur) {
+                            amphur.append($('<option>').val(res.amphur[i].ID).html('อำเภอ ' + res.amphur[i].NAME));
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function bindWorkTambon(amphurID = ''){
+        var tambon = $('#WorkTambonID');
+        tambon.empty();
+        tambon.html($('<option>').val('').html('เลือกตำบล'));
+        if(amphurID != ''){
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('Common/tambon') ?>",
+                data: {'AmphurID': amphurID},
+                success: function(res) {
+                    if (res.length > 0) {
+                        for (i in res.tambon) {
+                            tambon.append($('<option data-postcode="' + res.tambon[i].POSTCODE + '">').val(res.tambon[i].ID).html('ตำบล ' + res.tambon[i].NAME));
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function bindCourceProvince() {
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('CareerType/getData') ?>",
+            url: "<?php echo api_url('Common/province') ?>",
             success: function(res) {
-                var occType = $('#occType');
+
+                var prov = $('#CourceProvinceID');
+                prov.empty();
+                prov.html($('<option>').val('').html('เลือกจังหวัด'));
+                if (res.length > 0) {
+                    for (i in res.province) {
+                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
+                    }
+                }
+            }
+        });
+    }
+
+    function bindCourceAmphur(provinceID = ''){
+        var amphur = $('#CourceAmphurID');
+        amphur.empty();
+        amphur.html($('<option>').val('').html('เลือกอำเภอ'));
+        if(provinceID != ''){
+            $.ajax({
+                method: "GET",
+                url: "<?php echo api_url('Common/amphur') ?>",
+                data: {'ProvinceID': provinceID},
+                success: function(res) {
+                    if (res.length > 0) {
+                        for (i in res.amphur) {
+                            amphur.append($('<option>').val(res.amphur[i].ID).html('อำเภอ ' + res.amphur[i].NAME));
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    function bindLecturerType(){
+        $.ajax({
+            method: "GET",
+            url: "<?php echo api_url('Common/lecturerType') ?>",
+            success: function(res) {
+                var lecturerType = $('#LecturerTypeID');
                 
-                occType.empty();
-                occType.html($('<option>').val('').html('เลือกหมวดอาชีพ'));
+                lecturerType.empty();
+                lecturerType.html($('<option>').val('').html('เลือกประเภทวิทยากร'));
                 if (res.length > 0) {
                     for (i in res.data) {
-                        occType.append($('<option>').val(res.data[i].CareerTypeID).html(res.data[i].CareerTypeName));
+                        lecturerType.append($('<option>').val(res.data[i].LecturerTypeID).html(res.data[i].LecturerTypeName));
                     }
                 }
             }
         });
     }
 
-    function bindBudgetType(data){
+    function bindDegree(){
         $.ajax({
             method: "GET",
-            url: "<?php echo api_url('BudgetType/getData') ?>",
+            url: "<?php echo api_url('Common/degree') ?>",
+            data: {'DegreeType': 2},
             success: function(res) {
-                var budget = $('#budget');
+                var degree = $('#DegreeID');
                 
-                budget.empty();
-                budget.html($('<option>').val('').html('เลือกงบประมาณที่ใช้'));
+                degree.empty();
+                degree.html($('<option>').val('').html('เลือกวุฒิการศึกษา'));
                 if (res.length > 0) {
                     for (i in res.data) {
-                        budget.append($('<option>').val(res.data[i].BudgetTypeID).html(res.data[i].BudgetTypeName));
+                        degree.append($('<option>').val(res.data[i].DegreeID).html(res.data[i].DegreeName));
                     }
                 }
             }
         });
     }
 
-    function bindLecturer(data){
-        $.ajax({
-            method: "GET",
-            url: "<?php echo api_url('Lecturer/getData') ?>",
-            success: function(res) {
-                var lecturer = $('#LecturerID');
-                
-                lecturer.empty();
-                lecturer.html($('<option>').val('').html('เลือกวิทยากร'));
-                if (res.length > 0) {
-                    for (i in res.data) {
-                        lecturer.append($('<option>').val(res.data[i].LecturerID).html(res.data[i].LecturerName));
-                    }
-                }
-            }
-        });
-    }
-
-</script>
-
-<script id="CourseStructureTemp" type="text/template">
-    <div class="callout" data-index="${index}">
-        <div class="text-right removeCourseStructure" data-index="${index}"><a href="javascript:void(0)"><i class="fas fa-times-circle text-danger"></i></a></div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">เรื่อง <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][Topic]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">จุดประสงค์การเรียนรู้ <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][Objective]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">เนื้อหา <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][Content]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">การจัดกระบวนการเรียนรู้ <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][LearningProcess]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">จำนวนชั่วโมงภาคทฤษฎี <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][TheoryTime]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">จำนวนชั่วโมงภาคปฎิบัติ <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="CourseStructure[${index}][PracticeTime]" required>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-    </div>
-</script>
-
-<script id="ClassDetailTemp" type="text/template">
-    <div class="callout" data-index="${index}">
-        <div class="text-right removeClassDetail" data-index="${index}"><a href="javascript:void(0)"><i class="fas fa-times-circle text-danger"></i></a></div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">วันที่ และเวลา <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="ClassDetail[${index}][LearningDateTime]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">กระบวนการจัดการเรียนรู้ <span class="text-danger">*</span></label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="ClassDetail[${index}][LearningDetail]" required>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">หมายเหตุ</label>
-                    <div class="col-md-7">
-                        <input type="text" class="form-control" name="ClassDetail[${index}][Remark]">
-                    </div>
-                </div>
-            </div>                                        
-        </div>
-    </div>
-</script>
-
-<script id="LearningMaterialTemp" type="text/template">
-    <div class="row mb-2" data-index="${index}">
-        <div class="col-md-11">
-            <input type="text" class="form-control" name="LearningMaterial[${index}][Name]" required>
-        </div>
-        <div class="col-md-1 d-flex align-items-center">
-            <a href="javascript:void(0)" class="removeLearningMaterial" data-index="${index}">
-                <i class="fas fa-times-circle text-danger"></i>
-            </a>
-        </div>
-    </div>
-</script>
-
-<script id="EvaluateTemp" type="text/template">
-    <div class="row mb-2" data-index="${index}">
-        <div class="col-md-11">
-            <input type="text" class="form-control" name="Evaluate[${index}][Detail]" required>
-        </div>
-        <div class="col-md-1 d-flex align-items-center">
-            <a href="javascript:void(0)" class="removeEvaluate" data-index="${index}">
-                <i class="fas fa-times-circle text-danger"></i>
-            </a>
-        </div>
-    </div>
-</script>
-
-<script id="CriteriaCompleteTemp" type="text/template">
-    <div class="row mb-2" data-index="${index}">
-        <div class="col-md-11">
-            <input type="text" class="form-control" name="CriteriaComplete[${index}][Detail]" required>
-        </div>
-        <div class="col-md-1 d-flex align-items-center">
-            <a href="javascript:void(0)" class="removeCriteriaComplete" data-index="${index}">
-                <i class="fas fa-times-circle text-danger"></i>
-            </a>
-        </div>
-    </div>
 </script>

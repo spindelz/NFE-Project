@@ -28,5 +28,15 @@ class Lecturer extends REST_Controller{
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 
+    public function save_post(){
+        $input = $this->input->post();
+        echo '<pre>'; print_r($input); echo '</pre>'; die();
+        $result = $this->Lecturer_model->insert($input);
+		
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
 
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
 }

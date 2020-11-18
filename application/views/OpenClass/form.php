@@ -11,10 +11,10 @@
                 <div class="card-header p-0 border-bottom-0">
                     <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link " id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">บันทึกเปิดชั้นเรียน</a>
+                            <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="false">บันทึกเปิดชั้นเรียน</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="true">บันทึกข้อมูลวิทยากร</a>
+                            <a class="nav-link" id="custom-tabs-three-profile-tab" data-toggle="pill" href="#custom-tabs-three-profile" role="tab" aria-controls="custom-tabs-three-profile" aria-selected="true">บันทึกข้อมูลวิทยากร</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="custom-tabs-three-messages-tab" data-toggle="pill" href="#custom-tabs-three-messages" role="tab" aria-controls="custom-tabs-three-messages" aria-selected="false">บันทึกประวัติผู้เรียน </a>
@@ -278,7 +278,7 @@
                                     <label class="custom-control-label" for="Extend">ขยายเวลา</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="notExtend" name="isExtendTime" class="custom-control-input" value="0" required>
+                                    <input type="radio" id="notExtend" name="isExtendTime" class="custom-control-input" value="0">
                                     <label class="custom-control-label" for="notExtend">ไม่ขยายเวลา</label>
                                 </div>
                                 <div class="row collapse lateTable">
@@ -326,6 +326,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="font-weight-bold pl-4 border-bottom">คณะกรรมการพิจารณาหลักสูตร</div>
                             <div class="row px-4 pt-4">
                                 <div class="col-md-6 pr-5">
@@ -337,6 +338,7 @@
                                     <input type="text" class="form-control" id="AssistTeacherName" name="AssistTeacherName" required>
                                 </div>
                             </div>
+                            
                             <div class="container-fluid text-right pt-4">
                                 <a href="javascript:void(0)" class="btn btn-secondary">ยกเลิก</a>
                                 <input type="submit" class="btn btn-success" value="บันทึก">

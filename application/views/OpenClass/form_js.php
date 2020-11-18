@@ -286,6 +286,8 @@
                         break;
                 }
             });
+
+        });
         $(document).on('click', '.add-course-structure', function(){
             bindCourseStructure();
         });

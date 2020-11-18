@@ -81,7 +81,7 @@ class OpenClass extends REST_Controller{
 
         $data['data'] = $result;
         $data['length'] = count($result);
-        $data['debug'] = $this->db->last_query();
+        $data['debug'] = $this->db->last_query(); 
 
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }

@@ -5,13 +5,13 @@ require APPPATH . '/libraries/REST_Controller.php';
 
 use Restserver\Libraries\REST_Controller;
 
-class Lecturer extends REST_Controller{
+class Career extends REST_Controller{
 
-    public $primary_key = 'LecturerID';
+    public $primary_key = 'CareerID';
 
     function __construct(){
         parent::__construct();
-        $this->load->model('Lecturer_model');
+        $this->load->model('Career_model');
     }
 
     public function getData_get(){
@@ -19,8 +19,8 @@ class Lecturer extends REST_Controller{
 
         $criteria = array();
 
-        $result = $this->Lecturer_model->getDataAll($criteria);
-        
+        $result = $this->Career_model->getDataAll($criteria);
+		
         $data['data'] = $result;
         $data['length'] = count($result);
         $data['debug'] = $this->db->last_query();
@@ -28,15 +28,5 @@ class Lecturer extends REST_Controller{
         $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
     }
 
-    public function save_post(){
-        $input = $this->input->post();
-        
-        $input['RegisterDate'] = date('Y-m-d');
 
-        $result = $this->Lecturer_model->insert($input);
-		
-        $data['data'] = $result ? 'true': 'false';;
-
-        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
-    }
 }

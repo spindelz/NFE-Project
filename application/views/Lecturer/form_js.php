@@ -75,7 +75,9 @@
 
         $(document).on('focus', 'input[type="text"]', function(){
             var maxlength = $(this).attr('maxlength');
-            $(this).after('<small class="text-mute">จำนวนตัวอักษรสูงสุด: ' + maxlength + ' ตัว</small>');
+            if(maxlength != undefined){
+                $(this).after('<small class="text-mute">จำนวนตัวอักษรสูงสุด: ' + maxlength + ' ตัว</small>');
+            }
         });
 
         $(document).on('focusout', 'input', function(){
@@ -107,6 +109,8 @@
                     icon: 'success',
                     title: 'ข้อความจากระบบ',
                     text: 'บันทึกข้อมูลสำเร็จ',
+                }).then((result) => {
+                    window.location.href = '<?php echo SITE; ?>/Lecturer';
                 });
             }
         });

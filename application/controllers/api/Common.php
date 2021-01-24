@@ -14,6 +14,11 @@ class Common extends REST_Controller{
         $this->load->model('Prefix_model');
         $this->load->model('LecturerType_model');
         $this->load->model('Degree_model');
+        $this->load->model('Career_model');
+        $this->load->model('GroupTarget_model');
+        $this->load->model('InterestBy_model');
+        $this->load->model('PeopleStatus_model');
+        
     }
 
     public function province_get(){
@@ -75,6 +80,46 @@ class Common extends REST_Controller{
         $DegreeType = $this->get('DegreeType');
 
         $result = $this->Degree_model->getData($DegreeType);
+
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
+
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
+
+    public function career_get(){
+        $result = $this->Career_model->getDataAll();
+
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
+
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
+
+    public function GroupTarget_get(){
+        $result = $this->GroupTarget_model->getDataAll();
+
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
+
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
+
+    public function InterestBy_get(){
+        $result = $this->InterestBy_model->getDataAll();
+
+        $data['data'] = $result;
+        $data['length'] = count($result);
+        $data['debug'] = $this->db->last_query();
+
+        $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+    }
+
+    public function PeopleStatus_get(){
+        $result = $this->PeopleStatus_model->getDataAll();
 
         $data['data'] = $result;
         $data['length'] = count($result);

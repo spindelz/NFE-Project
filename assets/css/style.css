@@ -120,6 +120,10 @@ label.custom-file-label, label.custom-file-label::after, .input-group-append .in
     font-size: 1.7rem;
 }
 
+.nav-tabs .nav-item .nav-link.disabled{
+    background: rgba(255, 255, 255, 0.5)
+}
+
 @media screen and (max-width: 768px) {
     .navbar-toggle-menu{
         display: flex !important;

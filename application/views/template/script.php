@@ -37,6 +37,8 @@
         <!-- sweetalert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
         <!-- <script src="<?php //echo ASSETS_JS; ?>/dashboard2.js"></script> -->
+        <!-- loadJSON -->
+        <script src="<?php echo ASSETS_JS; ?>/jquery.loadJSON.js"></script>
         <script>
                 $('.select2').select2({
                         theme: 'bootstrap4'

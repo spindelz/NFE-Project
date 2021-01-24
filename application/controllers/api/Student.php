@@ -12,7 +12,8 @@ class Student extends REST_Controller{
     function __construct(){
         parent::__construct();
 
-        $this->load->model('Student_model');
+		$this->load->model('Student_model');
+		$this->load->model('ClassStudent_model');
     }
 
     public function getDataByTeach_get(){
@@ -289,5 +290,24 @@ class Student extends REST_Controller{
 				$this->response($response, parent::HTTP_OK);
 			}
 		}
-    }
+	}
+	
+	// สำหรับหลักสูตรต่อเนื่อง
+	public function saveDataStudentClass_post(){
+		$input = $this->post();
+		$this->ClassStudent_model->validation_field($input, false);
+		$input['SiteType'] = 1;
+		$result = $this->ClassStudent_model->insert($input);
+
+		$data['data'] = $result ? 'true': 'false';
+        if($result){
+            $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+        }else{
+            $this->response(empty($data) ? '' : $data, parent::HTTP_BAD_REQUEST);
+        }
+	}
+
+	public function getStudentClass_get(){
+
+	}
 }

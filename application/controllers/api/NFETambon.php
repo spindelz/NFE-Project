@@ -18,12 +18,12 @@ class NFETambon extends REST_Controller{
         $input = $this->input->get();
 
         $criteria = array();
-        $criteria['isActive'] = $input['isActive'];
+        
         $criteria['OrganizationLavel'] = explode(',', $input['OrganizationLavel']);
-        $criteria['Amphur'] = explode(',', $input['Amphur']);
+        $criteria['Amphur'] = $this->config->item('NFE_AmphurID');
 
         $result = $this->Organization_model->getDataAll($criteria);
-		// echo "<pre>";print_r ($input);echo "</pre>";exit;
+		
         $data['data'] = $result;
         $data['length'] = count($result);
         $data['debug'] = $this->db->last_query();

@@ -35,7 +35,7 @@ class OpenClass extends MY_Controller{
         }
 
         $data = array();
-        $data['ClassID'] = 1;
+        $data['ClassID'] = $id;
 
         $this->render('normal_page', 'OpenClass','OpenClass/form', false, $data);
 

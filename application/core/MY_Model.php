@@ -294,6 +294,12 @@ class MY_Model extends CI_Model{
 		// 	}
 		// }
 
+		foreach ($entity as $key => &$value) {
+			if(empty($value)){
+				$value = null;
+			}
+		}
+
 		/* Save to database */
 		if ($use_trans) {
 			$this->db->trans_start();
@@ -516,6 +522,27 @@ class MY_Model extends CI_Model{
 				break;
 			}
 		}
+	}
+
+	public function validation_field(&$entity, $isCheckEmpty = false){
+		foreach($entity as $key => &$value){
+			if($isCheckEmpty){
+				if($value == ''){
+					$value = null;
+				}
+			}
+			if(!is_array($value)){
+				$value = trim($value);
+			}else{
+				// echo '<pre>'; print_r($value); echo '</pre>'; die();
+				foreach ($value as $k => &$i) {
+					foreach ($i as $kk => &$ii) {
+						$ii = trim($ii);
+					}
+				}
+			}
+            
+        }
 	}
 
 }

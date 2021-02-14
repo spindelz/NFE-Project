@@ -131,4 +131,18 @@ class Student_model extends MY_Model {
 			return true;
 		} 
     }
+
+    public function getDataByClassID($ClassID){
+        $this->db->select('Student.StudentID, Student.FirstName, Student.LastName, Student.CareerID');
+        $this->db->select('(case when Student.Sex = 1 then \'ชาย\' else \'หญิง\' end) as Sex');
+        $this->db->select('TIMESTAMPDIFF( YEAR, BirthDate, NOW() ) AS age');
+        $this->db->select('(case when Student.CareerID = 9 then Student.CareerOther else Career.CareerName end) as CareerName');
+        $this->db->from('Student');
+        $this->db->join('Career', 'Career.CareerID = Student.CareerID', 'left');
+
+        $this->db->where('Student.ClassID', $ClassID);
+
+        $result = $this->db->get()->result_array();
+        return $result;
+    }
 }

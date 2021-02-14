@@ -12,7 +12,7 @@ class ClassDetail_model extends MY_Model {
 	public $table_translation_name = null;
 
     public function getDataByClassID($ClassID){
-        $this->db->select('ClassDetailID, ClassID, LearningDetail, LearningDateTime, Remark');
+        $this->db->select('ClassDetailID, ClassID, LearningDetail, LearningDate, LearningTime, Remark');
         $this->db->from($this->table_name);
 
         $this->db->where('isActive', 1);

@@ -33,6 +33,10 @@
         <script src="<?php echo ASSETS_JS; ?>/script.js"></script>
         <!-- Select2 -->
         <script src="<?php echo ASSETS_JS; ?>/select2.full.min.js"></script>
+        <!-- daterangepicker -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+        <script src="<?php echo ASSETS_JS; ?>/daterangepicker.js"></script>
+        <script src="<?php echo ASSETS_JS; ?>/timepicker.js"></script>
         <!-- PAGE SCRIPTS -->
         <!-- sweetalert -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
@@ -62,4 +66,7 @@
                         default:
                                 break;
                 }
+                // $(document).ready(function() {
+                        
+                // });
         </script>

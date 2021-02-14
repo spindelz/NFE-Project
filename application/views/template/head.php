@@ -17,6 +17,9 @@
         <link rel="stylesheet" href="<?php echo ASSETS_CSS; ?>/menu.css">
         <!-- Common style -->
         <link rel="stylesheet" href="<?php echo ASSETS_CSS; ?>/style.css">
+        <!-- Daterange Picker -->
+        <link rel="stylesheet" href="<?php echo ASSETS_CSS; ?>/daterangepicker.css">
+        <link rel="stylesheet" href="<?php echo ASSETS_CSS; ?>/timepicker.min.css">
         <!-- Animate style -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css">
         <!-- Bootstrap Switch -->

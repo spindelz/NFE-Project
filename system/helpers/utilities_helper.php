@@ -2,36 +2,6 @@
 	exit('No direct script access allowed');
 }
 
-/**
- *    [Helper for system ulitities]
- *    @author innosenz
- *    @version     1
- *    @date        2017-03-09
- *    @description [description]
- */
-
-if (!function_exists('my_url')) {
-    /**
-     *
-     *    [my_url Return site theme url]
-     *    @author innosenz
-     *    @version     1
-     *    @date        2017-03-09
-     *    @description [description]
-     *    @param       string        $uri      [description]
-     *    @param       [type]        $protocol [description]
-     *    @return      [type]                  [description]
-     */
-    function my_url($uri = '', $protocol = null)
-    {
-    	$site_name = '';
-    	if ($_SERVER['HTTP_HOST'] == "jobit.doe.go.th" || $_SERVER['HTTP_HOST'] == "jobit.doe.local" || $_SERVER['HTTP_HOST'] == "jobit.doe.local:8080" || $_SERVER['HTTP_HOST'] == "jit.bossup.co.th:88"  || $_SERVER['HTTP_HOST'] == "jobit.doe.local:88" || $_SERVER['HTTP_HOST'] == "jobit.sjcweb.zonedev.net:8080" || $_SERVER['HTTP_HOST'] == "jobit.sjcweb.zonedev.net" || $_SERVER['HTTP_HOST'] == "uatjobit.doe.go.th") {
-    		$site_name = get_instance()->uri->segment(1);
-    	}
-    	return get_instance()->config->site_url($site_name . "/" . $uri, $protocol);
-    }
-}
-
 if (!function_exists('main_site_url')) {
     /**
      *
@@ -106,22 +76,6 @@ if (!function_exists('api_url')) {
     function api_url($uri = '', $protocol = null)
     {
     	return get_instance()->config->item('api_url') . (strpos($uri, '/') === 0 ? $uri : '/' . $uri);
-    }
-}
-
-if (!function_exists('doe_url')) {
-    /**
-     *    [doe_url doe api url]
-     *    @author togethel2
-     *    @date   2017-08-16
-     *    @param  string     $uri      [description]
-     *    @param  [type]     $protocol [description]
-     *    @return [type]               [description]
-     */
-    function doe_url($uri = '', $protocol = null)
-    {
-    	$url = 'http://58.97.18.171:8888/smj/id' . (strpos($uri, '/') === 0 ? $uri : '/' . $uri);
-    	return $url;
     }
 }
 
@@ -1270,4 +1224,21 @@ if ( ! function_exists('calAge'))
         $diff = date_diff(date_create($dateOfBirth), date_create($today));
         return $diff->format('%y');
     } 
+}
+
+if ( ! function_exists('validateDate'))
+{   
+    /**
+     *    [display_form I do not know either. why i am create it.]
+     *    @author Spindelz
+     *    @version     1
+     *    @date        2021-01-31
+     *    @description [description]
+     *    @return      [boolean]        [description]
+     */
+    function validateDate($date, $format = 'Y-m-d H:i:s')
+    {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
 }

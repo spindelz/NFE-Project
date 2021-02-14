@@ -1,10 +1,27 @@
 <script>
+    var ClassID = '<?php echo @$ClassID; ?>';
     $(function() {
         // ---- OpenClass -------
         initControl();
-        var ClassID = '<?php echo @$ClassID; ?>';
+
+        $('.datepicker-input').daterangepicker({
+            autoApply: true,
+            singleDatePicker: true,
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear'
+            },
+            format: 'DD/MM/YYYY'
+        });
+
+        $('.datepicker-input').on('apply.daterangepicker', function(ev, picker){
+            var year = picker.startDate.format('YYYY');
+            $(this).val(picker.startDate.format('DD/MM/') + (parseInt(year)+543));
+        });
+        
         if(ClassID != ''){
             bindData();
+            $('.timepicker-input').timepicker();
         }else{
             initBindListAll();
             bindBirthProvince();
@@ -28,9 +45,39 @@
             bindInterestBy();
             bindPeopleStatus();
         }
+
+        
     });
 
+    function initDatetimePicker(){
+        $('.datepicker-input').daterangepicker({
+            autoApply: true,
+            singleDatePicker: true,
+            autoUpdateInput: false
+        });
+
+        $('.datepicker-input').on('apply.daterangepicker', function(ev, picker){
+            var year = picker.startDate.format('YYYY');
+            $(this).val(picker.startDate.format('DD/MM/') + (parseInt(year)+543));
+        });
+
+        $('.timepicker-input').timepicker();
+    }
+
     function initControl() {
+
+        initDatetimePicker();
+
+        // $('.timepicker-input').pickatime({});
+        
+
+        // $('.timepicker-input').change(function(){
+        //     console.log($(this).val());
+        // })
+
+        // $('.timepicker-input').on('change', function(){
+        //     console.log($(this).val());
+        // });
 
         $(document).on('change', '#PlaceProvince', function(){
             bindPlaceAmphur($(this).val());
@@ -172,7 +219,14 @@
         $('#formOpenClass').submit(function(e){
             e.preventDefault();
             var data = new FormData(this);
-            saveDataClass(data);
+            if(ClassID != ''){
+                // console.log(data);
+                
+                updateDataClass(data);
+            }else{
+                saveDataClass(data);
+            }
+            
         });
 
         $('#formStudent').submit(function(e){
@@ -185,6 +239,32 @@
         $.ajax({
             method: "POST",
             url: "<?php echo api_url('OpenClass/saveData') ?>",
+            processData: false,
+            contentType: false,
+            cache: false,
+            data: data,
+            dataType:"json",
+            success: function(res) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'ข้อความจากระบบ',
+                    text: 'เพิ่มข้อมูลสำเร็จ โปรดกรอกข้อมูลประวัติผู้เรียนต่อ',
+                }).then((result) => {
+                    $('#opren-class-tab').removeClass('active');
+                    $('#student-tab').addClass('active');
+                    $('#student-tab').removeClass('disabled');
+                    $('#opren-class').removeClass('show active');
+                    $('#student').addClass('show active');
+                    $('[name="ClassID"]').val(res.id);
+                });
+            }
+        });
+    }
+
+    function updateDataClass(data) {
+        $.ajax({
+            method: "POST",
+            url: "<?php echo api_url('OpenClass/updateData') ?>",
             processData: false,
             contentType: false,
             cache: false,
@@ -231,7 +311,10 @@
             url: "<?php echo api_url('OpenClass/getDetailOpenClass') ?>",
             data: { 'ClassID': $('[name="ClassID"]').val() },
             success: function(res) {
+                $('.nav-link').removeClass('disabled');
+
                 if(res.data != null){
+                    $('#formOpenClass').append('<input type="hidden" name="ClassID" value="' + res.data.ClassID + '">');
                     $('#formOpenClass').loadJSON(res.data);
                     bindPlaceProvince(res.data.PlaceProvince);
                     bindPlaceAmphur(res.data.PlaceProvince, res.data.PlaceAmphur);
@@ -239,8 +322,9 @@
                     bindCareerType(res.data.CareerTypeID);
                     bindNFETambon(res.data.NFETambonID);
                     bindBudgetType(res.data.BudgetTypeID);
-                    bindBudgetType(res.data.BudgetTypeID);
                     bindLecturer(res.data.LecturerID);
+
+                    $('[name="PlaceImage"]').removeAttr('required');
 
                     $('.custom-file').before('<img src="<?php echo ASSETS_IMG; ?>/PlaceImage/' + res.data.PlaceImage + '" style="width:100%;" class="mb-2">');
 
@@ -254,24 +338,24 @@
                     }else{
                         $('[name="isExtendTime"][value="1"]').prop('checked', true);
                     }
+
+                    bindCourseStructure(res.data.CourseStructure);
+                    $('#CourseStructure .callout:first-child .removeCourseStructure').hide();
+
+                    bindClassDetail(res.data.ClassDetail);
+                    $('#ClassDetail .callout:first-child .removeClassDetail').hide();
+
+                    bindLearningMaterial(res.data.LearningMaterial);
+                    $('#LearningMaterial .row:first-child .removeLearningMaterial').hide();
+
+                    bindEvaluate(res.data.Evaluate);
+                    $('#Evaluate .row:first-child .removeEvaluate').hide();
+
+                    bindCriteriaComplete(res.data.CriteriaComplete);
+                    $('#CriteriaComplete .row:first-child .removeCriteriaComplete').hide();
+
+                    bindDataStudent(res.data.Student);
                 }
-
-                bindCourseStructure(res.data.CourseStructure);
-                $('#CourseStructure .callout:first-child .removeCourseStructure').hide();
-
-                bindClassDetail(res.data.ClassDetail);
-                $('#ClassDetail .callout:first-child .removeClassDetail').hide();
-
-                bindLearningMaterial(res.data.LearningMaterial);
-                $('#LearningMaterial .row:first-child .removeLearningMaterial').hide();
-
-                bindEvaluate(res.data.Evaluate);
-                $('#Evaluate .row:first-child .removeEvaluate').hide();
-
-                bindCriteriaComplete(res.data.CriteriaComplete);
-                $('#CriteriaComplete .row:first-child .removeCriteriaComplete').hide();
-
-                bindDataStudent(res.Student);
             }
         });
     }
@@ -323,6 +407,19 @@
         
         var $template = $('#ClassDetailTemp').tmpl(data);
         $("#ClassDetail").append($template);
+
+        $('.datepicker-input').daterangepicker({
+            autoApply: true,
+            singleDatePicker: true,
+            autoUpdateInput: false
+        });
+
+        $('.datepicker-input').on('apply.daterangepicker', function(ev, picker){
+            var year = picker.startDate.format('YYYY');
+            $(this).val(picker.startDate.format('DD/MM/') + (parseInt(year)+543));
+        });
+
+        $('.timepicker-input').timepicker();
     }
 
     function bindLearningMaterial(data = {}){
@@ -379,9 +476,9 @@
                 prov.empty();
                 prov.html($('<option>').val('').html('เลือกจังหวัด'));
                 if (res.length > 0) {
-                    for (i in res.province) {
-                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
-                    }
+                    $.each(res.province, function(i, v){
+                        prov.append($('<option>').val(v.ID).html('จังหวัด ' + v.NAME));
+                    });
                 }
             }
         });
@@ -396,9 +493,9 @@
             url: "<?php echo api_url('Common/province') ?>",
             success: function(res) {
                 if (res.length > 0) {
-                    for (i in res.province) {
-                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
-                    }
+                    $.each(res.province, function(i, v){
+                        prov.append($('<option>').val(v.ID).html('จังหวัด ' + v.NAME));
+                    });
                 }
                 if(ProvinceID != ''){
                     prov.val(ProvinceID);
@@ -418,9 +515,9 @@
                 data: {'ProvinceID': provinceID},
                 success: function(res) {
                     if (res.length > 0) {
-                        for (i in res.amphur) {
-                            amphur.append($('<option>').val(res.amphur[i].ID).html('อำเภอ ' + res.amphur[i].NAME));
-                        }
+                        $.each(res.amphur, function(i, v){
+                            amphur.append($('<option>').val(v.ID).html('อำเภอ ' + v.NAME));
+                        });
                     }
                     if(AmphurID != ''){
                         amphur.val(AmphurID);
@@ -441,9 +538,9 @@
                 data: {'AmphurID': amphurID},
                 success: function(res) {
                     if (res.length > 0) {
-                        for (i in res.tambon) {
-                            tambon.append($('<option>').val(res.tambon[i].ID).html('ตำบล ' + res.tambon[i].NAME));
-                        }
+                        $.each(res.tambon, function(i, v){
+                            tambon.append($('<option>').val(v.ID).html('ตำบล ' + v.NAME));
+                        });
                     }
                     if(TambonID != ''){
                         tambon.val(TambonID);
@@ -469,10 +566,10 @@
             success: function(res) {
                 var data_nfeTambon = res.data;
                 if (res.length > 0) {
-                    for (i in data_nfeTambon) {
-                        nfeTambon.append($('<option>').val(data_nfeTambon[i].OrganizationID).html(data_nfeTambon[i].OrganizationNameTH));
-                        StudentNFETombonID.append($('<option>').val(data_nfeTambon[i].OrganizationID).html(data_nfeTambon[i].OrganizationNameTH));
-                    }
+                    $.each(data_nfeTambon, function(i, v){
+                        nfeTambon.append($('<option>').val(v.OrganizationID).html(v.OrganizationNameTH));
+                        StudentNFETombonID.append($('<option>').val(v.OrganizationID).html(v.OrganizationNameTH));
+                    });
                 }
                 if(NFETambonID != ''){
                     nfeTambon.val(NFETambonID);
@@ -485,14 +582,15 @@
         var occType = $('#occType');
         occType.empty();
         occType.html($('<option>').val('').html('เลือกหมวดอาชีพ'));
+        
         $.ajax({
             method: "GET",
             url: "<?php echo api_url('CareerType/getData') ?>",
             success: function(res) {
                 if (res.length > 0) {
-                    for (i in res.data) {
-                        occType.append($('<option>').val(res.data[i].CareerTypeID).html(res.data[i].CareerTypeName));
-                    }
+                    $.each(res.data, function(i, v){
+                        occType.append($('<option>').val(v.CareerTypeID).html(v.CareerTypeName));
+                    });
                 }
                 if(CareerTypeID != ''){
                     occType.val(CareerTypeID);
@@ -510,9 +608,9 @@
             url: "<?php echo api_url('BudgetType/getData') ?>",
             success: function(res) {
                 if (res.length > 0) {
-                    for (i in res.data) {
-                        budget.append($('<option>').val(res.data[i].BudgetTypeID).html(res.data[i].BudgetTypeName));
-                    }
+                    $.each(res.data, function(i, v){
+                        budget.append($('<option>').val(v.BudgetTypeID).html(v.BudgetTypeName));
+                    });
                 }
                 if(BudgetTypeID != ''){
                     budget.val(BudgetTypeID);
@@ -530,9 +628,9 @@
             url: "<?php echo api_url('Lecturer/getData') ?>",
             success: function(res) {
                 if (res.length > 0) {
-                    for (i in res.data) {
-                        lecturer.append($('<option>').val(res.data[i].LecturerID).html(res.data[i].LecturerName));
-                    }
+                    $.each(res.data, function(i, v){
+                        lecturer.append($('<option>').val(v.LecturerID).html(v.LecturerName));
+                    });
                 }
                 if(LecturerID != ''){
                     lecturer.val(LecturerID);
@@ -550,9 +648,9 @@
             url: "<?php echo api_url('Common/province') ?>",
             success: function(res) {
                 if (res.length > 0) {
-                    for (i in res.province) {
-                        prov.append($('<option>').val(res.province[i].ID).html('จังหวัด ' + res.province[i].NAME));
-                    }
+                    $.each(res.province, function(i, v){
+                        prov.append($('<option>').val(v.ID).html('จังหวัด ' + v.NAME));
+                    });
                 }
             }
         });
@@ -734,7 +832,29 @@
     }
 
     function bindDataStudent(data){
+        var dataTable = $('#datatableStudent tbody');
+        if(Object.keys(data).length > 0){
+            $.each(data, function(i,v){
+                var str_table = '<tr>';
+                str_table += '<td class="text-center">' + (parseInt(i) + 1) + '</td>';
+                str_table += '<td>' + v.CourseName + '</td>';
+                str_table += '<td>' + v.NFETambonName + '</td>';
+                str_table += '<td>' + v.LecturerName + '</td>';
+                str_table += '<td class="text-center">' + v.ResultAmount + '</td>';
+                str_table += '<td>' + v.UpdatedDate + '</td>';
+                str_table += '<td>' + v.UserUpdate + '</td>';
+                str_table += '<td class="text-center">';
+                str_table += '<a href="<?php echo SITE; ?>OpenClass/form/' + v.ClassID + '" style="font-size:15px;" class="btn btn-warning"><i class="fas fa-pencil-alt"></i></a> ';
+                str_table += '<a href="javascript:void(0)" class="btn btn-danger btn-delete" style="font-size:15px;" data-id="' + v.ClassID + '"><i class="fas fa-trash-alt"></i></a>';
+                str_table += '</td>';
+                str_table += '</tr>';
 
+                dataTable.append(str_table);
+            })
+        }else{
+            var str_table = '<tr><td colspan="6" class="text-danger text-center">ไม่มีข้อมูล</td></tr>';
+            dataTable.html(str_table);
+        }
     }
 
 </script>
@@ -742,6 +862,7 @@
 <script id="CourseStructureTemp" type="text/template">
     <div class="callout" data-index="${index}">
         <div class="text-right"><a href="javascript:void(0)" class="removeCourseStructure" data-index="${index}"><i class="fas fa-times-circle text-danger"></i></a></div>
+        <input type="hidden" name="CourseStructure[${index}][CourseStructureID]" value="${CourseStructureID}">
         <div class="row">
             <div class="col-md-6">
                 <div class="from-group row">
@@ -799,12 +920,21 @@
 <script id="ClassDetailTemp" type="text/template">
     <div class="callout" data-index="${index}">
         <div class="text-right"><a href="javascript:void(0)" class="removeClassDetail" data-index="${index}"><i class="fas fa-times-circle text-danger"></i></a></div>
+        <input type="hidden" name="ClassDetail[${index}][ClassDetailID]" value="${ClassDetailID}">
         <div class="row">
             <div class="col-md-6">
                 <div class="from-group row">
-                    <label class="font-weight-bold text-right col-md-5">วันที่ และเวลา <span class="text-danger">*</span></label>
+                    <label class="font-weight-bold text-right col-md-5">วันที่ <span class="text-danger">*</span></label>
                     <div class="col-md-7">
-                        <input type="text" class="form-control" name="ClassDetail[${index}][LearningDateTime]" value="${LearningDateTime}" required>
+                        <input type="text" class="datepicker-input form-control" name="ClassDetail[${index}][LearningDate]" value="${LearningDate}" autocomplete="off" required>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="from-group row">
+                    <label class="font-weight-bold text-right col-md-5">เวลา <span class="text-danger">*</span></label>
+                    <div class="col-md-7">
+                        <input type="text" class="timepicker-input form-control" name="ClassDetail[${index}][LearningTime]" value="${LearningTime}" autocomplete="off" required>
                     </div>
                 </div>
             </div>
@@ -831,6 +961,7 @@
 <script id="LearningMaterialTemp" type="text/template">
     <div class="row mb-2" data-index="${index}">
         <div class="col-md-11">
+            <input type="hidden" name="LearningMaterial[${index}][LearningMaterialID]" value="${LearningMaterialID}">
             <input type="text" class="form-control" name="LearningMaterial[${index}][LearningMaterialName]" maxlength="50" value="${LearningMaterialName}" required>
         </div>
         <div class="col-md-1 d-flex align-items-center">
@@ -844,6 +975,7 @@
 <script id="EvaluateTemp" type="text/template">
     <div class="row mb-2" data-index="${index}">
         <div class="col-md-11">
+            <input type="hidden" name="Evaluate[${index}][EvaluateID]" value="${EvaluateID}">
             <input type="text" class="form-control" name="Evaluate[${index}][EvaluateDetail]" maxlength="100" value="${EvaluateDetail}" required>
         </div>
         <div class="col-md-1 d-flex align-items-center">
@@ -857,6 +989,7 @@
 <script id="CriteriaCompleteTemp" type="text/template">
     <div class="row mb-2" data-index="${index}">
         <div class="col-md-11">
+            <input type="hidden" name="CriteriaComplete[${index}][CriteriaCompleteID]" value="${CriteriaCompleteID}">
             <input type="text" class="form-control" name="CriteriaComplete[${index}][CriteriaCompleteName]" maxlength="100" value="${CriteriaCompleteName}" required>
         </div>
         <div class="col-md-1 d-flex align-items-center">

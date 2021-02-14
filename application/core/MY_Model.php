@@ -335,9 +335,9 @@ class MY_Model extends CI_Model{
 	}
 
 	public function update($entity, $key, $langID = null, $use_trans = true) {
-		if (!isset($langID)) {
-			$langID = $this->default_language;
-		}
+		// if (!isset($langID)) {
+		// 	$langID = $this->default_language;
+		// }
 		/* Declare variables*/
 		// $translation = array();
 		// $table_condition = array();

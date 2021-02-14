@@ -19,6 +19,7 @@ class OpenClass extends REST_Controller{
         $this->load->model('Evaluate_model');
         $this->load->model('CriteriaComplete_model');
         $this->load->model('Organization_model');
+        $this->load->model('Student_model');
     }
 
     public function list_post(){
@@ -136,6 +137,116 @@ class OpenClass extends REST_Controller{
         
     }
 
+    public function updateData_post(){
+        $input = $this->post();
+
+        $ClassID = $input[$this->primary_key];
+        unset($input[$this->primary_key]);
+        // echo '<pre>'; print_r($input); echo '</pre>'; die();
+        $CourseStructure = $input['CourseStructure'];
+        unset($input['CourseStructure']);
+        $ClassDetail = $input['ClassDetail'];
+        unset($input['ClassDetail']);
+        $LearningMaterial = $input['LearningMaterial'];
+        unset($input['LearningMaterial']);
+        $Evaluate = $input['Evaluate'];
+        unset($input['Evaluate']);
+        $CriteriaComplete = $input['CriteriaComplete'];
+        unset($input['CriteriaComplete']);
+
+        if($input['isExtendTime'] == 0){
+            unset($input['HourAmount']);
+            unset($input['DayAmount']);
+            unset($input['ExtendDateStart']);
+            unset($input['ExtendDateEnd']);
+            unset($input['ExtendTimeStart']);
+            unset($input['ExtendTimeEnd']);
+        }else{
+            $input['ExtendDateStart'] = convert_to_date($input['ExtendDateStart']);
+            $input['ExtendDateEnd'] = convert_to_date($input['ExtendDateEnd']);
+        }
+
+        if(!empty($_FILES["PlaceImage"]["name"])){
+            $res = $this->uploadImage($_FILES["PlaceImage"]);
+            if($res['status'] == 1){
+                $input['PlaceImage'] = $res['file_name'];
+                $result = true;
+            }else{
+                $result = false;
+            }
+        }
+
+        $ClassDays = $input['ClassDays'];
+        $input['ClassDays'] = implode(',', $input['ClassDays']);
+
+        $input['ClassDateStart'] = convert_to_date($input['ClassDateStart']);
+        $input['ClassDateEnd'] = convert_to_date($input['ClassDateEnd']);
+        foreach ($ClassDetail as $key => &$value) {
+            $value['LearningDate'] = convert_to_date($value['LearningDate']);
+        }
+        $this->OpenClass_model->validation_field($input, false);
+        // echo '<pre>'; print_r($input); echo '</pre>'; die();
+
+        if($result){
+            
+            $result = $this->OpenClass_model->update($input, array('ClassID' => $ClassID));
+            // if($result){
+            //     foreach ($CourseStructure as $CourseStructureKey => $CourseStructureValue) {
+            //         $CourseStructureID = $CourseStructureValue['CourseStructureID'];
+            //         unset($CourseStructureValue['CourseStructureID']);
+            //         $result = $this->CourseStructure_model->update($CourseStructureValue, $CourseStructureID);
+            //         if(!$result){ break; }
+            //     }
+            // }
+
+            // if($result){
+            //     foreach ($ClassDetail as $ClassDetailKey => $ClassDetailValue) {
+            //         $ClassDetailID = $ClassDetailValue['ClassDetailID'];
+            //         unset($ClassDetailValue['ClassDetailID']);
+            //         $result = $this->ClassDetail_model->update($ClassDetailValue, $ClassDetailID);
+            //         if(!$result){ break; }
+            //     }
+            // }
+
+            // if($result){
+            //     foreach ($LearningMaterial as $LearningMaterialKey => $LearningMaterialValue) {
+            //         $LearningMaterialID = $LearningMaterialValue['LearningMaterialID'];
+            //         unset($LearningMaterialValue['LearningMaterialID']);
+            //         $result = $this->LearningMaterial_model->update($LearningMaterialValue, $LearningMaterialID);
+            //         if(!$result){ break; }
+            //     }
+            // }
+
+            // if($result){
+            //     foreach ($Evaluate as $EvaluateKey => $EvaluateValue) {
+            //         $EvaluateID = $EvaluateValue['EvaluateID'];
+            //         unset($EvaluateValue['EvaluateID']);
+            //         $result = $this->Evaluate_model->update($EvaluateValue, $EvaluateID);
+            //         if(!$result){ break; }
+            //     }
+            // }
+
+            // if($result){
+            //     foreach ($CriteriaComplete as $CriteriaCompleteKey => $CriteriaCompleteValue) {
+            //         $CriteriaCompleteID = $CriteriaCompleteValue['CriteriaCompleteID'];
+            //         unset($CriteriaCompleteValue['CriteriaCompleteID']);
+            //         $result = $this->CriteriaComplete_model->update($CriteriaCompleteValue, $CriteriaCompleteID);
+            //         if(!$result){ break; }
+            //     }
+            // }
+        }
+        
+        // echo '<pre>'; print_r($CourseStructure); echo '</pre>'; die();
+
+        $data['status'] = $result ? 'true': 'false';
+        if($result){
+            $this->response(empty($data) ? '' : $data, parent::HTTP_OK);
+        }else{
+            $this->response(empty($data) ? '' : $data, parent::HTTP_BAD_REQUEST);
+        }
+        
+    }
+
     // public function province_get(){
 
     //     $result = $this->OpenClass_model->getProvince();
@@ -190,8 +301,15 @@ class OpenClass extends REST_Controller{
             $result['LearningMaterial'] = $this->LearningMaterial_model->getDataByClassID($input['ClassID']);
             $result['Evaluate'] = $this->Evaluate_model->getDataByClassID($input['ClassID']);
             $result['CriteriaComplete'] = $this->CriteriaComplete_model->getDataByClassID($input['ClassID']);
+            $result['Student'] = $this->Student_model->getDataByClassID($input['ClassID']);
         }
-
+        // unset($result['ClassDateStart']);
+        // unset($result['ClassDateEnd']);
+        $result['ClassDateStart'] = to_date_string($result['ClassDateStart']);
+        $result['ClassDateEnd'] = to_date_string($result['ClassDateEnd']);
+        foreach ($result['ClassDetail'] as $key => &$value) {
+            $value['LearningDate'] = validateDate($value['LearningDate'], 'Y-m-d') ? to_date_string($value['LearningDate']) : '';
+        }
         $data['data'] = $result;
         $data['debug'] = $this->db->last_query(); 
 
@@ -199,7 +317,7 @@ class OpenClass extends REST_Controller{
     }
 
     public function uploadImage($file){
-        // echo $file['name']; die();
+        
         $target_dir  = "assets/img/PlaceImage/";
 		
 		$response = array( 

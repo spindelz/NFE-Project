@@ -71,27 +71,27 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="font-weight-bold" for="courseName">ช่วงวันที่จัดกิจกรรม <span class="text-danger">*</span></label>
+                                        <label class="font-weight-bold" for="dateStId">ช่วงวันที่จัดกิจกรรม <span class="text-danger">*</span></label>
                                         <div class="d-flex flex-row">
                                             <div class="col-md-5 pl-0">
-                                                <input type="date" class="form-control" id="dateStId" name="ClassDateStart" required>
+                                                <input type="text" class="datepicker-input form-control" id="dateStId" name="ClassDateStart" autocomplete="off" required>
                                             </div>
                                             - 
                                             <div class="col-md-5 pr-0">
-                                                <input type="date" class="form-control" id="dateSpId" name="ClassDateEnd" required>
+                                                <input type="text" class="datepicker-input form-control" id="dateSpId" name="ClassDateEnd" autocomplete="off" required>
                                             </div>
                                         </div>
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label class="font-weight-bold" for="courseName">ช่วงเวลาที่จัดกิจกรรม <span class="text-danger">*</span></label>
+                                        <label class="font-weight-bold" for="timeStId">ช่วงเวลาที่จัดกิจกรรม <span class="text-danger">*</span></label>
                                         <div class="d-flex flex-row">
                                             <div class="col-md-5 pl-0">
-                                                <input type="time" class="form-control" id="timeStId" name="ClassTimeStart" required>
+                                                <input type="text" class="timepicker-input form-control" id="timeStId" name="ClassTimeStart" autocomplete="off" required>
                                             </div>
                                             - 
                                             <div class="col-md-5 pr-0">
-                                                <input type="time" class="form-control" id="timeSpId" name="ClassTimeEnd" required>
+                                                <input type="text" class="timepicker-input form-control" id="timeSpId" name="ClassTimeEnd" autocomplete="off" required>
                                             </div>
                                         </div>
                                     </div>
@@ -320,15 +320,15 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
+                                        <div class="form-group px-4">
                                             <label class="font-weight-bold" for="ExtendDateStart">ช่วงวันที่ขยาย <span class="text-danger">*</span></label>
                                             <div class="d-flex flex-row">
                                                 <div class="col-md-5 pl-0">
-                                                    <input type="text" class="form-control" id="ExtendDateStart" name="ExtendDateStart">
+                                                    <input type="text" class="datepicker-input form-control" id="ExtendDateStart" name="ExtendDateStart">
                                                 </div>
                                                 - 
                                                 <div class="col-md-5 pr-0">
-                                                    <input type="text" class="form-control" id="ExtendDateEnd" name="ExtendDateEnd">
+                                                    <input type="text" class="datepicker-input form-control" id="ExtendDateEnd" name="ExtendDateEnd">
                                                 </div>
                                             </div>
                                         </div>
@@ -338,11 +338,11 @@
                                             <label class="font-weight-bold" for="ExtendTimeStart">ช่วงเวลาที่ขยาย <span class="text-danger">*</span></label>
                                             <div class="d-flex flex-row">
                                                 <div class="col-md-5 pl-0">
-                                                    <input type="text" class="form-control" id="ExtendTimeStart" name="ExtendTimeStart">
+                                                    <input type="text" class="timepicker-input form-control" id="ExtendTimeStart" name="ExtendTimeStart">
                                                 </div>
                                                 - 
                                                 <div class="col-md-5 pr-0">
-                                                    <input type="text" class="form-control" id="ExtendTimeEnd" name="ExtendTimeEnd">
+                                                    <input type="text" class="timepicker-input form-control" id="ExtendTimeEnd" name="ExtendTimeEnd">
                                                 </div>
                                             </div>
                                         </div>
